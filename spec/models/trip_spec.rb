@@ -12,7 +12,7 @@ RSpec.describe Trip do
     it { should validate_presence_of(:zip_code) }
   end
 
-  desribe 'Relationships' do
+  describe 'Relationships' do
     it { should belong_to(:station) }
   end
 end
