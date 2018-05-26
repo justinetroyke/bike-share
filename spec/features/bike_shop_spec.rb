@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Bike Shop Page' do
+  before :all do
+    routes = 
+  end
+  
   before :each do
     n = 0
     @items = []
@@ -68,9 +72,6 @@ RSpec.describe 'Bike Shop Page' do
         end
 
         #Need some more pages to test
-      end
-
-      it 'the cart count should update on all pages' do
       end
     end
   end
