@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Bike Shop Page' do
-  before :all do
-    routes = 
-  end
-  
   before :each do
     n = 0
     @items = []
@@ -13,6 +9,7 @@ RSpec.describe 'Bike Shop Page' do
       @items << Item.create!(title: "Item #{n}", price: "#{n}.00".to_f, image: "default/item#{n}.png", description: "This is the description for item#{n}")
     end
   end
+
   context '/bike-shop' do
     describe 'A visitor visits the bike shop page' do
       it 'they should see at least 12 bike accessories (items) for sale' do
@@ -61,6 +58,17 @@ RSpec.describe 'Bike Shop Page' do
       end
 
       it 'the cart count should update on all pages' do
+        visit bike_shop_path
+
+        within("#item-#{@items[0].id}") do
+          click_link 'Add to Cart'
+        end
+
+        within('#cart') do
+          expect(page).to have_content('1')
+        end
+
+        #Need some more pages to test
       end
     end
   end
