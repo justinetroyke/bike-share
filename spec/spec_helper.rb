@@ -33,15 +33,15 @@ RSpec.configure do |config|
     # User 4 will have no orders
 
     # Create Items (and OrderItems)
-    @item1 = @order1.items.create(title: 'Item 1', prices: 1.23, image: 'default/image1', description: 'This is Item 1\'s description')
-    @item2 = @order1.items.create(title: 'Item 2', prices: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
-    # @item3 = @order2.items.create(title: 'Item 2', prices: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
-    @item3 = @order2.items.create(title: 'Item 3', prices: 3.33, image: 'default/image3', description: 'This is Item 3\'s description')
-    @item4 = @order3.items.create(title: 'Item 4', prices: 4.44, image: 'default/image4', description: 'This is Item 4\'s description')
-    @item5 = @order4.items.create(title: 'Item 5', prices: 5.55, image: 'default/image5', description: 'This is Item 5\'s description')
-    @item6 = @order5.items.create(title: 'Item 6', prices: 6.66, image: 'default/image6', description: 'This is Item 6\'s description')
-    @item7 = @order6.items.create(title: 'Item 7', prices: 7.77, image: 'default/image7', description: 'This is Item 7\'s description')
-    @item8 = @order7.items.create(title: 'Item 8', prices: 8.88, image: 'default/image8', description: 'This is Item 8\'s description')
+    @item1 = @order1.items.create(title: 'Item 1', price: 1.23, image: 'default/image1', description: 'This is Item 1\'s description')
+    @item2 = @order1.items.create(title: 'Item 2', price: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
+    # @item3 = @order2.items.create(title: 'Item 2', price: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
+    @item3 = @order2.items.create(title: 'Item 3', price: 3.33, image: 'default/image3', description: 'This is Item 3\'s description')
+    @item4 = @order3.items.create(title: 'Item 4', price: 4.44, image: 'default/image4', description: 'This is Item 4\'s description')
+    @item5 = @order4.items.create(title: 'Item 5', price: 5.55, image: 'default/image5', description: 'This is Item 5\'s description')
+    @item6 = @order5.items.create(title: 'Item 6', price: 6.66, image: 'default/image6', description: 'This is Item 6\'s description')
+    @item7 = @order6.items.create(title: 'Item 7', price: 7.77, image: 'default/image7', description: 'This is Item 7\'s description')
+    @item8 = @order7.items.create(title: 'Item 8', price: 8.88, image: 'default/image8', description: 'This is Item 8\'s description')
 
     # Create Stations
     @station1 = Station.create!(name: 'Union Station', dock_count: 12, city: 'Denver', installation_date: Date.now)
