@@ -17,19 +17,19 @@ ActiveRecord::Schema.define(version: 2018_05_25_232015) do
 
   create_table "items", force: :cascade do |t|
     t.string "title"
-    t.integer "prices"
+    t.integer "price"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "ordered_items", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_ordered_items_on_item_id"
-    t.index ["order_id"], name: "index_ordered_items_on_order_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2018_05_25_232015) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "ordered_items", "items"
-  add_foreign_key "ordered_items", "orders"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
 end
