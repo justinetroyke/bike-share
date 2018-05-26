@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Bike Shop Page' do
+  before :all do
+    routes = 
+  end
+  
   before :each do
     n = 0
     @items = []
@@ -38,6 +42,22 @@ RSpec.describe 'Bike Shop Page' do
 
     describe 'A visitor click the \'Add to Cart\' button for an item' do
       it 'should display a flash message saying that the item has been added to the cart' do
+        visit bike_shop_path
+
+        within("#item-#{@items[0].id}") do
+          click_link 'Add to Cart'
+        end
+        expect(page).to have_content("#{@items[0].title} has been add to your cart!")
+
+        within("#item-#{@items[11].id}") do
+          click_link 'Add to Cart'
+        end
+        expect(page).to have_content("#{@items[11].title} has been add to your cart!")
+
+        within("#item-#{@items[23].id}") do
+          click_link 'Add to Cart'
+        end
+        expect(page).to have_content("#{@items[23].title} has been add to your cart!")
       end
 
       it 'the cart count should update on all pages' do
