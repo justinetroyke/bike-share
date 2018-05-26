@@ -1,13 +1,11 @@
 class User < ApplicationRecord
-  validates :role, presence: true
-  validates :username, presence: true, uniqueness: true
-  validates :password_digest, presence: true
-  validates :address, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates_presence_of :password, require: true, on: :create
-
   has_secure_password
+  validates_presence_of :role
+  validates_presence_of :username, uniqueness: true
+  validates_presence_of :address
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :password, confirmation: true
 
   has_many :orders
 end
