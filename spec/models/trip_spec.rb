@@ -13,6 +13,7 @@ RSpec.describe Trip do
   end
 
   describe 'Relationships' do
-    it { should belong_to(:station) }
+    it { is_expected.to belong_to(:start_station) }
+    it { is_expected.to belong_to(:end_station) }
   end
 end
