@@ -9,6 +9,7 @@ RSpec.describe Station do
   end
 
   describe 'Relationships' do
-    it { should have_many(:trips) }
+    it { is_expected.to have_many(:start_trips) }
+    it { is_expected.to have_many(:end_trips) }
   end
 end
