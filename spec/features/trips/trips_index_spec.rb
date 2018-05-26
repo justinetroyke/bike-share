@@ -20,8 +20,9 @@ RSpec.feature "Trips Index", type: :feature do
                         )
           end
         end
-        
-      
+        before(:each) do
+          visit(trips_path)
+        end
         it 'should show the first 30 trips' do
           expect(page).to have_css("li:nth-child(30)")
           expect(page).to_not have_css("li:nth-child(31)")
@@ -55,6 +56,9 @@ RSpec.feature "Trips Index", type: :feature do
                               start_station_id: station1.id,
                               end_station_id: station2.id,
                               end_date: Time.now)
+        end
+        before(:each) do
+          visit(trips_path)
         end
         it 'should show duration' do
           within('li:nth-child(1)') do
