@@ -1,0 +1,47 @@
+require 'rails_helper'
+
+RSpec.describe 'Bike Shop Page' do
+  before :each do
+    n = 0
+    @items = []
+    24.times do
+      n += 1
+      @items << Item.create!(title: "Item #{n}", price: "#{n}.00".to_f, image: "default/item#{n}.png", description: "This is the description for item#{n}")
+    end
+  end
+  context '/bike-shop' do
+    describe 'A visitor visits the bike shop page' do
+      it 'they should see at least 12 bike accessories (items) for sale' do
+        visit bike_shop_path
+
+        i = 0
+        @items.length.times do 
+          expect(page).to have_content(@items[i].title)
+          expect(page).to have_content(@items[i].price)
+          expect(page).to have_content(@items[i].description)
+          i += 1
+        end
+      end
+
+      it 'there should be Add to Cart buttons for each item' do
+        visit bike_shop_path
+
+        i = 0
+        @items.length.times do
+          within("#item-#{item[i].id}") do
+            expect(page).to have_link('Add to Cart')
+          end
+          i += 1
+        end
+      end
+    end
+
+    describe 'A visitor click the \'Add to Cart\' button for an item' do
+      it 'should display a flash message saying that the item has been added to the cart' do
+      end
+
+      it 'the cart count should update on all pages' do
+      end
+    end
+  end
+end
