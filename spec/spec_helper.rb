@@ -44,14 +44,14 @@ RSpec.configure do |config|
     @item8 = @order7.items.create(title: 'Item 8', price: 8.88, image: 'default/image8', description: 'This is Item 8\'s description')
 
     # Create Stations
-    @station1 = Station.create!(name: 'Union Station', dock_count: 12, city: 'Denver', installation_date: Date.now)
-    @station1 = Station.create!(name: 'Civic Center', dock_count: 24, city: 'Denver', installation_date: Date.now)
-    @station1 = Station.create!(name: 'Denver University', dock_count: 36, city: 'Denver', installation_date: Date.now)
+    @station1 = Station.create!(name: 'Union Station', dock_count: 12, city: 'Denver', installation_date: DateTime.now)
+    @station2 = Station.create!(name: 'Civic Center', dock_count: 24, city: 'Denver', installation_date: DateTime.now)
+    @station3 = Station.create!(name: 'Denver University', dock_count: 36, city: 'Denver', installation_date: DateTime.now)
 
     # Create Trips
     # This trip has no end_station or end_date
-    @trip1 = @station1.trips.create!(duration: 23, start_date: Date.now)
-    @trip2 = @station2.trips.create!(duration: 46, start_date: Date.now, end_date: Date.now, end_station_id: @station2.id)
-    @trip3 = @station3.trips.create!(duration: 72, start_date: Date.now, end_date: Date.now, end_station_id: @station1.id)
+    @trip1 = @station1.start_trips.create!(duration: 23, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @station3.id, bike_id: 1, subscription_type: 'annual', zip_code: 00000)
+    @trip2 = @station2.start_trips.create!(duration: 46, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @station2.id, bike_id: 2, subscription_type: 'monthly', zip_code: 00000)
+    @trip3 = @station3.start_trips.create!(duration: 72, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @station1.id, bike_id: 3, subscription_type: 'annual', zip_code: 00000)
   end
 end
