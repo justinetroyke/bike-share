@@ -24,15 +24,17 @@ RSpec.feature "Trips Index", type: :feature do
           visit(trips_path)
         end
         it 'should show the first 30 trips' do
-          save_and_open_page
           expect(page).to have_css("li:nth-child(30)")
           expect(page).to_not have_css("li:nth-child(31)")
         end
         it 'should show pagination buttons' do
           within('.pagination') do
-            expect(page).to have_link('.next_page')
+            expect(page).to have_link('Next')
+            expect(page).to have_css('.next_page')
+            click_on 'Next'
           end
-          click_on '.next_page'
+          save_and_open_page
+          require 'pry';binding.pry
           expect(current_path).to eq(trips_path(page:2))
           expect(page).to have_css('.pagination')
         end
