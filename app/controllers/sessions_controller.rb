@@ -1,4 +1,15 @@
 class SessionsController < ApplicationController
   def new
   end
+
+  def create
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to dashboard_path
+    else
+      flash[:notice] = "Sorry, those credentials were incorrect. Please try again!"
+      render :new
+    end
+  end
 end
