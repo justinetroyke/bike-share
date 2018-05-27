@@ -9,5 +9,6 @@ RSpec.describe Item do
 
   describe 'Relationships' do
     it { should have_many(:order_items) }
+    it { should have_many(:orders) }
   end
 end

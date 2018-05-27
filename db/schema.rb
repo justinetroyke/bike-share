@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_232015) do
+ActiveRecord::Schema.define(version: 2018_05_26_214540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_05_25_232015) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -54,13 +55,13 @@ ActiveRecord::Schema.define(version: 2018_05_25_232015) do
     t.integer "duration"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "start_station_id"
-    t.integer "end_station_id"
     t.integer "bike_id"
     t.integer "subscription_type"
     t.integer "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "start_station_id"
+    t.integer "end_station_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,4 +78,6 @@ ActiveRecord::Schema.define(version: 2018_05_25_232015) do
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "trips", "stations", column: "end_station_id"
+  add_foreign_key "trips", "stations", column: "start_station_id"
 end

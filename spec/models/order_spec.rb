@@ -8,5 +8,7 @@ RSpec.describe Order do
 
   describe 'Relationships' do
     it { should belong_to(:user) }
+    it { should have_many(:order_items)}
+    it { should have_many(:items)}
   end
 end
