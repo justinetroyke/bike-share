@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Sessions' do
-  describe 'A user click the \'Log \'In button' do
+  describe 'A user click the \'Log In\' button' do
     it 'should have user_id in session and current user should exist' do
       visit root_path
 
       click_link 'Log In'
 
-      fill_in 'user[username]', with: @spec_user1.username
-      fill_in 'user[password]', with: @spec_user1.password
+      fill_in 'username', with: @user1.username
+      fill_in 'password', with: @user1.password
       click_button 'Log In'
 
       expect(current_user).to_not eq(nil)
@@ -20,8 +20,8 @@ RSpec.describe 'Sessions' do
 
       click_link 'Log In'
 
-      fill_in 'user[username]', with: @spec_user1.username
-      fill_in 'user[password]', with: @spec_user1.password
+      fill_in 'username', with: @user1.username
+      fill_in 'password', with: @user1.password
       click_button 'Log In'
 
       expect(page).to have_link('Log Out')
@@ -34,8 +34,8 @@ RSpec.describe 'Sessions' do
 
       click_link 'Log In'
 
-      fill_in 'user[username]', with: @spec_user1.username
-      fill_in 'user[password]', with: @spec_user1.password
+      fill_in 'username', with: @user1.username
+      fill_in 'password', with: @user1.password
       click_button 'Log In'
 
       click_link 'Log Out'
