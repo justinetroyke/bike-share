@@ -5,9 +5,10 @@
     %li{id: "trip-#{trip.id}"}
       %span= trip.duration
       %span= trip.start_date
-      %span= trip.start_station
-      %span= trip.end_station
+      %span= trip.start_station.name
+      %span= trip.end_station.name
       %span= trip.bike_id
       %span= trip.subscription_type
       %span= trip.zip_code
 
+= will_paginate @trips

@@ -24,6 +24,7 @@ RSpec.feature "Trips Index", type: :feature do
           visit(trips_path)
         end
         it 'should show the first 30 trips' do
+          save_and_open_page
           expect(page).to have_css("li:nth-child(30)")
           expect(page).to_not have_css("li:nth-child(31)")
         end
@@ -38,6 +39,7 @@ RSpec.feature "Trips Index", type: :feature do
       end
       context 'each trip' do 
         before(:all) do
+
           @station1 = Station.create!(name:'name',
                                     dock_count:5,
                                     city:'denver',
