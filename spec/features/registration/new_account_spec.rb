@@ -30,9 +30,10 @@ RSpec.feature "New account", type: :feature do
         fill_in 'user[last_name]', with: last_name
         fill_in 'user[address]', with: address
         fill_in 'user[password]', with: password
-        click_on 'Create Account'
+        within('form') do
+          click_on 'Create Account'
+        end
 
-        save_and_open_page
         expect(current_path).to eq(dashboard_path)
 
         within('.nav_bar') do
