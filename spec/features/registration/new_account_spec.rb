@@ -43,7 +43,7 @@ RSpec.feature "New account", type: :feature do
         expect(page).to have_content(last_name)
         expect(page).to have_content(address)
         expect(page).to_not have_link('Log In')
-        expect(page).to have_link('Logout')
+        expect(page).to have_link('Log Out')
       end
     end
   end
