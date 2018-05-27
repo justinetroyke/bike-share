@@ -1,0 +1,8 @@
+%h1 Accessories
+
+%ul
+  -@items.each do |item|
+    %li{id: "item-#{item.id}"}
+      %span= item.title
+      %span= item.price
+      %span= item.description

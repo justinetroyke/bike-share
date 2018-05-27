@@ -13,10 +13,10 @@ RSpec.describe 'Bike Shop Page' do
   context '/bike-shop' do
     describe 'A visitor visits the bike shop page' do
       it 'they should see at least 12 bike accessories (items) for sale' do
-        visit bike_shop_path
+        visit '/bike-shop'
 
         i = 0
-        @items.length.times do 
+        @items.length.times do
           expect(page).to have_content(@items[i].title)
           expect(page).to have_content(@items[i].price)
           expect(page).to have_content(@items[i].description)
