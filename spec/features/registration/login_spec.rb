@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature "Registration", type: :feature do
+RSpec.feature "Log In", type: :feature do
   describe 'A Visitor' do 
     context 'visiting root' do 
       it 'should see a link for login' do
