@@ -25,11 +25,12 @@ RSpec.describe 'Bike Shop Page' do
       end
 
       it 'there should be Add to Cart buttons for each item' do
-        visit bike_shop_path
+        visit '/bike-shop'
+        # save_and_open_page
 
         i = 0
         @items.length.times do
-          within("#item-#{item[i].id}") do
+          within("#item-#{@items[i].id}") do
             expect(page).to have_link('Add to Cart')
           end
           i += 1
