@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.create!(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Logged in as #{current_user.name}"
+      flash[:notice] = "Logged in as #{current_user.username}"
       redirect_to dashboard_path
     else
       flash[:notice] = 'Registration Failed. Please check the information you entered and try again'
