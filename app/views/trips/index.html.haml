@@ -1,0 +1,13 @@
+%h1 Trips
+
+%ul
+  -@trips.each do |trip|
+    %li{id: "trip-#{trip.id}"}
+      %span= trip.duration
+      %span= trip.start_date
+      %span= trip.start_station
+      %span= trip.end_station
+      %span= trip.bike_id
+      %span= trip.subscription_type
+      %span= trip.zip_code
+
