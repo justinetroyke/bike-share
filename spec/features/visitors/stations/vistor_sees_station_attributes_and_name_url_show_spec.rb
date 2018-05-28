@@ -7,7 +7,7 @@ describe 'When you click on a specific station' do
         name: 'Union Station',
         dock_count: 12,
         city: 'Denver',
-        installation_date: '2/15/2010'
+        installation_date: DateTime.parse('2010-2-15')
       )
 
       visit "/#{station.slug}"
@@ -23,7 +23,7 @@ describe 'When you click on a specific station' do
         name: 'Union Station',
         dock_count: 12,
         city: 'Denver',
-        installation_date: '2/15/2010'
+        installation_date: DateTime.parse('2010-2-15')
       )
 
       visit stations_path
