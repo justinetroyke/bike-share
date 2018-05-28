@@ -1,15 +1,19 @@
 require 'rails_helper'
-RSpec.feature "New account", type: :feature do
-  describe 'A visitor'
-  context 'visiting the new account path' do
-    it 'should have fields to enter credentials' do
-      visit new_user_path
 
-      expect(page).to have_field('user[username]')
-      expect(page).to have_field('user[password]')
-      expect(page).to have_field('user[first_name]')
-      expect(page).to have_field('user[last_name]')
+RSpec.feature "New account", type: :feature do
+  describe 'A visitor' do
+    context 'visiting the new account path' do
+      it 'should have fields to enter credentials' do
+        visit new_user_path
+
+        expect(page).to have_field('user[username]')
+        expect(page).to have_field('user[password]')
+        expect(page).to have_field('user[first_name]')
+        expect(page).to have_field('user[last_name]')
+        expect(page).to have_field('user[address]')
+      end
     end
+
     context 'and entering in the neccesary credentials' do
       it 'should redirect to the dashboard and show the profile info' do
 
