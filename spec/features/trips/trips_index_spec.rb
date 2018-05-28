@@ -35,7 +35,7 @@ RSpec.feature "Trips Index", type: :feature do
             click_on 'Next'
           end
 
-          expect(current_path).to eq(trips_path(page:2))
+          expect(page).to have_current_path(trips_path(page:2))
           expect(page).to have_css('.pagination')
         end
       end
@@ -72,7 +72,6 @@ RSpec.feature "Trips Index", type: :feature do
 
         it 'should show start date' do
           within('li:nth-child(1)') do
-            save_and_open_page
             expect(page).to have_content(@trip1.start_date)
           end
         end
