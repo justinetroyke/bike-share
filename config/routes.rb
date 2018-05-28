@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :trips, only: [:index]
 
   get '/dashboard', to: 'dashboard#show'
+  resources :trips
 end
