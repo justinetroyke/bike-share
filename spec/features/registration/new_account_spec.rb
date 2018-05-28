@@ -21,12 +21,14 @@ RSpec.feature "New account", type: :feature do
 
         visit new_user_path
 
-        fill_in('user[username]'), with: username
-        fill_in('user[password]'), with: password
-        fill_in('user[first_name]'), with: first_name
-        fill_in('user[last_name]'), with: last_name
-        fill_in('user[address]'), with: address
-        click_on('Create Account')
+        fill_in 'user[username]', with: username
+        fill_in 'user[first_name]', with: first_name
+        fill_in 'user[last_name]', with: last_name
+        fill_in 'user[address]', with: address
+        fill_in 'user[password]', with: password
+        within('form') do
+          click_on 'Create Account'
+        end
 
         expect(current_path).to eq(dashboard_path)
 
