@@ -22,14 +22,14 @@ describe 'When you click on a specific trip' do
 
       visit trip_path(trip)
 
-      expect(current_page).to have_content(trip.duration)
-      expect(current_page).to have_content(trip.start_date)
-      expect(current_page).to have_content(trip.end_date)
-      expect(current_page).to have_content(trip.start_station_id)
-      expect(current_page).to have_content(trip.end_station_id)
-      expect(current_page).to have_content(trip.bike_id)
-      expect(current_page).to have_content(trip.subscription_type)
-      expect(current_page).to have_content(trip.zip_code)
+      expect(page).to have_content(trip.duration)
+      expect(page).to have_content(trip.start_date)
+      expect(page).to have_content(trip.end_date)
+      expect(page).to have_content(trip.start_station_id)
+      expect(page).to have_content(trip.end_station_id)
+      expect(page).to have_content(trip.bike_id)
+      expect(page).to have_content(trip.subscription_type)
+      expect(page).to have_content(trip.zip_code)
     end
   end
 end
