@@ -26,7 +26,6 @@ RSpec.describe 'Bike Shop Page' do
 
       it 'there should be Add to Cart buttons for each item' do
         visit '/bike-shop'
-        # save_and_open_page
 
         i = 0
         @items.length.times do
@@ -40,7 +39,7 @@ RSpec.describe 'Bike Shop Page' do
 
     describe 'A visitor click the \'Add to Cart\' button for an item' do
       it 'should display a flash message saying that the item has been added to the cart' do
-        visit bike_shop_path
+        visit '/bike-shop'
 
         within("#item-#{@items[0].id}") do
           click_link 'Add to Cart'
@@ -59,7 +58,7 @@ RSpec.describe 'Bike Shop Page' do
       end
 
       it 'the cart count should update on all pages' do
-        visit bike_shop_path
+        visit '/bike-shop'
 
         within("#item-#{@items[0].id}") do
           click_link 'Add to Cart'
