@@ -1,5 +1,9 @@
 require 'rails_helper'
 RSpec.feature "Log In", type: :feature do
+  before :each do
+    @user1 = User.create!(role: 1, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+  end
+    
   describe 'A Visitor' do 
     context 'visiting root' do 
       it 'should see a link for login' do
