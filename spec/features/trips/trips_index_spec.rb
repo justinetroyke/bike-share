@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.feature "Trips Index", type: :feature do
   describe 'A visitor' do
     describe 'visiting the trips index path' do
@@ -33,8 +34,7 @@ RSpec.feature "Trips Index", type: :feature do
             expect(page).to have_css('.next_page')
             click_on 'Next'
           end
-          save_and_open_page
-          require 'pry';binding.pry
+
           expect(current_path).to eq(trips_path(page:2))
           expect(page).to have_css('.pagination')
         end
@@ -45,21 +45,21 @@ RSpec.feature "Trips Index", type: :feature do
           @station1 = Station.create!(name:'name',
                                     dock_count:5,
                                     city:'denver',
-                                    installation_date:Time.now)
+                                    installation_date: DateTime.now)
 
           @station2 = Station.create!(name:'name',
                                     dock_count:5,
                                     city:'denver',
-                                    installation_date:Time.now)
+                                    installation_date: DateTime.now)
                                     
           @trip1 = Trip.create!(duration: 5,
-                              start_date: Time.now,
+                              start_date: DateTime.now,
                               bike_id: 10,
                               subscription_type: 0,
                               zip_code: 23456,
                               start_station_id: @station1.id,
                               end_station_id: @station2.id,
-                              end_date: Time.now)
+                              end_date: DateTime.now)
         end
         before(:each) do
           visit(trips_path)
@@ -72,6 +72,7 @@ RSpec.feature "Trips Index", type: :feature do
 
         it 'should show start date' do
           within('li:nth-child(1)') do
+            save_and_open_page
             expect(page).to have_content(@trip1.start_date)
           end
         end
