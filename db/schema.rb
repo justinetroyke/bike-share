@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_192515) do
     t.datetime "installation_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "trips", force: :cascade do |t|
