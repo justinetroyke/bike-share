@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#show'
   resources :trips
+  get '/:station-name', to: 'stations#show', as: :station
 end
