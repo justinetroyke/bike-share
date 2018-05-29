@@ -37,7 +37,7 @@ RSpec.describe 'Bike Shop Page' do
       end
     end
 
-    describe 'A visitor click the \'Add to Cart\' button for an item' do
+    describe 'A visitor clicks the \'Add to Cart\' button for an item' do
       it 'should display a flash message saying that the item has been added to the cart' do
         visit '/bike-shop'
 
