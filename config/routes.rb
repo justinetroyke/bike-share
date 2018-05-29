@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'dashboard#show'
   end
+  get '/:station-name', to: 'stations#show', as: :station
 end
