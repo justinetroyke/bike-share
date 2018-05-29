@@ -35,11 +35,11 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit trips_path
-        save_and_open_page
+
         within('li:nth-child(1)') do
-          expect(page).to have_content(@trip.duration)
-          expect(page).to have_content(@trip.start_date)
-          expect(page).to have_content(@trip.end_date)
+          expect(page).to have_content(@trip1.duration)
+          expect(page).to have_content(@trip1.start_date)
+          expect(page).to have_content(@trip1.end_date)
           expect(page).to have_content(@station2.name)
           expect(page).to have_content(@station1.name)
         end
@@ -72,7 +72,7 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
             address:'1234 address',
             role:1)
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-          
+
           visit trips_path
 
           within('li:nth-child(1)') do

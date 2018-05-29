@@ -12,6 +12,6 @@
       %span= trip.subscription_type
       %span= trip.zip_code
       -if current_admin?
-        =button_to 'Edit', edit_admin_trip_path
+        =button_to 'Edit', edit_admin_trip_path(trip)
         =button_to 'Delete', admin_trip_path(trip), method:'delete'
 = will_paginate @trips
