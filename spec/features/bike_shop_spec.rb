@@ -64,7 +64,7 @@ RSpec.describe 'Bike Shop Page' do
           click_link 'Add to Cart'
         end
 
-        within('#cart') do
+        within('#navigation') do
           expect(page).to have_content('1')
         end
 
