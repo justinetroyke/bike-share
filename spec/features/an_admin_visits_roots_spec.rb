@@ -12,7 +12,7 @@ RSpec.feature "An Admin Logs in", type: :feature do
       it 'should show the relevant user information and not show log in' do
         @password = 'password'
         @username = 'user'
-        admin = User.create!(username: @username,
+        @admin = User.create!(username: @username,
                         password: @password,
                         last_name: 'ever',
                         first_name:'greatest',
@@ -31,11 +31,11 @@ RSpec.feature "An Admin Logs in", type: :feature do
         end
 
         expect(current_path).to eq(admin_dashboard_path)
-        expect(page).to have_content("Logged in as Admin User: #{admin.username}")
-        expect(page).to have_content(admin.first_name)
-        expect(page).to have_content(admin.username)
-        expect(page).to have_content(admin.last_name)
-        expect(page).to have_content(admin.address)
+        expect(page).to have_content("Logged in as Admin User: #{@admin.username}")
+        expect(page).to have_content(@admin.first_name)
+        expect(page).to have_content(@admin.username)
+        expect(page).to have_content(@admin.last_name)
+        expect(page).to have_content(@admin.address)
         expect(page).to_not have_link('Log In')
         expect(page).to have_link('Log Out')
       end
