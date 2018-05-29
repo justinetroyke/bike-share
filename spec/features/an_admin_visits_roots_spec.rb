@@ -2,16 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "An Admin Logs in", type: :feature do
   describe 'An unauthenticated admin' do
-    before (:all) do 
-      @password = 'password'
-      @username = 'username'
-      admin = User.create!(username: @username,
-                       password: @password,
-                       last_name: 'ever',
-                       first_name:'greatest',
-                       address:'1234 awesome street',
-                       role:1)
-    end
     context 'visiting the root path' do
       it 'should show a link for login' do
         visit root_path
@@ -20,6 +10,14 @@ RSpec.feature "An Admin Logs in", type: :feature do
     end
     context 'visits the login page' do
       it 'should show the relevant user information and not show log in' do
+        @password = 'password'
+        @username = 'user'
+        admin = User.create!(username: @username,
+                        password: @password,
+                        last_name: 'ever',
+                        first_name:'greatest',
+                        address:'1234 awesome street',
+                        role:1)
         visit root_path
         click_on 'Log In'
 
