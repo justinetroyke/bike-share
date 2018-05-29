@@ -11,7 +11,21 @@ RSpec.configure do |config|
 
   config.filter_run_when_matching :focus
 
-  config.before :each do
+  config.before(:suite) do
+    DatabaseCleaner.clean_with :truncation  # clean DB of any leftover data
+    DatabaseCleaner.strategy = :transaction # rollback transactions between each test
+    Rails.application.load_seed # (optional) seed DB
+  end
+  
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  # config.before :each do
     # # Create Users
     # @spec_user1 = User.create!(role: 1, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
     # @spec_user2 = User.create!(role: 0, username: 'user2', password: 'user2spassword', address: '222 Not An Address', first_name: 'User', last_name: 'Two')
@@ -53,5 +67,5 @@ RSpec.configure do |config|
     # @spec_trip1 = @spec_station1.start_trips.create!(duration: 23, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station3.id, bike_id: 1, subscription_type: 'annual', zip_code: 00000)
     # @spec_trip2 = @spec_station2.start_trips.create!(duration: 46, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station2.id, bike_id: 2, subscription_type: 'monthly', zip_code: 00000)
     # @spec_trip3 = @spec_station3.start_trips.create!(duration: 72, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station1.id, bike_id: 3, subscription_type: 'annual', zip_code: 00000)
-  end
+  # end
 end

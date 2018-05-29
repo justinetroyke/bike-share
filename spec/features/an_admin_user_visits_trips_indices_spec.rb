@@ -27,7 +27,7 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
 
       it 'should show all info visible to a user' do
         visit trips_path
-
+        save_and_open_page
         within('li:nth-child(1)') do
           expect(page).to have_content(@trip.duration)
           expect(page).to have_content(@trip.start_date)
