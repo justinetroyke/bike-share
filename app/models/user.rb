@@ -9,4 +9,6 @@ class User < ApplicationRecord
   validates_presence_of :password, confirmation: true
 
   has_many :orders
+  
+  enum role: [:default, :admin]
 end
