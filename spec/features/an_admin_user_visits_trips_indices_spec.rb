@@ -26,6 +26,14 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
       end
 
       it 'should show all info visible to a user' do
+        admin = User.create!(username:'username',
+          password:'password',
+          first_name:'john',
+          last_name:'smith',
+          address:'1234 address',
+          role:1)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
         visit trips_path
         save_and_open_page
         within('li:nth-child(1)') do
@@ -39,6 +47,14 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
 
       context 'edit button' do
         it 'should have an edit button next to each trip' do
+          admin = User.create!(username:'username',
+                               password:'password',
+                               first_name:'john',
+                               last_name:'smith',
+                               address:'1234 address',
+                               role:1)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
           visit trips_path
 
           within('li:nth-child(1)') do
@@ -49,6 +65,14 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
 
       context 'delete button' do
         it 'should have a delete button next to each trip' do
+          admin = User.create!(username:'username',
+            password:'password',
+            first_name:'john',
+            last_name:'smith',
+            address:'1234 address',
+            role:1)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+          
           visit trips_path
 
           within('li:nth-child(1)') do
