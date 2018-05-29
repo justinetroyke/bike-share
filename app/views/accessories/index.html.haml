@@ -6,4 +6,4 @@
       %span= item.title
       %span= item.price
       %span= item.description
-      =link_to 'Add to Cart'
+      =link_to 'Add to Cart', carts_path(item_id: item.id)
