@@ -10,7 +10,7 @@ describe 'When you click on a specific station' do
         installation_date: DateTime.parse('2010-2-15')
       )
 
-      visit "/#{station.slug}"
+      visit "/stations/#{station.slug}"
 
       expect(current_page).to have_content(station.name)
       expect(current_page).to have_content(station.dock_count)
@@ -26,9 +26,9 @@ describe 'When you click on a specific station' do
         installation_date: DateTime.parse('2010-2-15')
       )
 
-      visit stations_path
+      visit station_path(station.slug)
 
-      expect(current_path).to eq("/#{station.slug}")
+      expect(current_path).to eq("/stations/#{station.slug}")
     end
   end
 end
