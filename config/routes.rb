@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  get '/carts', to: 'cart#create'
-
   resources :users, only: [:new, :create]
   resources :carts, only: [:create]
 
