@@ -1,10 +1,11 @@
-%h1 Log In To Your Account
+%content
+  %h1 Log In To Your Account
 
-=form_tag login_path do
-  =label_tag :username
-  =text_field_tag :username
+  =form_tag login_path do
+    =label_tag :username
+    =text_field_tag :username
 
-  =label_tag :password
-  =password_field_tag :password
+    =label_tag :password
+    =password_field_tag :password
 
-  =submit_tag 'Log In'
+    =submit_tag 'Log In'
