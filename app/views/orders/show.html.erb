@@ -1,0 +1,20 @@
+Ordered By: 
+<%=@user.full_name %>
+<%=@order.created_at.strftime("Ordered: %B %e, %Y at%l:%M%p") %>
+Status: 
+<%=@order.status%>
+Quantity:
+<%= @order.quantity %>
+Total: 
+<%=@order.total%>
+<ul>
+  <% @items.each do |item| %>
+    <li id="order-item-<%=item.id%>">
+      <%= link_to  "#{item.title}", accessory_path(item) %>
+      <%= item.price %>
+      Subtotal: <%= @items_with_subtotal[item.id] %>
+     </li>
+  <% end %>
+</ul>
+
+

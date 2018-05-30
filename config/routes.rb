@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :accessories, path: 'bike-shop', only: [:index]
+  resources :accessories, path: 'bike-shop', only: [:index, :show]
   root 'root#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
 
   resources :trips, only: [:index]
-
+  resources :orders
   get '/dashboard', to: 'dashboard#show'
   resources :stations, param: :slug, only: [:show, :index]
   resources :trips
