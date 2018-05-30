@@ -1,0 +1,24 @@
+<%= form_for @trip do |f| %>
+  <%= f.label :subscription_type %>
+  <%= f.number_field :subscription_type%>
+
+  <%= f.label :zip_code %>
+  <%= f.number_field :zip_code%>
+
+  <%= f.label :bike_id %>
+  <%= f.number_field :bike_id%>
+  
+  <%= f.label :start_station_id %>
+  <%= f.number_field :start_station_id%>
+
+  <%= f.label :end_station_id %>
+  <%= f.number_field :end_station_id%>
+
+  <%= f.label :start_date %>
+  <%= f.datetime_local_field :start_date%>
+
+  <%= f.label :end_date %>
+  <%= f.datetime_local_field :end_date%>
+
+  <%= f.submit %>
+<% end %>
