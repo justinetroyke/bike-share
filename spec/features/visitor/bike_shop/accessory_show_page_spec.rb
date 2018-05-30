@@ -8,7 +8,6 @@ RSpec.describe 'Accessory Show Page' do
   describe 'A visitor visits the show page for a specific accessory' do
     it 'they should see an image, title, description, and price for my accessory' do
       visit accessory_path(@accessory1)
-      save_and_open_path
 
       expect(page).to have_content(@accessory1.title)
       expect(page).to have_content(@accessory1.description)
@@ -24,9 +23,9 @@ RSpec.describe 'Accessory Show Page' do
     it 'they should be able to click \'Add to Cart\'' do
       visit accessory_path(@accessory2)
 
-      click_button 'Add to Cart'
+      click_link 'Add to Cart'
 
-      expect(page).to have_current_path(accessory_path(@accessory2))
+      expect(page).to have_current_path(accessories_path)
       expect(page).to have_content("1 #{@accessory2} has been add to the cart!")
       expect(page).to have_content("Cart: 1")
     end
