@@ -20,26 +20,26 @@ describe 'Visitor' do
 
       visit '/'
 
-      expect(current_page).to have_content('Log in')
+      expect(page).to have_content('Log In')
 
-      click_link 'Log in'
+      click_link 'Log In'
 
       expect(current_path).to eq(login_path)
 
-      fill_in :username, with: name
-      fill_in :password, with: pass
-      within('#login_form') do
-        click_on 'Log in'
+      fill_in :username, with: username
+      fill_in :password, with: password
+      within('form') do
+        click_on 'Log In'
       end
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Logged in as #{user.username}")
-      expect(page).to have_content("Logged in as #{user.address}")
-      expect(page).to have_content("Logged in as #{user.first_name}")
-      expect(page).to have_content("Logged in as #{user.last_name}")
-      expect(page).to have_content('Log out')
+      expect(page).to have_content("#{user.address}")
+      expect(page).to have_content("#{user.first_name}")
+      expect(page).to have_content("#{user.last_name}")
+      expect(page).to have_content('Log Out')
 
-      click_on 'Log out'
+      click_on 'Log Out'
       expect(current_path).to eq(root_path)
     end
   end
@@ -63,6 +63,7 @@ describe 'Visitor' do
 
       visit dashboard_path
       expect(current_path).to eq(login_path)
+      expect(page).to have_content("Looks like you may need to log in!")
     end
   end
 end
