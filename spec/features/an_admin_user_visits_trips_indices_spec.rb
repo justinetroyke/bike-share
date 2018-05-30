@@ -95,7 +95,6 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
           end
 
           expect(page).to_not have_content(@trip1.zip_code)
-          expect(page).to_not have_content(@trip1.end_date)
         end
       end
     end
