@@ -18,11 +18,10 @@ RSpec.feature "Stations Index", type: :feature do
         expect(page).to have_content(station1.name)
         expect(page).to have_content(station1.dock_count)
         expect(page).to have_content(station1.city)
-        expect(page).to have_content(station1.installation_date)
+        expect(page).to have_content(station1.installation_date.strftime('%d %B %Y'))
         expect(page).to have_content(station2.name)
         expect(page).to have_content(station2.dock_count)
         expect(page).to have_content(station2.city)
-        expect(page).to have_content(station2.installation_date)
       end
     end
   end
