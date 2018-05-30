@@ -37,6 +37,7 @@ RSpec.feature "Log In", type: :feature do
   
         expect(page).to have_link('Log In')
         expect(page).to have_link('Create Account')
+        expect(page).to_not have_link('Log Out')
       end
     end
   end
