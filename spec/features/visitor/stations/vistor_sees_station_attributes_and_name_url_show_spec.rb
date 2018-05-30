@@ -10,7 +10,7 @@ describe 'When you click on a specific station' do
         installation_date:Time.now
       )
 
-      visit "/stations/#{station.slug}"
+      visit station_path(station.slug)
 
       expect(page).to have_content(station.name)
       expect(page).to have_content(station.dock_count)
