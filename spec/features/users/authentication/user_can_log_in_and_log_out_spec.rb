@@ -20,7 +20,7 @@ describe 'Visitor' do
 
       visit '/'
 
-      expect(current_page).to eq('Log in')
+      expect(current_page).to have_content('Log in')
 
       click_link 'Log in'
 
@@ -32,7 +32,11 @@ describe 'Visitor' do
         click_on 'Log in'
       end
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content("Logged in as #{user.username}")
+      expect(page).to have_content("Logged in as #{user.address}")
+      expect(page).to have_content("Logged in as #{user.first_name}")
+      expect(page).to have_content("Logged in as #{user.last_name}")
       expect(page).to have_content('Log out')
 
       click_on 'Log out'
@@ -40,37 +44,25 @@ describe 'Visitor' do
     end
   end
 
-  it 'should not allow duplicate usernames' do
-    username = 'pizza_cat'
-    password = 'password'
-    role = 0
-    address = '123 Chestnut Pl, Denver CO 80202'
-    first = 'Kirk'
-    last = 'Spock'
-    user = User.create!(
-      username: username,
-      password: password,
-      role: role,
-      address: address,
-      first_name: first,
-      last_name: last
-    )
+  context 'not logged in' do
+    it 'is unable to see dashboard' do
+      username = 'pizza_cat'
+      password = 'password'
+      role = 0
+      address = '123 Chestnut Pl, Denver CO 80202'
+      first = 'Kirk'
+      last = 'Spock'
+      user = User.create!(
+        username: username,
+        password: password,
+        role: role,
+        address: address,
+        first_name: first,
+        last_name: last
+      )
 
-    
+      visit dashboard_path
+      expect(current_path).to eq(login_path)
+    end
   end
 end
-# As a registered user,
-#
-# When I visit /,
-# I see a link for Login,
-# When I click Login,
-#
-# I should be on the /login page,
-# I see a place to insert my credentials to login,
-# I fill in my desired credentials,
-# I submit my information,
-# My current page should be /dashboard,
-# I see a message in the navbar that says Logged in as SOME_USER,
-# I see my profile information,
-# I do not see a link for Login,
-# I see a link for Logout.
