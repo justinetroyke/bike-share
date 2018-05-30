@@ -35,5 +35,16 @@ RSpec.describe Order do
         expect(@order1.quantity).to eq(3)
       end
     end
+    describe '.items_with_subtotal' do
+      it 'should return a hash of relevant items, with their subtotals' do
+        @user1 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+        @order1 = @user1.orders.create!(status: 'ordered')
+        @item1 = @order1.items.create!(title: 'Item 1', price: 3000, description: 'This is item 1', image: 'default/image1')
+        @item2 = @order1.items.create!(title: 'Item 2', price: 2000, description: 'This is item 2', image: 'default/image2')
+        OrderItem.create!(item_id:@item1.id, order_id:@order1.id)
+
+        expect(@order1.items_with_subtotal[@item1]).to eq(6000)
+        expect(@order1.items_with_subtotal[@item2]).to eq(2000)
+      end
   end
 end

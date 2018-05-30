@@ -31,7 +31,7 @@ RSpec.describe 'Order Show Page (Admins)' do
 
     it 'they should see the items\' names as a links to the items\' respective show pages' do
       @order1.items.each do |item|
-        save_and_open_page
+
         expect(page).to have_link(item.title)
         click_link item.title
         expect(page).to have_current_path(accessory_path(item))
