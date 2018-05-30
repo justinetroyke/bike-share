@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :trips, only: [:index]
 
   get '/dashboard', to: 'dashboard#show'
-  resources :stations, param: :slug, only: [:show]
+  resources :stations, param: :slug, only: [:show, :index]
   resources :trips
   namespace :admin do
     resources :trips
