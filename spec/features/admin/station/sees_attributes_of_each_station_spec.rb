@@ -43,8 +43,8 @@ RSpec.feature 'Admin Visits Station Index', type: :feature do
 
         @stations.each do |station|
           within("#station_#{station.id}") do
-            expect(page).to have_link('Delete')
-            expect(page).to have_link('Edit')
+            expect(page).to have_button('Delete')
+            expect(page).to have_button('Edit')
           end
         end
       end

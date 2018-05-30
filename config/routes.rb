@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :trips
   namespace :admin do
     resources :trips
+    resources :stations
     get '/dashboard', to: 'dashboard#show'
   end
 end
