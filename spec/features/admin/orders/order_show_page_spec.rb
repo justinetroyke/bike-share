@@ -4,13 +4,13 @@ RSpec.describe 'Order Show Page (Admins)' do
   before :each do
     # Sets up user, order, and items to be tested for
     @user1 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
-    @order1 = @user1.orders.create!(status: 'ordered', quantity: 3)
+    @order1 = @user1.orders.create!(status: 'ordered')
     @item1 = @order1.items.create!(title: 'Item 1', price: 1, description: 'This is item 1', image: 'default/image1')
     @item2 = @order1.items.create!(title: 'Item 2', price: 2, description: 'This is item 2', image: 'default/image2')
 
     # Sets up user, order, and items to ensure are not present
     @user2 = User.create!(role: 0, username: 'user2', password: 'user2spassword', address: '222 Not An Address', first_name: 'User', last_name: 'Two')
-    @order2 = @user2.orders.create!(status: 'paid', quantity: 2)
+    @order2 = @user2.orders.create!(status: 'paid')
     @item3 = @order2.items.create!(title: 'Item 3', price: 3, description: 'This is item 3', image: 'default/image3')
 
     # Visits each page for these sort of separate tests

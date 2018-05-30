@@ -1,6 +1,5 @@
 class Order < ApplicationRecord
-  validates_presence_of :status,
-                        :quantity
+  validates_presence_of :status
 
   belongs_to :user
   has_many :order_items
