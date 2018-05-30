@@ -10,4 +10,9 @@ class Order < ApplicationRecord
   def quantity 
     order_items.count
   end
+
+  def items_with_subtotal
+    items.group(:id)
+      .sum(:price)
+  end
 end

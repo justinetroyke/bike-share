@@ -43,8 +43,9 @@ RSpec.describe Order do
         @item2 = @order1.items.create!(title: 'Item 2', price: 2000, description: 'This is item 2', image: 'default/image2')
         OrderItem.create!(item_id:@item1.id, order_id:@order1.id)
 
-        expect(@order1.items_with_subtotal[@item1]).to eq(6000)
-        expect(@order1.items_with_subtotal[@item2]).to eq(2000)
+        expect(@order1.items_with_subtotal[@item1.id]).to eq(6000)
+        expect(@order1.items_with_subtotal[@item2.id]).to eq(2000)
       end
+    end
   end
 end

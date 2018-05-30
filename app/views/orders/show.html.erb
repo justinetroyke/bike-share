@@ -12,6 +12,7 @@ Total:
     <li id="order-item-<%=item.id%>">
       <%= link_to  "#{item.title}", accessory_path(item) %>
       <%= item.price %>
+      Subtotal: <%= @items_with_subtotal[item.id] %>
      </li>
   <% end %>
 </ul>
