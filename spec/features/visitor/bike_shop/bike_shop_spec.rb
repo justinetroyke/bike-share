@@ -6,7 +6,7 @@ RSpec.describe 'Bike Shop Page' do
     @accessories = []
     24.times do
       n += 1
-      @accessories << Accessory.create!(title: "Item #{n}", price: "#{n}.00".to_f, image: "default/item#{n}.png", description: "This is the description for item#{n}")
+      @accessories << Accessory.create!(title: "Item #{n}", price: "#{n}.00".to_f, image: "default/accessory#{n}.png", description: "This is the description for accessory#{n}")
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe 'Bike Shop Page' do
         end
       end
 
-      it 'there should be Add to Cart buttons for each item' do
+      it 'there should be Add to Cart buttons for each accessory' do
         visit '/bike-shop'
 
         i = 0
@@ -37,24 +37,24 @@ RSpec.describe 'Bike Shop Page' do
       end
     end
 
-    describe 'A visitor clicks the \'Add to Cart\' button for an item' do
-      it 'should display a flash message saying that the item has been added to the cart' do
+    describe 'A visitor clicks the \'Add to Cart\' button for an accessory' do
+      it 'should display a flash message saying that the accessory has been added to the cart' do
         visit '/bike-shop'
 
         within("#accessory-#{@accessories[0].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[0].title} has been add to your cart!")
+        expect(page).to have_content("#{@accessories[0].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[11].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[11].title} has been add to your cart!")
+        expect(page).to have_content("#{@accessories[11].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[23].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[23].title} has been add to your cart!")
+        expect(page).to have_content("#{@accessories[23].title} has been added to your cart!")
       end
 
       it 'the cart count should update on all pages' do

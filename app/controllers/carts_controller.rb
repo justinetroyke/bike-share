@@ -3,8 +3,8 @@ class CartsController < ApplicationController
 
   def create
     accessory = Accessory.find(params[:accessory_id])
-    item_id = item.id.to_s
-    session[:cart][item_id] = session[:cart][item_id] + 1
+    accessory_id = accessory.id.to_s
+    session[:cart][accessory_id] = session[:cart][accessory_id] + 1
     @cart.add_accessory(accessory)
     session[:cart] = @cart.contents
     flash[:notice] = "#{}#{accessory.title} has been add to your cart!"

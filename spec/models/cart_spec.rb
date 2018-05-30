@@ -9,21 +9,22 @@ RSpec.describe Cart do
       expect(cart.total_count).to eq(5)
     end
 
-    # it 'add_movie' do
-    #   cart = Cart.new(nil)
-    #   id_string = item.id.to_s
-    #
-    #   expect(cart.contents[id_string]).to eq(0)
-    #   cart.add_item(item)
-    #
-    #   expect(cart.contents[id_string]).to eq(1)
-    # end
-
     it 'item_count' do
       cart = Cart.new({'1' => 1, '2' => 3})
 
       expect(cart.accessory_count('1')).to eq(1)
       expect(cart.accessory_count('2')).to eq(3)
+    end
+
+    describe 'adds item to cart' do
+      it 'add_item' do
+        cart = Cart.new
+        item = Item.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one', image: 'default/accessory1')
+
+        cart.add_item(item)
+
+        expect(cart.contents).to eq({item.id.to_s => 1})
+      end
     end
   end
 end
