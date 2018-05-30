@@ -34,5 +34,6 @@ RSpec.describe Order do
 
         expect(@order1.quantity).to eq(3)
       end
+    end
   end
 end
