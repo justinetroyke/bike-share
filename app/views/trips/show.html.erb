@@ -1,10 +1,12 @@
 <content>
-  <%=@trip.duration %>
-  <%=@trip.start_date %>
-  <%=@trip.end_date %>
-  <%=@trip.start_station_id %>
-  <%=@trip.end_station_id %>
-  <%=@trip.bike_id %>
-  <%=@trip.subscription_type %>
-  <%=@trip.zip_code %>
+  <%= @trip.duration %>
+  <%= @trip.start_date %>
+  <%= @trip.end_date %>
+  <%= @start_station.name %>
+  <%= @trip.start_station_id %>
+  <%= @end_station.name %>
+  <%= @trip.end_station_id %>
+  <%= @trip.bike_id %>
+  <%= @trip.subscription_type %>
+  <%= @trip.zip_code %>
 </content>

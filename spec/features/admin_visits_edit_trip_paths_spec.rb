@@ -4,12 +4,12 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
   describe 'An admin user' do
     context 'visiting edit admin path' do 
       before(:all) do
-        @station1 = Station.create!(name:'name',
+        @station1 = Station.create!(name:'first one',
           dock_count:5,
           city:'denver',
           installation_date: DateTime.now)
 
-        @station2 = Station.create!(name:'name',
+        @station2 = Station.create!(name:'another name',
                   dock_count:5,
                   city:'denver',
                   installation_date: DateTime.now)
@@ -59,14 +59,14 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
         visit edit_admin_trip_path(@trip1)
         old_zip = @trip1.zip_code
         new_zip = 54321
-        fill_in 'zip_code', with: new_zip
-        fill_in 'start_station_id', with: @station2.id
+        fill_in 'trip[zip_code]', with: new_zip
+        fill_in 'trip[start_station_id]', with: @station2.id
         click_on 'Update Trip'
 
         expect(current_path).to eq(trip_path(@trip1))
-        expect(page).to_not have_content(@station2.name)
+        expect(page).to_not have_content(@station1.name)
         expect(page).to_not have_content(old_zip)
-        expect(page).to have_content(@station1.name)
+        expect(page).to have_content(@station2.name)
         expect(page).to have_content(new_zip)
       end
     end
