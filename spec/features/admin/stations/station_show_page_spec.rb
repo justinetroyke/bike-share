@@ -46,8 +46,10 @@ RSpec.describe 'Station Show Page (Admin)' do
       expect(page).to have_button('Delete')
       click_button 'Delete'
       expect(page).to have_current_path(stations_path)
-      expect(page).to_not have_content(@station1.name)
-      expect(page).to have_content(@station2.name)
+      within('content') do
+        expect(page).to_not have_content(@station1.name)
+        expect(page).to have_content(@station2.name)
+      end
     end
     
     it 'they should see a button for editing the station that takes them to the edit station for that page' do

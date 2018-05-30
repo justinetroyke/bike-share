@@ -9,6 +9,7 @@ RSpec.describe 'Station index Page (Admin)' do
                                first_name:'freddy',
                                last_name:'mercury',
                                password:'bohemian',
+                               address:'1234 st',
                                role:1)
           station = Station.create(name:'downtown',
                          dock_count:4,
@@ -17,9 +18,13 @@ RSpec.describe 'Station index Page (Admin)' do
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
           
           visit stations_path
-          click_on('Delete')
+          within("#station_#{station.id}") do
+            click_on('Delete')
+          end
 
-          expect(page).to_not have_content(station.name)
+          within('content') do
+            expect(page).to_not have_content(station.name)
+          end
           expect(page).to have_content("#{station.name} Deleted")
         end
       end
