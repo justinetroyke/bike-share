@@ -1,0 +1,7 @@
+<% if current_user %>
+    <%= link_to 'Log Out', logout_path, data: { confirm:"Are you sure you would like to log out?" }%>
+    <%= link_to  "My Profile", dashboard_path %>
+<% else %>
+    <%= link_to 'Log In', login_path %>
+    <%= link_to 'Create Account', new_user_path %>
+<% end %>
