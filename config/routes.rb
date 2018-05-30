@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :carts, only: [:create]
+  resources :trips, only: [:index]
+  resources :stations, only: [:index]
 
   resources :trips, only: [:index]
   resources :orders
