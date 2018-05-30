@@ -19,6 +19,7 @@ RSpec.describe User do
     describe '.full_name' do
       it 'should return the users full name' do
         user = User.create!(username:'ex0rc1st',
+                            password:'coolguy',
                             first_name:'John',
                             last_name:'Constantine',
                             role: 0,
