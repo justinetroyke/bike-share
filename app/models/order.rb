@@ -11,6 +11,7 @@ class Order < ApplicationRecord
     order_items.count
   end
 
+  #returns a hash with item id as the key and subtotal as the value
   def items_with_subtotal
     items.group(:id)
       .sum(:price)
