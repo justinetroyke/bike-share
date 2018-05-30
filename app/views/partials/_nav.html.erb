@@ -1,0 +1,6 @@
+<%= link_to  "Trips", trips_path %>
+<%= link_to  "stations", stations_path %>
+<%= link_to  "Bike Shop", accessories_path %>
+<% if current_admin? %>
+  <%= link_to  "Admin Dashboard", admin_dashboard_path %>
+<% end %>

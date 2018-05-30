@@ -10,16 +10,21 @@
   </head>
 
   <body>
-    <nav id="navigation">
-      <% if current_user %>
-        <%= link_to 'Log Out', logout_path%>
-      <% else %>
-        <%= render partial: 'partials/login' %>
-      <% end %>
-      <% flash.each do |type, message| %>
-        <%= content_tag :div, message, class: type %>
-      <% end %>
+    <nav id="top_bar">
+      <ul>
+        <div class="navigation">
+          <%= render partial: "partials/nav" %>
+        </div>
+        <div class="auth">
+          <%= render partial: 'partials/login' %>
+        </div>
+        <div class="flash">
+          <%= render partial: "partials/flash" %>
+        </div>
+      </ul>
     </nav>
+    
+
     <%= render 'partials/cart' %>
     <%= yield %>
   </body>

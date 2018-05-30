@@ -35,7 +35,6 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit trips_path
-
         within('li:nth-child(1)') do
           expect(page).to have_content(@trip1.duration)
           expect(page).to have_content(@trip1.start_date)
