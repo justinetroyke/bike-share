@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "Logged in as Admin User: #{current_user.username}"
         redirect_to admin_dashboard_path
       else
-        flash[:notice] = "Logged in as User: #{current_user.username}"
+        flash[:notice] = "Logged in as #{current_user.username}\n"
         redirect_to dashboard_path
       end
     else
