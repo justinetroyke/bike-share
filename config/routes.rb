@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :trips, only: [:index]
   resources :stations, only: [:index]
 
-  resources :trips, only: [:index]
   resources :orders
   get '/dashboard', to: 'dashboard#show'
   resources :stations, param: :slug, only: [:show, :index]
