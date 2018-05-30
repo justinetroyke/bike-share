@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   def show
-    @station = Station.find_by(slug:params[:id])
+    # require'pry';binding.pry
+    @station = Station.find_by(slug:params[:slug])
   end
 
   def index

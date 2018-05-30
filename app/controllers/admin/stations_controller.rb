@@ -15,7 +15,7 @@ class Admin::StationsController < Admin::BaseController
   end
 
   def destroy
-    @station = station.find(params[:id])
+    @station = Station.find(params[:id])
     @station.destroy
     redirect_to stations_path
   end
