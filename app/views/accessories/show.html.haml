@@ -1,5 +1,9 @@
-%h3= @accessory.title
+%h1= @accessory.title
+
+%p= @accessory.title
+%p= @accessory.description
 =image_tag @accessory.image
-%span= @accessory.description
-%price= number_to_currency @accessory.price
-    
+%p= number_to_currency(@accessory.price)
+
+%li
+= link_to 'Add to Cart', carts_path(item_id: @accessory.id), method: :post
