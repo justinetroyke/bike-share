@@ -14,4 +14,17 @@ RSpec.describe User do
   describe 'Relationships' do
     it { should have_many(:orders) }
   end
+
+  describe 'instance methods' do
+    describe '.full_name' do
+      it 'should return the users full name' do
+        user = User.create!(username:'ex0rc1st',
+                            first_name:'John',
+                            last_name:'Constantine',
+                            role: 0,
+                            address:'490 dark st')
+        expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
+      end
+    end
+  end
 end
