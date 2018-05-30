@@ -36,10 +36,38 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
 
         visit edit_admin_trip_path(@trip1)
 
-        expect(page).to have_field()
+        expect(page).to have_field('bike_id')
+        expect(page).to have_field('subscription_type')
+        expect(page).to have_field('zip_code')
+        expect(page).to have_field('bike_id')
+        expect(page).to have_field('start_station_id')
+        expect(page).to have_field('end_station_id')
+        expect(page).to have_field('start_date')
+        expect(page).to have_field('end_date')
           
       end
       it 'should redirect to trip show page after submitting, and show the updated info, as well as a flash message' do 
+        admin = User.create!(username:'username',
+          password:'password',
+          first_name:'john',
+          last_name:'smith',
+          address:'1234 address',
+          role:1)
+
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+        visit edit_admin_trip_path(@trip1)
+        old_zip = @trip1.zip_code
+        new_zip = 54321
+        fill_in 'zip_code', with: new_zip
+        fill_in 'start_station_id', with: @station2.id
+        click_on 'Update Trip'
+
+        expect(current_path).to eq(trip_path(@trip1))
+        expect(page).to_not have_content(@station2.name)
+        expect(page).to_not have_content(old_zip)
+        expect(page).to have_content(@station1.name)
+        expect(page).to have_content(new_zip)
       end
     end
   end
