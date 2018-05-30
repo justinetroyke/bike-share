@@ -8,7 +8,7 @@ RSpec.feature "Stations Index", type: :feature do
                                    dock_count: 4,
                                    city: 'denver',
                                    installation_date: Time.now)
-        station1 = Station.create!(name:'downtown',
+        station2 = Station.create!(name:'downtown',
                                    dock_count: 4,
                                    city: 'denver',
                                    installation_date: Time.now)
