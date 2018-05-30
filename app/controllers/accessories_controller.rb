@@ -1,9 +1,10 @@
 class AccessoriesController < ApplicationController
   def index
-    @items = Item.all
+    @accessories = Accessory.all
     @cart = Cart.new(session[:cart])
   end
+
   def show
-    @item = Item.find(params[:id])
+    @accessory = Accessory.find(params[:id])
   end
 end

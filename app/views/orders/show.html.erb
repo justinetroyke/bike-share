@@ -8,11 +8,11 @@ Quantity:
 Total: 
 <%=@order.total%>
 <ul>
-  <% @items.each do |item| %>
-    <li id="order-item-<%=item.id%>">
-      <%= link_to  "#{item.title}", accessory_path(item) %>
-      <%= item.price %>
-      Subtotal: <%= @items_with_subtotal[item.id] %>
+  <% @accessories.each do |accessory| %>
+    <li id="order-accessory-<%=accessory.id%>">
+      <%= link_to  "#{accessory.title}", accessory_path(accessory) %>
+      <%= accessory.price %>
+      Subtotal: <%= @accessories_with_subtotal[accessory.id] %>
      </li>
   <% end %>
 </ul>

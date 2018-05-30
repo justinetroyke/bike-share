@@ -9,16 +9,16 @@ class Cart
     contents.values.sum
   end
 
-  def add_item(item)
-    item_id = item.id.to_s
-    if @contents[item_id]
-      @contents[item_id] += 1
+  def add_accessory(accessory)
+    accessory_id = accessory.id.to_s
+    if @contents[accessory_id]
+      @contents[accessory_id] += 1
     else
-      @contents[item_id] = 1
+      @contents[accessory_id] = 1
     end
   end
 
-  def item_count(id)
+  def accessory_count(id)
     @contents[id]
   end
 end

@@ -5,13 +5,13 @@ RSpec.describe 'Order Show Page (Admins)' do
     # Sets up user, order, and items to be tested for
     @user1 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
     @order1 = @user1.orders.create!(status: 'ordered')
-    @item1 = @order1.items.create!(title: 'Item 1', price: 1, description: 'This is item 1', image: 'default/image1')
-    @item2 = @order1.items.create!(title: 'Item 2', price: 2, description: 'This is item 2', image: 'default/image2')
+    @accessory1 = @order1.accessories.create!(title: 'Item 1', price: 1, description: 'This is item 1', image: 'default/image1')
+    @accessory2 = @order1.accessories.create!(title: 'Item 2', price: 2, description: 'This is item 2', image: 'default/image2')
 
     # Sets up user, order, and items to ensure are not present
     @user2 = User.create!(role: 0, username: 'user2', password: 'user2spassword', address: '222 Not An Address', first_name: 'User', last_name: 'Two')
     @order2 = @user2.orders.create!(status: 'paid')
-    @item3 = @order2.items.create!(title: 'Item 3', price: 3, description: 'This is item 3', image: 'default/image3')
+    @accessory3 = @order2.accessories.create!(title: 'Item 3', price: 3, description: 'This is item 3', image: 'default/image3')
 
     # Visits each page for these sort of separate tests
     visit order_path(@order1)
@@ -30,7 +30,7 @@ RSpec.describe 'Order Show Page (Admins)' do
     end
 
     it 'they should see the items\' names as a links to the items\' respective show pages' do
-      @order1.items.each do |item|
+      @order1.accessories.each do |item|
 
         expect(page).to have_link(item.title)
         click_link item.title
@@ -40,22 +40,22 @@ RSpec.describe 'Order Show Page (Admins)' do
     end
 
     it 'they should the quantity in this order' do
-      expect(page).to have_content("Quantity: #{@order1.items.count}")
+      expect(page).to have_content("Quantity: #{@order1.accessories.count}")
 
-      expect(page).to_not have_content("Quantity: #{@order2.items.count}")
+      expect(page).to_not have_content("Quantity: #{@order2.accessories.count}")
     end
 
     it 'they should see the line item subtotal' do
-      @order1.items.each do |item|
-        within("#order-item-#{item.id}") do
+      @order1.accessories.each do |accessory|
+        within("#order-accessory-#{accessory.id}") do
           # Test the subtotal based on the number of a given item times its base price
-          expect(page).to have_content("Subtotal: #{@order1.items.where(id: item.id).sum(:price)}")
+          expect(page).to have_content("Subtotal: #{@order1.accessories.where(id: accessory.id).sum(:price)}")
         end
       end
     end
 
     it 'they should see the total for the order' do
-      expect(page).to have_content("Total: #{@order1.items.sum(:price)}")
+      expect(page).to have_content("Total: #{@order1.accessories.sum(:price)}")
     end
 
     it 'they should see the status for the order' do

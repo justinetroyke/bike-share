@@ -22,8 +22,8 @@ RSpec.describe Cart do
     it 'item_count' do
       cart = Cart.new({'1' => 1, '2' => 3})
 
-      expect(cart.item_count('1')).to eq(1)
-      expect(cart.item_count('2')).to eq(3)
+      expect(cart.accessory_count('1')).to eq(1)
+      expect(cart.accessory_count('2')).to eq(3)
     end
   end
 end
