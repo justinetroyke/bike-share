@@ -1,9 +1,9 @@
 %h1 Accessories
 
 %ul
-  -@items.each do |item|
-    %li{id: "item-#{item.id}"}
-      %span= item.title
-      %span= item.price
-      %span= item.description
-      =link_to 'Add to Cart', carts_path(item_id: item.id), method: :post
+  -@accessories.each do |accessory|
+    %li{id: "accessory-#{accessory.id}"}
+      %span= accessory.title
+      %span= accessory.price
+      %span= accessory.description
+      =link_to 'Add to Cart', carts_path(accessory_id: accessory.id), method: :post
