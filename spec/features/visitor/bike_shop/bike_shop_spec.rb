@@ -64,15 +64,21 @@ RSpec.describe 'Bike Shop Page' do
           click_link 'Add to Cart'
         end
 
-        expect(page).to have_content('Cart: 1')
+        within('#cart-count') do
+          expect(page).to have_content('1')
+        end
 
         visit root_path
 
-        expect(page).to have_content('Cart: 1')
+        within('#cart-count') do
+          expect(page).to have_content('1')
+        end
 
         visit trips_path
 
-        expect(page).to have_content('Cart: 1')
+        within('#cart-count') do
+          expect(page).to have_content('1')
+        end
       end
     end
   end

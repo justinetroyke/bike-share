@@ -27,7 +27,9 @@ RSpec.describe 'Accessory Show Page' do
 
       expect(page).to have_current_path(accessories_path)
       expect(page).to have_content("1 #{@accessory2.title} has been added to your cart!")
-      expect(page).to have_content("Cart: 1")
+      within('#cart-count') do
+        expect(page).to have_content('1')
+      end
     end
   end
 end

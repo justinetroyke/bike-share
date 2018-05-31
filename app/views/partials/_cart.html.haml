@@ -1,1 +1,3 @@
-%p= "Cart: #{@cart.total_count}"
+#cart-container
+  %i{class: "fas fa-shopping-cart fa-2x"}
+  %span#cart-count= @cart.total_count

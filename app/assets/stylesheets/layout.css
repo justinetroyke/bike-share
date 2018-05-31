@@ -34,10 +34,44 @@ header {
   background-color: rgb(0, 61, 91);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+header nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 header a {
   color: #FEFEFE;
   text-decoration: none;
+  margin: 0 12px 0 12px;
+  display: inline-block;
+  transition: .3s ease-in-out;
+  border-bottom: 4px solid transparent;
+  letter-spacing: 1px;
+}
+
+header a:hover {
+  border-color: rgb(237, 174, 73);
+  transition: .3s ease-in-out;
+}
+
+#header-home-link {
+  font-family: 'Voces', sans-serif;
+  font-size: 2rem;
+}
+
+#header-home-link:hover {
+  border-color: transparent;
+  color: rgb(237, 174, 73);
+  cursor: pointer;
+}
+
+#nav-links-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: flex-end;
 }
