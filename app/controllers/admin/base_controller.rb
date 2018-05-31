@@ -4,7 +4,12 @@ class Admin::BaseController < ApplicationController
   private
 
   def require_admin
-    render file: "/public/404" unless current_admin?
+    unless current_admin?
+      @hide_nav = true
+      render file: "/public/403", status: 403
+    else
+      @hide_nav = false
+    end
   end
 
 end

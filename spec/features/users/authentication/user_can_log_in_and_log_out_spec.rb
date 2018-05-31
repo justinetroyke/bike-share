@@ -18,7 +18,7 @@ describe 'Visitor' do
         last_name: last
       )
 
-      visit '/'
+      visit root_path
 
       expect(page).to have_content('Log In')
 
