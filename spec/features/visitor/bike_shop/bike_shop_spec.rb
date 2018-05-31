@@ -44,17 +44,17 @@ RSpec.describe 'Bike Shop Page' do
         within("#accessory-#{@accessories[0].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[0].title} has been added to your cart!")
+        expect(page).to have_content("1 #{@accessories[0].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[11].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[11].title} has been added to your cart!")
+        expect(page).to have_content("1 #{@accessories[11].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[23].id}") do
           click_link 'Add to Cart'
         end
-        expect(page).to have_content("#{@accessories[23].title} has been added to your cart!")
+        expect(page).to have_content("1 #{@accessories[23].title} has been added to your cart!")
       end
 
       it 'the cart count should update on all pages' do

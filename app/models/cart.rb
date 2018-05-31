@@ -1,19 +1,20 @@
 class Cart
-  attr_reader :contents
 
-  def initialize(data = Hash.new(0))
-    @contents = data
+  def initialize(data = nil)
+    if data
+      @contents = data['contents']
+      @contents.default = 0
+    else
+      @contents = Hash.new(0)
+    end
   end
 
   def total_count
     @contents.values.sum if @contents
   end
 
-  def add_accessory(accessory)
-    accessory_id = accessory.id.to_s
-    if @contents && @contents[accessory_id]
-      @contents[accessory_id] += 1
-    end
+  def add_accessory(accessory_id)
+    @contents[item_id] += 1
   end
 
   def accessory_count(id)
