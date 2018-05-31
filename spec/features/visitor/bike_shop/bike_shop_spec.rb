@@ -64,11 +64,17 @@ RSpec.describe 'Bike Shop Page' do
           click_link 'Add to Cart'
         end
 
-        within('#top_bar') do
-          expect(page).to have_content('1')
-        end
 
-        #Need some more pages to test
+        expect(page).to have_content('Cart: 1')
+
+        visit root_path
+
+        expect(page).to have_content('Cart: 1')
+
+        visit trips_path
+
+        expect(page).to have_content('Cart: 1')
+
       end
     end
   end
