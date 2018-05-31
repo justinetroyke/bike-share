@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :stations, param: :slug, only: [:show, :index]
   resources :trips
   namespace :admin do
+    resources :accessories, path: '/bike-shop', only: [:new, :create]
     resources :trips
     resources :stations
     get '/dashboard', to: 'dashboard#show'
