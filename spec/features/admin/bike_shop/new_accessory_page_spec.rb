@@ -25,15 +25,28 @@ RSpec.describe 'New Accessory Page (Admin)' do
 
   it 'they should only create accessories with unique titles' do
     visit new_admin_accessory_path
-
+    
     Accessory.create!(title: 'Unique Title', price: '1.23', description: 'This is a cool accessory')
-
+    
     fill_in 'accessory[title]', with: 'Unique Title'
     fill_in 'accessory[description]', with: 'New description'
     fill_in 'accessory[price]', with: '4.23'
     click_button 'Create Accessory'
+    
+    expect(page).to have_current_path(admin_accessories_path)
+    expect(page).to have_content('Sorry! That title has already been taken. Please choose another.')
+  end
+  
+  it 'they should only be able to create an item with a valid numeral' do
+    visit new_admin_accessory_path
+
+
+    fill_in 'accessory[title]', with: 'Unique Title'
+    fill_in 'accessory[description]', with: 'New description'
+    fill_in 'accessory[price]', with: '-4.8'
+    click_button 'Create Accessory'
 
     expect(page).to have_current_path(admin_accessories_path)
-    expect(page).to have_content('Sorry! That title has already been taken. Please choose another')
+    expect(page).to have_content('Please enter a valid decimal numeral value for your price. It must also be greater than zero.')
   end
 end
