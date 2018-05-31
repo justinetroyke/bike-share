@@ -6,19 +6,21 @@ RSpec.describe 'New Accessory Page (Admin)' do
       visit new_admin_accessory_path
 
 
-      new_item_title = 'New Title'
-      new_item_description = 'This is a new item'
-      new_item_price = 8
+      new_accessory_title = 'New Title'
+      new_accessory_description = 'This is a new accessory'
+      new_accessory_price = 8
 
-      fill_in 'item[title]', with: new_item_title
-      fill_in 'item[description]', with: new_item_description
-      fill_in 'item[price]', with: new_item_price
-      click_button 'Create Item'
+      fill_in 'accessory[title]', with: new_accessory_title
+      fill_in 'accessory[description]', with: new_accessory_description
+      fill_in 'accessory[price]', with: new_accessory_price
+      click_button 'Create Accessory'
 
-      expect(page).to have_current_path(accessory_path(Item.last))
-      expect(page).to have_content(new_item_title)
-      expect(page).to have_content(new_item_description)
-      expect(page).to have_content(new_item_price)
+      save_and_open_page
+
+      expect(page).to have_current_path(accessory_path(Accessory.last))
+      expect(page).to have_content(new_accessory_title)
+      expect(page).to have_content(new_accessory_description)
+      expect(page).to have_content(new_accessory_price)
       expect(page).to have_css("img[src='default/image1']")
     end
   end
