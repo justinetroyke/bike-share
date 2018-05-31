@@ -10,22 +10,22 @@
   </head>
 
   <body>
-    <nav id="top_bar">
-      <ul>
-        <div class="navigation">
-          <%= render partial: "partials/nav" %>
-        </div>
-        <div class="auth">
-          <%= render partial: 'partials/login' %>
-        </div>
-        <div class="flash">
-          <%= render partial: "partials/flash" %>
-        </div>
-      </ul>
-    </nav>
-    
-
-    <%= render 'partials/cart' %>
+    <% unless @hide_nav%>
+        <nav id="top_bar">
+        <ul>
+          <div class="navigation">
+            <%= render partial: "partials/nav" %>
+          </div>
+          <div class="auth">
+            <%= render partial: 'partials/login' %>
+          </div>
+          <div class="flash">
+            <%= render partial: "partials/flash" %>
+          </div>
+        </ul>
+      </nav>
+      <%= render 'partials/cart' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
