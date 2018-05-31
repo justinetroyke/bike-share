@@ -14,7 +14,7 @@ class Cart
   end
 
   def add_accessory(accessory_id)
-    @contents[item_id] += 1
+    @contents[accessory_id] += 1
   end
 
   def accessory_count(id)
