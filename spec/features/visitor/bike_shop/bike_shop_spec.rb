@@ -64,7 +64,6 @@ RSpec.describe 'Bike Shop Page' do
           click_link 'Add to Cart'
         end
 
-
         expect(page).to have_content('Cart: 1')
 
         visit root_path
@@ -74,7 +73,6 @@ RSpec.describe 'Bike Shop Page' do
         visit trips_path
 
         expect(page).to have_content('Cart: 1')
-
       end
     end
   end
