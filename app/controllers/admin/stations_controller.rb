@@ -16,7 +16,9 @@ class Admin::StationsController < Admin::BaseController
 
   def destroy
     @station = Station.find(params[:id])
+    name = @station.name
     @station.destroy
+    flash[:notice] = "#{name} Deleted"
     redirect_to stations_path
   end
 
