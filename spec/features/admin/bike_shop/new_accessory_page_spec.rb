@@ -22,4 +22,18 @@ RSpec.describe 'New Accessory Page (Admin)' do
       expect(page.find('img')['src']).to have_content('assets/image1')
     end
   end
+
+  it 'they should only create accessories with unique titles' do
+    visit new_admin_accessory_path
+
+    Accessory.create!(title: 'Unique Title', price: '1.23', description: 'This is a cool accessory')
+
+    fill_in 'accessory[title]', with: 'Unique Title'
+    fill_in 'accessory[description]', with: 'New description'
+    fill_in 'accessory[price]', with: '4.23'
+    click_button 'Create Accessory'
+
+    expect(page).to have_current_path(admin_accessories_path)
+    expect(page).to have_content('Sorry! That title has already been taken. Please choose another')
+  end
 end

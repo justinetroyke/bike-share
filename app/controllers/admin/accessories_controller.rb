@@ -4,8 +4,14 @@ class Admin::AccessoriesController < ApplicationController
   end
 
   def create
-    accessory = Accessory.create!(accessory_params)
-    redirect_to accessory_path(accessory)
+    @accessory = Accessory.new(accessory_params)
+    if @accessory.save
+      redirect_to accessory_path(@accessory)
+    else
+      flash[:notice] = 'Sorry! That title has already been taken. Please choose another'
+      # require 'pry';binding.pry
+      render :new
+    end
   end
 
   private
