@@ -15,13 +15,11 @@ RSpec.describe 'New Accessory Page (Admin)' do
       fill_in 'accessory[price]', with: new_accessory_price
       click_button 'Create Accessory'
 
-      save_and_open_page
-
       expect(page).to have_current_path(accessory_path(Accessory.last))
       expect(page).to have_content(new_accessory_title)
       expect(page).to have_content(new_accessory_description)
       expect(page).to have_content(new_accessory_price)
-      expect(page).to have_css("img[src='default/image1']")
+      expect(page.find('img')['src']).to have_content('assets/image1')
     end
   end
 end

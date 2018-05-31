@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_233152) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image", default: "default/image1"
+    t.string "image", default: "image1"
   end
 
   create_table "order_accessories", force: :cascade do |t|
