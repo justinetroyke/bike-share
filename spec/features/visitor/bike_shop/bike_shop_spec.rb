@@ -6,7 +6,7 @@ RSpec.describe 'Bike Shop Page' do
     @accessories = []
     24.times do
       n += 1
-      @accessories << Accessory.create!(title: "Item #{n}", price: "#{n}.00".to_f, image: "default/accessory#{n}.png", description: "This is the description for accessory#{n}")
+      @accessorys << Accessory.create!(title: "Item #{n}", price: "#{n}.00".to_f, image_url: "https://www.pexels.com/photo/white-bicycle-road-sign-686230/", description: "This is the description for accessory#{n}")
     end
   end
 

@@ -19,7 +19,7 @@ RSpec.describe Cart do
     describe 'adds item to cart' do
       it 'add_item' do
         cart = Cart.new
-        item = Item.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one', image: 'default/accessory1')
+        item = Item.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
 
         cart.add_item(item.id.to_s)
 

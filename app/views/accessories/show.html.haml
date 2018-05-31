@@ -1,5 +1,7 @@
 %h1= @accessory.title
 
+%img{:src => asset_path(@accessory.image_url)}/
+
 %p= @accessory.title
 %p= @accessory.description
 =image_tag @accessory.image
