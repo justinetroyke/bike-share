@@ -17,12 +17,6 @@ RSpec.feature 'user restriction' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         visit admin_dashboard_path 
         expect(status_code).to eq(403)
-
-        visit admin_stations_path
-        expect(status_code).to eq(403)
-
-        visit admin_trips_path
-        expect(status_code).to eq(403)
       end
     end
   end
