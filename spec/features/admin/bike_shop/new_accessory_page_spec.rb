@@ -14,19 +14,19 @@ RSpec.describe 'New Accessory Page (Admin)' do
       fill_in 'accessory[description]', with: new_accessory_description
       fill_in 'accessory[price]', with: new_accessory_price
       click_button 'Create Accessory'
-
-      expect(page).to have_current_path(accessory_path(Accessory.last))
+      
+      expect(current_path).to eq(accessory_path(Accessory.last))
       expect(page).to have_content(new_accessory_title)
       expect(page).to have_content(new_accessory_description)
       expect(page).to have_content(new_accessory_price)
-      expect(page.find('img')['src']).to have_content('assets/image1')
+      expect(page.find('img')['src']).to have_content("https://pics.me.me/bike-repair-cant-call-see-the-problaym-heer-memes-com-13867434.png")
     end
   end
 
   it 'they should only create accessories with unique titles' do
     visit new_admin_accessory_path
     
-    Accessory.create!(title: 'Unique Title', price: '1.23', description: 'This is a cool accessory')
+    Accessory.create!(title: 'Unique Title', price: '1.23', description: 'This is a cool accessory', image_url:'someurl')
     
     fill_in 'accessory[title]', with: 'Unique Title'
     fill_in 'accessory[description]', with: 'New description'
