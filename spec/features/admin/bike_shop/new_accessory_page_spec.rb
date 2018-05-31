@@ -48,5 +48,16 @@ RSpec.describe 'New Accessory Page (Admin)' do
 
     expect(page).to have_current_path(admin_accessories_path)
     expect(page).to have_content('Please enter a valid decimal numeral value for your price. It must also be greater than zero.')
+
+    visit new_admin_accessory_path
+
+
+    fill_in 'accessory[title]', with: 'Unique Title'
+    fill_in 'accessory[description]', with: 'New description'
+    fill_in 'accessory[price]', with: 'hello'
+    click_button 'Create Accessory'
+
+    expect(page).to have_current_path(admin_accessories_path)
+    expect(page).to have_content('Please enter a valid decimal numeral value for your price. It must also be greater than zero.')
   end
 end
