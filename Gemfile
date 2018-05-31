@@ -36,6 +36,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'haml'
 
+gem 'figaro'
+
 # Gem for paginating
 gem 'will_paginate', '~> 3.1.0'
 
