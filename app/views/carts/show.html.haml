@@ -1,0 +1,10 @@
+-if current_user
+  %h1= "#{current_user.first_name}'s Cart"
+-else
+  %h1 Guest's Cart
+
+#cart-contents-container
+  -@cart_contents.each do |accessory_id, value|
+    %div{id: "cart-accessory-#{accessory_id}"}
+      %span= value.title
+      =link_to 'Remove from Cart', edit_cart_path, method: :patch

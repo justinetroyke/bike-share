@@ -21,7 +21,7 @@ RSpec.describe Cart do
         cart = Cart.new
         accessory = Accessory.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
 
-        cart.add_accessory(accessory.id.to_s)
+        cart.add_accessory(accessory)
 
         expect(cart.total_count).to eq(1)
       end
