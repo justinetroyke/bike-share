@@ -28,7 +28,8 @@ RSpec.feature 'admin dashboard' do
                             first_name:'Charles',
                             last_name:'Coughlin',
                             address:'wherever',
-                            password:'buster')
+                            password:'buster',
+                            role:1)
       end
       it 'should display all orders with each order being a link' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
