@@ -2,7 +2,7 @@
   <% if current_admin? %>
   <div class="edit-delete-buttons-container">
     <%= link_to 'Edit', edit_admin_trip_path(@trip) %>
-    <%= link_to 'Delete', trips_path(@trip), method: :post %>
+    <%= link_to 'Delete', trip_path(@trip), method: :delete %>
   </div>
   <% end %>
   <span>Duration: <%= @trip.duration %></span>
