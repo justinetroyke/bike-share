@@ -18,15 +18,19 @@ class Order < ApplicationRecord
   end
 
   def self.ordered
+    where(status:"Ordered")
   end
 
   def self.paid
+    where(status:"Paid")
   end
 
   def self.cancelled
+    where(status:'Cancelled')
   end
 
   def self.completed
+    where(status:'Completed')
   end
 
 end
