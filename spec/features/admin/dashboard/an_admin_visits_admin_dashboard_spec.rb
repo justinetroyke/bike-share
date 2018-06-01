@@ -36,6 +36,7 @@ RSpec.feature 'admin dashboard' do
 
         visit admin_dashboard_path
         
+        
         Order.all.each do |order|
           within("#order-#{order.id}") do
             expect(page).to have_link(order.id)
@@ -69,13 +70,13 @@ RSpec.feature 'admin dashboard' do
         visit admin_dashboard_path
         click_on('Paid')
 
-        within("#order-#{@order3.id}") do
+        within("#paid-#{@order3.id}") do
           expect(page).to have_button('Cancel')
         end
 
         click_on('Ordered')
 
-        within("#order-#{@order2.id}") do
+        within("#ordered-#{@order2.id}") do
           expect(page).to have_button('Cancel')
         end
 
@@ -86,7 +87,7 @@ RSpec.feature 'admin dashboard' do
         visit admin_dashboard_path
         click_on('Ordered')
 
-        within("#order-#{@order2.id}") do
+        within("#ordered-#{@order2.id}") do
           expect(page).to have_button('Mark as Paid')
         end
       end
@@ -96,7 +97,7 @@ RSpec.feature 'admin dashboard' do
         visit admin_dashboard_path
         click_on('Paid')
 
-        within("#order-#{@order3.id}") do
+        within("#paid-#{@order3.id}") do
           expect(page).to have_button('Mark as Paid')
         end
       end

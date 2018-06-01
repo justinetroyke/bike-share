@@ -4,11 +4,11 @@
   <%= current_user.last_name%>
   <%= current_user.address%>
 
-<button class="tablink" onclick="openStatus('All')" id="defaultOpen">All</button>
-<button class="tablink" onclick="openStatus('Cancelled')">Cancelled</button>
-<button class="tablink" onclick="openStatus('Ordered')">Ordered</button>
-<button class="tablink" onclick="openStatus('Paid')">Paid</button>
-<button class="tablink" onclick="openStatus('Completed')">Completed</button>
+<button class="tablink" onclick="openStatus('All')" id="defaultOpen">All: <%=@orders.count%></button>
+<button class="tablink" onclick="openStatus('Cancelled')">Cancelled: <%=@cancelled.count%></button>
+<button class="tablink" onclick="openStatus('Ordered')">Ordered: <%=@ordered.count%></button>
+<button class="tablink" onclick="openStatus('Paid')">Paid: <%=@paid.count%></button>
+<button class="tablink" onclick="openStatus('Completed')">Completed: <%=@completed.count%></button>
 
   <table id="All" class="hidden-table">
     <tr>
@@ -42,7 +42,7 @@
       <th>Quantity</th>
     </tr>
     <% @cancelled.each do |order| %>
-      <tr id="order-<%=order.id%>">
+      <tr id="cancelled-<%=order.id%>">
         <td>
           <%= link_to  "#{order.id}", order_path(order) %>
         </td>
@@ -66,7 +66,7 @@
       <th>Quantity</th>
     </tr>
     <% @ordered.each do |order| %>
-      <tr id="order-<%=order.id%>">
+      <tr id="ordered-<%=order.id%>">
         <td>
           <%= link_to  "#{order.id}", order_path(order) %>
         </td>
@@ -90,7 +90,7 @@
       <th>Quantity</th>
     </tr>
     <% @paid.each do |order| %>
-      <tr id="order-<%=order.id%>">
+      <tr id="paid-<%=order.id%>">
         <td>
           <%= link_to  "#{order.id}", order_path(order) %>
         </td>
@@ -114,7 +114,7 @@
       <th>Quantity</th>
     </tr>
     <% @completed.each do |order| %>
-      <tr id="order-<%=order.id%>">
+      <tr id="completed-<%=order.id%>">
         <td>
           <%= link_to  "#{order.id}", order_path(order) %>
         </td>
