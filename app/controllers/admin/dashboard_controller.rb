@@ -5,6 +5,5 @@ class Admin::DashboardController < Admin::BaseController
     @paid = Order.paid
     @cancelled = Order.cancelled
     @completed = Order.completed
-    require'pry';binding.pry
   end
 end

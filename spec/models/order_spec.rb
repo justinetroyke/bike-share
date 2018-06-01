@@ -74,25 +74,25 @@ RSpec.describe Order do
       @order4 = @user4.orders.create!(status:3)
       @order4.accessories.create!(title: 'Item 4', price: 1, description: 'This is item 1', image_url: @image_url)
     end
-    
+
     describe 'self.ordered' do
       it 'shoud return all orders with a status of ordered' do
         Order.ordered.each do |order|
-          expect(order.status).to eq('Ordered')
+          expect(order.status).to eq('ordered')
         end
       end
     end
     describe 'self.cancelled' do
       it 'shoud return all orders with a status of cancelled' do
         Order.cancelled.each do |order|
-          expect(order.status).to eq('Cancelled')
+          expect(order.status).to eq('cancelled')
         end 
       end
     end
     describe 'self.paid' do
       it 'shoud return all orders with a status of paid' do
         Order.paid.each do |order|
-          expect(order.status).to eq('Paid')
+          expect(order.status).to eq('paid')
         end
       end
     end
@@ -100,7 +100,7 @@ RSpec.describe Order do
       it 'shoud return all orders with a status of completed' do
         expect(Order.completed)
         Order.completed.each do |order|
-          expect(order.status).to eq('Completed')
+          expect(order.status).to eq('completed')
         end
       end
     end
