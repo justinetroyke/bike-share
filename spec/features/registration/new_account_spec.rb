@@ -30,6 +30,7 @@ RSpec.feature "New account", type: :feature do
         fill_in 'user[last_name]', with: last_name
         fill_in 'user[address]', with: address
         fill_in 'user[password]', with: password
+        fill_in 'user[password_confirmation]', with: password
         within('form') do
           click_on 'Create Account'
         end
