@@ -36,7 +36,7 @@ RSpec.feature "New account", type: :feature do
 
         expect(current_path).to eq(dashboard_path)
 
-        within('#top_bar') do
+        within('header') do
           expect(page).to have_content("Logged in as #{username}")
         end
         expect(page).to have_content(username)

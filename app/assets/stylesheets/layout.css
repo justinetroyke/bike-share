@@ -1,0 +1,77 @@
+/* Color Palette
+
+Maximum Yellow Red: rgb(237, 174, 73)
+Dark Terra Cotta:   rgb(209, 73, 91)
+Metallic Seaweed:   rgb(0, 121, 140)
+B'Dazzled Blue:     rgb(48, 99, 142)
+Dark Imperial Blue: rgb(0, 61, 91)
+Smoky Black (Text): #070707
+
+
+*/
+
+/* Global Styles */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+a {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+header {
+  height: 90px;
+  background-color: rgb(0, 61, 91);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header a {
+  color: #FEFEFE;
+  text-decoration: none;
+  margin: 0 12px 0 12px;
+  display: inline-block;
+  transition: .3s ease-in-out;
+  border-bottom: 4px solid transparent;
+  letter-spacing: 1px;
+}
+
+header a:hover {
+  border-color: rgb(237, 174, 73);
+  transition: .3s ease-in-out;
+}
+
+#header-home-link {
+  font-family: 'Voces', sans-serif;
+  font-size: 2rem;
+}
+
+#header-home-link:hover {
+  border-color: transparent;
+  color: rgb(237, 174, 73);
+  cursor: pointer;
+}
+
+#nav-links-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: flex-end;
+}
