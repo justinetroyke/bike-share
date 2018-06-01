@@ -1,16 +1,17 @@
 class Admin::StationsController < Admin::BaseController
+
   def edit
     @station = Station.find(params[:id])
   end
 
   def update
     @station = Station.find(params[:id])
-    @station.update(station_params)
-    if @station.save
-      flash[:notice]
-      redirect_to station_path @station
+    if @station.update(station_params)
+      flash[:success] = "#{@station.name} updated!"
+      redirect_to station_path(@station.slug)
     else
-      redirect_to edit_admin_station_path @station
+      flash[:error] = "#{@station.name} not updated!"
+      render :edit
     end
   end
 
