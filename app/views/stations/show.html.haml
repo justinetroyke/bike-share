@@ -7,7 +7,7 @@
 %span#station-city= @station.city
 
 %h3 Installation Date
-%span#station-installation-date= @station.installation_date
+%span#station-installation-date= @station.installation_date.strftime("%B%e, %Y")
 
 -if current_admin?
   =button_to 'Edit', edit_admin_station_path(@station), method: 'get'
