@@ -58,7 +58,7 @@ RSpec.feature 'admin dashboard' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit admin_dashboard_path
-
+        save_and_open_page
         expect(page).to have_link('Cancelled')
         expect(page).to have_link('Ordered')
         expect(page).to have_link('Paid')

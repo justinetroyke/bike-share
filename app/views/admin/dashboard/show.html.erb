@@ -10,7 +10,7 @@
 <button class="tablink" onclick="openStatus('Paid')">Paid: <%=@paid.count%></button>
 <button class="tablink" onclick="openStatus('Completed')">Completed: <%=@completed.count%></button>
 
-  <table id="All" class="hidden-table">
+  <table id="All" class="tabcontent">
     <tr>
       <th>Id</th>
       <th>User</th> 
@@ -35,7 +35,7 @@
     <% end %>
   </table>
 
-  <table id="Cancelled" class="hidden-table">
+  <table id="Cancelled" class="tabcontent">
     <tr>
       <th>Id</th>
       <th>User</th> 
@@ -59,7 +59,7 @@
     <% end %>
   </table>
 
-  <table id="Ordered" class="hidden-table">
+  <table id="Ordered" class="tabcontent">
     <tr>
       <th>Id</th>
       <th>User</th> 
@@ -83,7 +83,7 @@
     <% end %>
   </table>
 
-  <table id="Paid" class="hidden-table">
+  <table id="Paid" class="tabcontent">
     <tr>
       <th>Id</th>
       <th>User</th> 
@@ -107,7 +107,7 @@
     <% end %>
   </table>
 
-  <table id="Completed" class="hidden-table">
+  <table id="Completed" class="tabcontent">
     <tr>
       <th>Id</th>
       <th>User</th> 
