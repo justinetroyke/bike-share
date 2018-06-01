@@ -9,19 +9,19 @@ RSpec.feature 'admin dashboard' do
         @order1 = @user1.orders.create!(status:0)
         @accessory1 = @order1.accessories.create!(title: 'Item 1', price: 1, description: 'This is item 1', image_url: @image_url)
 
-        @user2 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+        @user2 = User.create!(role: 0, username: 'user2', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
         @order2 = @user2.orders.create!(status:1)
         @order2.accessories.create!(title: 'Item 2', price: 1, description: 'This is item 1', image_url: @image_url)
 
-        @user2 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+        @user2 = User.create!(role: 0, username: 'user3', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
         @order4 = @user2.orders.create!(status:1)
         @order4.accessories.create!(title: 'Item 5', price: 1, description: 'This is item 1', image_url: @image_url)
 
-        @user3 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+        @user3 = User.create!(role: 0, username: 'user4', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
         @order3 = @user3.orders.create!(status:2)
         @order3.accessories.create!(title: 'Item 3', price: 1, description: 'This is item 1', image_url: @image_url)
 
-        @user4 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+        @user4 = User.create!(role: 0, username: 'user5', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
         @order4 = @user4.orders.create!(status:3)
         @order4.accessories.create!(title: 'Item 4', price: 1, description: 'This is item 1', image_url: @image_url)
         @admin = User.create(username:'VB',

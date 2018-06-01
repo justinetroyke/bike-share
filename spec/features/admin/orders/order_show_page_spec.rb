@@ -20,6 +20,7 @@ RSpec.describe 'Order Show Page (Admins)' do
 
   describe 'An admin visits an individual order\'s show page' do
     it 'they should see the order\'s date and time' do
+
       expect(page).to have_content(@order1.created_at.strftime("Ordered: %B%e, %Y at%l:%M%p"))
       expect(page).to_not have_content(@order2.created_at.strftime("Ordered: %B %e, %Y at%l:%M%p"))
     end
