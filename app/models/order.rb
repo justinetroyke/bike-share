@@ -16,4 +16,17 @@ class Order < ApplicationRecord
     accessories.group(:id)
       .sum(:price)
   end
+
+  def self.ordered
+  end
+
+  def self.paid
+  end
+
+  def self.cancelled
+  end
+
+  def self.completed
+  end
+
 end
