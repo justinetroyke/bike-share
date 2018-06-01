@@ -6,7 +6,7 @@ function openStatus(pageName) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].style.backgroundColor = "";
+      tablinks[i].classList.add("Active");
   }
   document.getElementById(pageName).style.display = "block";
 }

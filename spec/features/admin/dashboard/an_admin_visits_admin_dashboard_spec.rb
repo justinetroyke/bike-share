@@ -58,11 +58,11 @@ RSpec.feature 'admin dashboard' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit admin_dashboard_path
-        save_and_open_page
-        expect(page).to have_link('Cancelled')
-        expect(page).to have_link('Ordered')
-        expect(page).to have_link('Paid')
-        expect(page).to have_link('Completed')
+
+        expect(page).to have_button('Cancelled')
+        expect(page).to have_button('Ordered')
+        expect(page).to have_button('Paid')
+        expect(page).to have_button('Completed')
       end
       it 'should have buttons to cancel orders which are paid or ordered' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
@@ -72,7 +72,9 @@ RSpec.feature 'admin dashboard' do
 
         within("#paid-#{@order3.id}") do
           expect(page).to have_button('Cancel')
+          click_on('Cancel')
         end
+        expect(page).to have_content("Order ##{@order3.id} status changed to cancelled")
 
         click_on('Ordered')
 
@@ -98,7 +100,7 @@ RSpec.feature 'admin dashboard' do
         click_on('Paid')
 
         within("#paid-#{@order3.id}") do
-          expect(page).to have_button('Mark as Paid')
+          expect(page).to have_button('Mark as Completed')
         end
       end
     end

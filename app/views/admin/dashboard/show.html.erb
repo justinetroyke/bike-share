@@ -4,11 +4,11 @@
   <%= current_user.last_name%>
   <%= current_user.address%>
 
-<button class="tablink" onclick="openStatus('All')" id="defaultOpen">All: <%=@orders.count%></button>
-<button class="tablink" onclick="openStatus('Cancelled')">Cancelled: <%=@cancelled.count%></button>
-<button class="tablink" onclick="openStatus('Ordered')">Ordered: <%=@ordered.count%></button>
-<button class="tablink" onclick="openStatus('Paid')">Paid: <%=@paid.count%></button>
-<button class="tablink" onclick="openStatus('Completed')">Completed: <%=@completed.count%></button>
+<button class="tablink" onclick="openStatus('All')" id="defaultOpen">All</button>: <%=@orders.count%>
+<button class="tablink" onclick="openStatus('Cancelled')">Cancelled</button>: <%=@cancelled.count%>
+<button class="tablink" onclick="openStatus('Ordered')">Ordered</button>: <%=@ordered.count%>
+<button class="tablink" onclick="openStatus('Paid')">Paid</button>: <%=@paid.count%>
+<button class="tablink" onclick="openStatus('Completed')">Completed</button>: <%=@completed.count%>
 
   <table id="All" class="tabcontent">
     <tr>
@@ -78,6 +78,8 @@
         </td>
         <td>
           <%= order.status %>
+          <%= button_to  "Cancel", "orders/#{order.id}", method: "patch", params:{status: 0}  %>
+          <%= button_to  "Mark as Paid", "orders/#{order.id}", method: "patch", params:{status: 2}  %>
         </td>
       </tr>
     <% end %>
@@ -102,6 +104,8 @@
         </td>
         <td>
           <%= order.status %>
+          <%= button_to "Cancel", "orders/#{order.id}", method: 'patch', params:{status: 0}  %>
+          <%= button_to "Mark as Completed", "orders/#{order.id}", method: 'patch', params:{status: 3}  %>
         </td>
       </tr>
     <% end %>

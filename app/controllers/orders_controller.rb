@@ -6,3 +6,4 @@ class OrdersController < ApplicationController
     @accessories_with_subtotal = @order.accessories_with_subtotal
   end
 end
+
