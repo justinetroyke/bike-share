@@ -5,7 +5,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
     @admin = User.create!(username: 'admin', password: 'password', address: '123 admin street', first_name: 'John', last_name: 'Smith', role: 1)
     @accessories = []
     40.times do |n|
-      @accessories << Accessory.create(title: "Accessory #{n}", price: n, description: "This is accessory #{n}")
+      @accessories << Accessory.create!(title: "Accessory #{n}", price: n+1, description: "This is accessory #{n}")
     end
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     visit admin_dashboard_path
