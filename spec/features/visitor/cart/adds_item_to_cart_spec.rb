@@ -12,7 +12,7 @@ RSpec.describe 'Visitor Cart Page' do
       click_link 'Add to Cart'
 
       visit '/cart'
-save_and_open_page
+
       expect(page).to have_content('Quantity: 1')
     end
   end
