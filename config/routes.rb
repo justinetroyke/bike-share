@@ -7,16 +7,16 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:new, :create]
-  resources :carts, only: [:create]
-
   resources :stations, param: :slug, only: [:index, :show]
 
+  resources :carts
+  get '/cart', to: 'carts#show'
   resources :orders
   get '/dashboard', to: 'dashboard#show'
   resources :trips
   namespace :admin do
     resources :stations
-    resources :accessories, path: '/bike-shop', only: [:new, :create]
+    resources :accessories, path: '/bike-shop', only: [:new, :create, :index, :edit, :update]
     resources :trips
     resources :orders
     resources :stations
