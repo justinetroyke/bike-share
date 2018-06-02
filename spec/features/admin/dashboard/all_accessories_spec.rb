@@ -25,7 +25,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
       expect(page).to have_current_path(admin_accessories_path)
       @accessories.each do |accessory|
         within("#accessory-#{accessory.id}") do
-          expect(page.find('.thumbnail')['src']).to have_ccontent(accessory.image)
+          expect(page.find('.thumbnail')['src']).to have_content(accessory.image)
           expect(page).to have_content(accessory.title)
           expect(page).to have_content(accessory.description)
           expect(page).to have_content(accessory.status)
@@ -34,8 +34,9 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
         end
       end
     end
-
+  
     it 'clicking edit should take the admin to the edit page for that accessory' do
+      click_link 'View All Accessories'
       @accessories.each do |accessory|
         within("#accessory-#{accessory.id}") do
           click_link 'Edit'
@@ -46,6 +47,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
     end
 
     it 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
+      click_link 'View All Accessories'
       @accessories.each do |accessory|
         within("#accessory-#{accessory.id}") do
           click_link 'Retire'

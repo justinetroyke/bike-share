@@ -20,6 +20,10 @@ class Admin::AccessoriesController < ApplicationController
     end
   end
 
+  def index
+    @accessories = Accessory.all
+  end
+  
   private
 
   def accessory_params

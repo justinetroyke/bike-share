@@ -1,0 +1,17 @@
+%h1 Admin Dashboard - All Accessories
+=link_to 'Back to Dashboard', admin_dashboard_path
+
+#accessories
+  -@accessories.each do |accessory|
+    %div{id: "accessory-#{accessory.id}"}
+      %img{src: accessory.image_url}
+      %span.accessory-title= accessory.title
+      %span.accessory-description= accessory.description
+      %span.accessory-description= accessory.description
+      %span.accessory-status= accessory.status
+      =link_to 'Edit', edit_admin_accessory_path(accessory)
+      -if accessory.status == 0
+        =button_to 'Retire', retire_accessory_path
+      -else
+        =button_to 'Reactivate', reactivate_accessory_path
+      
