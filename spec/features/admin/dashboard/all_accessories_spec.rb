@@ -86,4 +86,20 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
       expect(page).to have_content('Inactive')
     end
   end
+
+  it 'clicking the \'Reactivate\' button should activate an inactive accessory' do
+    @accessories[3].update!(status: 'inactive')
+    click_link 'View All Accessories'
+
+    within("#accessory-#{@accessories[3].id}") do
+      expect(page).to have_content('Inactive')
+      click_button 'Reactivate'
+    end
+
+    expect(page).to have_current_path(admin_accessories_path)
+    expect(Accessory.find(@accessories[3].id).status).to eq('active')
+    within("#accessory-#{@accessories[3].id}") do
+      expect(page).to have_content('Active')
+    end
+  end
 end

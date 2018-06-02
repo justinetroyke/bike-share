@@ -15,5 +15,7 @@
           =f.hidden_field :accessory, name: 'accessory[status]', value: 'inactive'
           =f.submit 'Retire'
       -else
-        -# =button_to 'Reactivate', reactivate_accessory_path
+        =form_for [:admin, accessory] do |f|
+          =f.hidden_field :accessory, name: 'accessory[status]', value: 'active'
+          =f.submit 'Reactivate'
       

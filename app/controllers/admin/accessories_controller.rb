@@ -28,13 +28,12 @@ class Admin::AccessoriesController < ApplicationController
   end
 
   def update
-    # require 'pry';binding.pry
     @accessory.update(accessory_params)
 
     if accessory_params[:status] == 'inactive'
       flash[:notice] = "You have retired #{@accessory}"
       redirect_to admin_accessories_path
-    elsif accessory_params[:status] == "Reactivate"
+    elsif accessory_params[:status] == 'active'
       flash[:notice] = "You have activated #{@accessory}"
       redirect_to admin_accessories_path
     else
