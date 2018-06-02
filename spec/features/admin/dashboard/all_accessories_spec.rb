@@ -30,7 +30,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
           expect(page).to have_content(accessory.description)
           expect(page).to have_content(accessory.status)
           expect(page).to have_link('Edit')
-          expect(page).to have_link('Retire')
+          expect(page).to have_button('Retire')
         end
       end
     end
@@ -40,48 +40,48 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
       @accessories.each do |accessory|
         within("#accessory-#{accessory.id}") do
           click_link 'Edit'
-          expect(page).to have_current_path(edit_admin_accessory(accessory))
+          expect(page).to have_current_path(edit_admin_accessory_path(accessory))
           visit admin_accessories_path
         end
       end
-
-      it 'should be able to edit an accessory' do
-        click_link 'View All Accessories'
-
-        edited_title = 'Edited Title'
-        edited_description = 'This is an edited description'
-        edited_price = '1.45'
-
-        within("#accessory-#{@accessories[0].id}") do
-          click_link 'Edit'
-        end
-        
-        expect(page).to have_current_path(edit_admin_accessory(@accessories[0]))
-
-        fill_in 'accessory[title]', edited_title
-        fill_in 'accessory[description]', edited_description
-        fill_in 'accessory[price]', edited_price
-        click_button 'Update Item'
-
-        expect(page).to have_current_path(accessory_path(@accessories[0]))
-        expect(page).to have_content("Title: #{edited_title}")
-        expect(page).to have_content("Description: #{edited_description}")
-        expect(page).to have_content("Price: #{edited_price}")
-
-        expect(page).to_not have_content("Title: #{@accessories[0].title}")
-        expect(page).to_not have_content("Description: #{@accessories[0].description}")
-        expect(page).to_not have_content("Price: #{@accessories[0].price}")
-      end
     end
 
-    xit 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
+    it 'should be able to edit an accessory' do
       click_link 'View All Accessories'
-      @accessories.each do |accessory|
-        within("#accessory-#{accessory.id}") do
-          click_link 'Retire'
-          expect(page).to have_current_path(admin_accessories_path)
-          expect
-        end
+
+      edited_title = 'Edited Title'
+      edited_description = 'This is an edited description'
+      edited_price = 1.45
+
+      within("#accessory-#{@accessories[0].id}") do
+        click_link 'Edit'
+      end
+      
+      expect(page).to have_current_path(edit_admin_accessory_path(@accessories[0]))
+
+      fill_in 'accessory[title]', with: edited_title
+      fill_in 'accessory[description]', with: edited_description
+      fill_in 'accessory[price]', with: edited_price
+      click_button 'Update Accessory'
+
+      expect(page).to have_current_path(accessory_path(@accessories[0]))
+      expect(page).to have_content("Title: #{edited_title}")
+      expect(page).to have_content("Description: #{edited_description}")
+      expect(page).to have_content("Price: $#{edited_price}")
+
+      expect(page).to_not have_content("Title: #{@accessories[0].title}")
+      expect(page).to_not have_content("Description: #{@accessories[0].description}")
+      expect(page).to_not have_content("Price: #{@accessories[0].price}")
+    end
+  end
+
+  xit 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
+    click_link 'View All Accessories'
+    @accessories.each do |accessory|
+      within("#accessory-#{accessory.id}") do
+        click_button 'Retire'
+        expect(page).to have_current_path(admin_accessories_path)
+        expect
       end
     end
   end
