@@ -30,8 +30,12 @@ RSpec.describe 'Stations Dashboard' do
       expect(page).to have_content("Average Bikes per Station: 2.5")
     end
 
-    it 'should show the most bikes available at a station and that stations name' do
-      expect(page).to have_content("Most Bikes: 4 at station: Station Least")
+    it 'should show the most bikes available at a station or stations and that station(s)\' name(s)' do
+      expect(page).to have_content("Most Bikes: 4 at station(s):\nStation Most\nStation Most Two")
+    end
+
+    it 'should show the least bikes available at a station or stations and that station(s)\' name(s)' do
+      expect(page).to have_content("Least Bikes: 1 at station(s):\nStation Least\nStation Least Two")
     end
   end
 end
