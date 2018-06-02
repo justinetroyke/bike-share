@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get '/cart', to: 'carts#show'
   resources :orders
   get '/dashboard', to: 'dashboard#show'
+  scope module: 'stations' do
+    get '/stations-dashboard', to: 'dashboard#index'
+  end
   resources :trips
   namespace :admin do
     resources :stations
