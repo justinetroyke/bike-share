@@ -8,10 +8,12 @@
       %span.accessory-title= accessory.title
       %span.accessory-description= accessory.description
       %span.accessory-description= accessory.description
-      %span.accessory-status= accessory.status
+      %span.accessory-status= accessory.status.capitalize
       =link_to 'Edit', edit_admin_accessory_path(accessory)
       -if accessory.status == 'active'
-        =button_to 'Retire', admin_accessory_path(accessory), value: 1
+        =form_for [:admin, accessory] do |f|
+          =f.hidden_field :accessory, name: 'accessory[status]', value: 'inactive'
+          =f.submit 'Retire'
       -else
         -# =button_to 'Reactivate', reactivate_accessory_path
       

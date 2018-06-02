@@ -26,11 +26,12 @@ class Admin::AccessoriesController < ApplicationController
 
   def edit
   end
-  
+
   def update
+    # require 'pry';binding.pry
     @accessory.update(accessory_params)
 
-    if accessory_params[:status] == "Retire"
+    if accessory_params[:status] == 'inactive'
       flash[:notice] = "You have retired #{@accessory}"
       redirect_to admin_accessories_path
     elsif accessory_params[:status] == "Reactivate"
@@ -40,7 +41,7 @@ class Admin::AccessoriesController < ApplicationController
       redirect_to accessory_path(@accessory)
     end
   end
-  
+
   private
 
   def accessory_params

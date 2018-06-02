@@ -28,7 +28,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
           expect(page.find('.thumbnail')['src']).to have_content(accessory.image_url)
           expect(page).to have_content(accessory.title)
           expect(page).to have_content(accessory.description)
-          expect(page).to have_content(accessory.status)
+          expect(page).to have_content(accessory.status.capitalize)
           expect(page).to have_link('Edit')
           expect(page).to have_button('Retire')
         end
@@ -78,10 +78,12 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
   it 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
     click_link 'View All Accessories'
     within("#accessory-#{@accessories[0].id}") do
-      save_and_open_page
       click_button 'Retire'
-      expect(page).to have_current_path(admin_accessories_path)
-      expect(accessory.status).to eq('Retire')
+    end
+    expect(page).to have_current_path(admin_accessories_path)
+    expect(Accessory.find(@accessories[0].id).status).to eq('inactive')
+    within("#accessory-#{@accessories[0].id}") do
+      expect(page).to have_content('Inactive')
     end
   end
 end
