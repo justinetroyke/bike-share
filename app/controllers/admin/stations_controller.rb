@@ -23,6 +23,21 @@ class Admin::StationsController < Admin::BaseController
     redirect_to stations_path
   end
 
+  def new
+    @station = Station.new
+  end
+
+  def create
+    @station = Station.new(station_params)
+    if @station.save
+      flash[:notice] = "#{@station.name} Station Created"
+      redirect_to station_path(@station.slug)
+    else
+      flash[:error] = "Incorrect attributes entered"
+      redirect_to new_admin_station_path
+    end
+  end
+
   private
 
   def station_params
