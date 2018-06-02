@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
-  resources :accessories, path: 'bike-shop', only: [:index, :show]
   root 'root#index'
+  resources :accessories, path: 'bike-shop', only: [:index, :show]
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+
   resources :users, only: [:new, :create]
   resources :carts, only: [:create]
-  resources :trips, only: [:index]
-  resources :stations, only: [:index]
+
+  resources :stations, param: :slug, only: [:index, :show]
 
   resources :orders
   get '/dashboard', to: 'dashboard#show'
-  resources :stations, param: :slug, only: [:show, :index]
   resources :trips
   namespace :admin do
+    resources :stations
+    resources :accessories, path: '/bike-shop', only: [:new, :create]
     resources :trips
+    resources :orders
     resources :stations
     get '/dashboard', to: 'dashboard#show'
   end

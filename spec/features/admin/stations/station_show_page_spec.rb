@@ -15,7 +15,7 @@ RSpec.describe 'Station Show Page (Admin)' do
       expect(page).to have_content(@station1.name)
       expect(page).to_not have_content(@station2.name)
     end
-    
+
     it 'they should see the station\'s dock_count' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit station_path(@station1.slug)
@@ -23,7 +23,7 @@ RSpec.describe 'Station Show Page (Admin)' do
       expect(page).to have_content(@station1.dock_count)
       expect(page).to_not have_content("Dock Count: #{@station2.dock_count}")
     end
-    
+
     it 'they should see the station\'s city' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit station_path(@station1.slug)
@@ -31,14 +31,14 @@ RSpec.describe 'Station Show Page (Admin)' do
       expect(page).to have_content(@station1.city)
       expect(page).to_not have_content(@station2.city)
     end
-    
+
     it 'they should see the station\'s installation date' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit station_path(@station1.slug)
 
-      expect(page).to have_content(@station1.installation_date)
+      expect(page).to have_content(@station1.installation_date.strftime("%B%e, %Y"))
     end
-    
+
     it 'they should see a button that deletes the station when clicked on' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit station_path(@station1.slug)
@@ -51,7 +51,7 @@ RSpec.describe 'Station Show Page (Admin)' do
         expect(page).to have_content(@station2.name)
       end
     end
-    
+
     it 'they should see a button for editing the station that takes them to the edit station for that page' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit station_path(@station1.slug)

@@ -1,12 +1,16 @@
-<content>
-  <%= @trip.duration %>
-  <%= @trip.start_date %>
-  <%= @trip.end_date %>
-  <%= @start_station.name %>
-  <%= @trip.start_station_id %>
-  <%= @end_station.name %>
-  <%= @trip.end_station_id %>
-  <%= @trip.bike_id %>
-  <%= @trip.subscription_type %>
-  <%= @trip.zip_code %>
-</content>
+<div class="trip-information-container">
+  <% if current_admin? %>
+  <div class="edit-delete-buttons-container">
+    <%= link_to 'Edit', edit_admin_trip_path(@trip) %>
+    <%= link_to 'Delete', trip_path(@trip), method: :delete %>
+  </div>
+  <% end %>
+  <span>Duration: <%= @trip.duration %></span>
+  <span>Start Date: <%= @trip.start_date %></span>
+  <span>End Date: <%= @trip.end_date %></span>
+  <span>Start Station: <%= @start_station.name %>, ID: <%= @trip.start_station_id %></span>
+  <span>End Station: <%= @end_station.name %>, ID: <%= @trip.end_station_id %></span>
+  <span>Bike ID: <%= @trip.bike_id %></span>
+  <span>Subscription: <%= @trip.subscription_type %></span>
+  <span>Zip Code: <%= @trip.zip_code %></span>
+</div>

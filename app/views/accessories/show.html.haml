@@ -1,0 +1,10 @@
+%h1= @accessory.title
+
+%img{:src => asset_path(@accessory.image_url)}/
+
+%p= @accessory.title
+%p= @accessory.description
+%p= number_to_currency(@accessory.price)
+
+%li
+= link_to 'Add to Cart', carts_path(accessory_id: @accessory.id), method: :post

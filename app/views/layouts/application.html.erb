@@ -5,27 +5,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto|Voces" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <nav id="top_bar">
-      <ul>
-        <div class="navigation">
-          <%= render partial: "partials/nav" %>
+    <% unless @hide_nav %>
+      <header>
+        <div id="home-link-container">
+          <%= link_to 'Bike Share', root_path, id: "header-home-link" %>
         </div>
-        <div class="auth">
-          <%= render partial: 'partials/login' %>
+        <div id="nav-links-container">
+          <%= render 'partials/cart' %>
+          <nav class="navigation">
+            <%= render partial: "partials/nav" %>
+          </nav>
+          <div class="auth">
+            <%= render partial: 'partials/login' %>
+          </div>
+          <div class="flash">
+            <%= render partial: "partials/flash" %>
+          </div>
         </div>
-        <div class="flash">
-          <%= render partial: "partials/flash" %>
-        </div>
-      </ul>
-    </nav>
-    
-
-    <%= render 'partials/cart' %>
+      </header>
+    <% end %>
     <%= yield %>
   </body>
 </html>
