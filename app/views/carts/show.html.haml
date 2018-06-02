@@ -1,0 +1,22 @@
+%h1= 'My Cart'
+%h2= "Total: $#{@cart.total_amount}"
+
+
+%table{:border => 5, :width => "100%"}
+  %tbody
+    %tr
+      %th Accesory:
+      %th Accesory Name:
+      %th Price:
+      %th Desription:
+      %th Quantity:
+      %th Subtotal:
+    -@accessories.each do |accessory|
+      %tr
+        %td
+          %img{width: "80", height: "60",:src => asset_path(accessory.image_url)}/
+        %td= accessory.title
+        %td= accessory.price
+        %td= accessory.description
+        %td= @cart.contents[accessory.id.to_s]
+        %td= "$#{@cart.subtotal(accessory)}"
