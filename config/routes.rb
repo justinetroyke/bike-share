@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :stations
     resources :accessories, path: '/bike-shop', only: [:new, :create]
     resources :trips
+    resources :orders
+    resources :stations
     get '/dashboard', to: 'dashboard#show'
   end
 end
