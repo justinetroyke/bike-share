@@ -37,5 +37,13 @@ RSpec.describe 'Stations Dashboard' do
     it 'should show the least bikes available at a station or stations and that station(s)\' name(s)' do
       expect(page).to have_content("Least Bikes: 1 at station(s):\nStation Least\nStation Least Two")
     end
+
+    it 'should show the most recently installed station' do
+      expect(page).to have_content("Most Recently Installed Station: #{@stations.last.name}")
+    end
+
+    it 'should show the oldest station' do
+      expect(page).to have_content("Most Recently Installed Station: #{@stations.first.name}")
+    end
   end
 end
