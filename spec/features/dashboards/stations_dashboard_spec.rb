@@ -8,8 +8,9 @@ RSpec.describe 'Stations Dashboard' do
     # I created stations a few times to salt the calculations for testing a bit
 
     @stations << Station.create!(name: "Station Least", dock_count: 1, city: "City 0", installation_date: DateTime.now)
+    @stations << Station.create!(name: "Station Least Two", dock_count: 1, city: "City #{num}", installation_date: DateTime.now)
 
-    19.times do |num|
+    18.times do |num|
       @stations << Station.create!(name: "Station #{num}", dock_count: 2, city: "City #{num}", installation_date: DateTime.now)
     end
 
@@ -18,6 +19,7 @@ RSpec.describe 'Stations Dashboard' do
     end
 
     @stations << Station.create!(name: "Station Most", dock_count: 4, city: "City 40", installation_date: DateTime.now)
+    @stations << Station.create!(name: "Station Most Two", dock_count: 4, city: "City 40", installation_date: DateTime.now)
   end
   describe 'Any user type visits the stations dashboard page' do
     it 'they should see the total count of stations' do
