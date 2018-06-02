@@ -4,14 +4,14 @@
 #accessories
   -@accessories.each do |accessory|
     %div{id: "accessory-#{accessory.id}"}
-      %img{src: accessory.image_url}
+      %img{src: accessory.image_url, class: "thumbnail"}
       %span.accessory-title= accessory.title
       %span.accessory-description= accessory.description
       %span.accessory-description= accessory.description
       %span.accessory-status= accessory.status
       =link_to 'Edit', edit_admin_accessory_path(accessory)
       -if accessory.status == 0
-        =button_to 'Retire', retire_accessory_path
+        -# =button_to 'Retire', retire_ac
       -else
-        =button_to 'Reactivate', reactivate_accessory_path
+        -# =button_to 'Reactivate', reactivate_accessory_path
       

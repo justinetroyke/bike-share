@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2018_06_01_043512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.string "image", default: "image1"
   end
 
   create_table "order_accessories", force: :cascade do |t|
