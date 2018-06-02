@@ -4,9 +4,12 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_accessories
   has_many :accessories, through: :order_accessories
+
+  enum status:[:cancelled,:ordered,:paid,:completed]
   def total
     accessories.sum(:price)
   end
+
   def quantity 
     order_accessories.count
   end
@@ -16,4 +19,21 @@ class Order < ApplicationRecord
     accessories.group(:id)
       .sum(:price)
   end
+
+  def self.ordered
+    where(status: :ordered)
+  end
+
+  def self.paid
+    where(status: :paid)
+  end
+
+  def self.cancelled
+    where(status: :cancelled)
+  end
+
+  def self.completed
+    where(status: :completed)
+  end
+
 end

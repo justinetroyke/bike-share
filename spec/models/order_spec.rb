@@ -51,4 +51,58 @@ RSpec.describe Order do
       end
     end
   end
+  describe 'class methods' do
+    before(:all) do 
+      @image_url = 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      @user1 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+      @order1 = @user1.orders.create!(status:0)
+      @accessory1 = @order1.accessories.create!(title: 'Item 1', price: 1, description: 'This is item 1', image_url: @image_url)
+
+      @user2 = User.create!(role: 0, username: 'user2', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+      @order2 = @user2.orders.create!(status:1)
+      @order2.accessories.create!(title: 'Item 2', price: 1, description: 'This is item 1', image_url: @image_url)
+
+      @user2 = User.create!(role: 0, username: 'user3', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+      @order4 = @user2.orders.create!(status:1)
+      @order4.accessories.create!(title: 'Item 5', price: 1, description: 'This is item 1', image_url: @image_url)
+
+      @user3 = User.create!(role: 0, username: 'user4', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+      @order3 = @user3.orders.create!(status:2)
+      @order3.accessories.create!(title: 'Item 3', price: 1, description: 'This is item 1', image_url: @image_url)
+
+      @user4 = User.create!(role: 0, username: 'user5', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
+      @order4 = @user4.orders.create!(status:3)
+      @order4.accessories.create!(title: 'Item 4', price: 1, description: 'This is item 1', image_url: @image_url)
+    end
+
+    describe 'self.ordered' do
+      it 'shoud return all orders with a status of ordered' do
+        Order.ordered.each do |order|
+          expect(order.status).to eq('ordered')
+        end
+      end
+    end
+    describe 'self.cancelled' do
+      it 'shoud return all orders with a status of cancelled' do
+        Order.cancelled.each do |order|
+          expect(order.status).to eq('cancelled')
+        end 
+      end
+    end
+    describe 'self.paid' do
+      it 'shoud return all orders with a status of paid' do
+        Order.paid.each do |order|
+          expect(order.status).to eq('paid')
+        end
+      end
+    end
+    describe 'self.completed' do
+      it 'shoud return all orders with a status of completed' do
+        expect(Order.completed)
+        Order.completed.each do |order|
+          expect(order.status).to eq('completed')
+        end
+      end
+    end
+  end
 end

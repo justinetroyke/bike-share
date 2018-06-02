@@ -5,20 +5,20 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+
   resources :users, only: [:new, :create]
-  resources :carts, only: [:create, :show]
-  resources :trips, only: [:index, :destroy]
-  resources :stations, only: [:index]
+  resources :stations, param: :slug, only: [:index, :show]
 
   get '/cart', to: 'carts#show'
 
   resources :orders
   get '/dashboard', to: 'dashboard#show'
-  resources :stations, param: :slug, only: [:show, :index]
   resources :trips
   namespace :admin do
+    resources :stations
     resources :accessories, path: '/bike-shop', only: [:new, :create]
     resources :trips
+    resources :orders
     resources :stations
     get '/dashboard', to: 'dashboard#show'
   end
