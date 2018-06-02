@@ -18,7 +18,7 @@ RSpec.describe 'Visitor Cart Page' do
       expect(page).to have_content(@accessory2.description)
       expect(page).to have_content(@accessory2.price)
       expect(page).to have_xpath("//img[contains(@src, @image_url)]")
-      expect(page).to have_content("Subtotal: $12")
+      expect(page).to have_content("$12")
       expect(page).to have_content("Total: $12")
     end
   end
