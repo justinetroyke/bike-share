@@ -7,7 +7,8 @@ class Accessory < ApplicationRecord
 
   validates_uniqueness_of :title
 
-  validates :status, inclusion: { in: [0,1] }
+  # validates :status, inclusion: { in: [0,1] }
+  enum status: {active: 0, inactive: 1}
 
   validates :price, numericality: { :greater_than => 0 }
 

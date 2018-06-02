@@ -10,8 +10,8 @@
       %span.accessory-description= accessory.description
       %span.accessory-status= accessory.status
       =link_to 'Edit', edit_admin_accessory_path(accessory)
-      -if accessory.status == 0
-        =button_to 'Retire', admin_accessory_path(accessory), method: :patch, name: 'accessory[status]', value: 1
+      -if accessory.status == 'active'
+        =button_to 'Retire', admin_accessory_path(accessory), value: 1
       -else
         -# =button_to 'Reactivate', reactivate_accessory_path
       

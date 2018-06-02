@@ -77,12 +77,11 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
 
   it 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
     click_link 'View All Accessories'
-    @accessories.each do |accessory|
-      within("#accessory-#{accessory.id}") do
-        click_button 'Retire'
-        expect(page).to have_current_path(admin_accessories_path)
-        expect
-      end
+    within("#accessory-#{@accessories[0].id}") do
+      save_and_open_page
+      click_button 'Retire'
+      expect(page).to have_current_path(admin_accessories_path)
+      expect(accessory.status).to eq('Retire')
     end
   end
 end

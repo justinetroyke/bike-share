@@ -7,7 +7,6 @@ RSpec.describe Accessory do
     it { should validate_numericality_of(:price).is_greater_than(0) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:status) }
-    it { should validate_inclusion_of(:status).in_array([0, 1]) }
     it { should validate_presence_of(:image_url) }
   end
 
