@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :stations, param: :slug, only: [:index, :show]
 
+  resources :carts
   get '/cart', to: 'carts#show'
-
   resources :orders
   get '/dashboard', to: 'dashboard#show'
   resources :trips

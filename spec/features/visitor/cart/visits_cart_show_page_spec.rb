@@ -13,6 +13,7 @@ RSpec.describe 'Visitor Cart Page' do
 
       visit '/cart'
 
+
       expect(page).to have_content(@accessory2.title)
       expect(page).to have_content(@accessory2.description)
       expect(page).to have_content(@accessory2.price)
