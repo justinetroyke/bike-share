@@ -12,5 +12,9 @@ RSpec.describe 'Stations Dashboard' do
     it 'they should see the total count of stations' do
       expect(page).to have_content("Total Stations: #{@stations.length}")
     end
+
+    it 'should show the average bikes per station based on dock count' do
+      expect(page).to have_content("Average Bikes per Station: 2")
+    end
   end
 end
