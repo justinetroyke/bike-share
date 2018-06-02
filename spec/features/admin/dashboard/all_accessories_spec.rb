@@ -75,7 +75,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
     end
   end
 
-  xit 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
+  it 'clicking the \'Retire\' button should change the accessory\'s status and reload the page' do
     click_link 'View All Accessories'
     @accessories.each do |accessory|
       within("#accessory-#{accessory.id}") do

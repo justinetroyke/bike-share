@@ -29,13 +29,14 @@ class Admin::AccessoriesController < ApplicationController
   
   def update
     @accessory.update(accessory_params)
+    require 'pry';binding.pry
     redirect_to accessory_path(@accessory)
   end
   
   private
 
   def accessory_params
-    params.require(:accessory).permit(:title, :description, :price)
+    params.require(:accessory).permit(:title, :description, :price, :status)
   end
 
   def set_accessory
