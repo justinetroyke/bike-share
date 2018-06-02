@@ -25,7 +25,7 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
       expect(page).to have_current_path(admin_accessories_path)
       @accessories.each do |accessory|
         within("#accessory-#{accessory.id}") do
-          expect(page.find('.thumbnail')['src']).to have_content(accessory.image)
+          expect(page.find('.thumbnail')['src']).to have_content(accessory.image_url)
           expect(page).to have_content(accessory.title)
           expect(page).to have_content(accessory.description)
           expect(page).to have_content(accessory.status)

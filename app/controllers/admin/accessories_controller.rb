@@ -23,6 +23,10 @@ class Admin::AccessoriesController < ApplicationController
   def index
     @accessories = Accessory.all
   end
+
+  def edit
+    @accessory = Accessory.find(params[:id])
+  end
   
   private
 
