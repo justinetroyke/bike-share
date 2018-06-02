@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :users, only: [:new, :create]
-  resources :carts, only: [:create, :index]
+  resources :carts, only: [:create, :show]
   resources :trips, only: [:index, :destroy]
   resources :stations, only: [:index]
 
-  get '/cart', to: 'cart#index'
+  get '/cart', to: 'carts#show'
 
   resources :orders
   get '/dashboard', to: 'dashboard#show'

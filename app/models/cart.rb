@@ -1,4 +1,5 @@
 class Cart
+  attr_reader :contents
 
   def initialize(data = nil)
     if data

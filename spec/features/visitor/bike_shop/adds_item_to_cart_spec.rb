@@ -13,13 +13,12 @@ RSpec.describe 'Visitor Cart Page' do
 
       visit '/cart'
 
-
       expect(page).to have_content(@accessory2.title)
       expect(page).to have_content(@accessory2.description)
       expect(page).to have_content(@accessory2.price)
       expect(page).to have_xpath("//img[contains(@src, @image_url)]")
 
-      expect(page).to_not have_content('Quantity: 1')
+      expect(page).to have_content('Quantity: 1')
     end
   end
 end

@@ -1,0 +1,14 @@
+%h1= 'My Cart'
+
+%ul
+  -@accessories.each do |accessory|
+    %li{id: "accessory-#{accessory.id}"}
+      %img{:src => asset_path(accessory.image_url)}/
+      %span= accessory.title
+      %br
+      %span= accessory.price
+      %br
+      %span= accessory.description
+      %br
+      Quantity: 
+      %span= @cart.contents[accessory.id.to_s]
