@@ -21,7 +21,7 @@ RSpec.describe 'Station Show Page (Admin)' do
       visit station_path(@station1.slug)
 
       expect(page).to have_content(@station1.dock_count)
-      expect(page).to_not have_content("Dock Count:: #{@station2.dock_count}")
+      expect(page).to_not have_content("Dock Count: #{@station2.dock_count}")
     end
 
     it 'they should see the station\'s city' do

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :trips
   namespace :admin do
     resources :stations
-    resources :accessories, path: '/bike-shop', only: [:new, :create]
+    resources :accessories, path: '/bike-shop', only: [:new, :create, :index, :edit, :update]
     resources :trips
     resources :orders
     resources :stations

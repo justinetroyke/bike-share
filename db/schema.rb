@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2018_06_01_043512) do
 
   create_table "accessories", force: :cascade do |t|
     t.string "title"
-    t.integer "price"
+    t.float "price"
     t.string "description"
     t.string "image_url", default: "https://pics.me.me/bike-repair-cant-call-see-the-problaym-heer-memes-com-13867434.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image", default: "image1"
+    t.integer "status", default: 0
   end
 
   create_table "order_accessories", force: :cascade do |t|
