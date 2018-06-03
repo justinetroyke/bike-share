@@ -31,6 +31,8 @@ class Station < ApplicationRecord
   end
 
   def most_frequent_zip_code
+    (start_trips + end_trips).group_by{|i| i.zip_code}
+    .max_by{|zip,stations| stations.count}.first
   end
 
   def favorite_bike

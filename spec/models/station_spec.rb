@@ -80,7 +80,7 @@ RSpec.describe Station do
     end
     describe 'favorite_bike' do
       it 'should reuturn id of the favorite bike of this station' do
-        expect(@station.most_frequent_zip_code).to eq(20)
+        expect(@station.favorite_bike).to eq(25)
       end
     end
   end
