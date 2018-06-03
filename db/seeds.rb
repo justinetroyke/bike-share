@@ -1,6 +1,6 @@
 require 'csv'
 
-if Rails.env == 'development'
+if Rails.env == 'development' || Rails.env == 'production'
   stations_data = CSV.read('db/csv/stations.csv', headers: true, header_converters: :symbol)
   trips_data = CSV.read('db/csv/trips.csv', headers: true, header_converters: :symbol)
   orders_data = CSV.read('db/csv/orders.csv', headers: true, header_converters: :symbol)
