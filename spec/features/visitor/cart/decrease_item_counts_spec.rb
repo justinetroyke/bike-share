@@ -25,6 +25,7 @@ RSpec.feature "DecreaseItemCounts", type: :feature do
           expect(page).to have_button('Increase')
           click_on('Increase')
         end
+
         expect(page).to have_content('2')
       end
     end
