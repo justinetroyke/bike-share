@@ -14,11 +14,44 @@ RSpec.feature "Station Show page", type: :feature do
                                    dock_count: 12, 
                                    city: 'Denver', 
                                    installation_date: DateTime.now)
-        
+        @station2 = Station.create!(name: '19th street', 
+                                    dock_count: 12, 
+                                    city: 'Denver', 
+                                    installation_date: DateTime.now)
+
+        10.times do |num|
+          Trip.create!(duration: 5,
+                       start_date:Time.now - 1.hour,
+                       end_date:Time.now,
+                       bike_id: num,
+                       zip_code: rand(1000),
+                       start_station_id:@station.id,
+                       end_station_id:@station2.id,
+                       subscription_type:2)
+        end
+        7.times do |num|
+          Trip.create!(duration: 5,
+                       start_date:Time.now- 1.hour,
+                       end_date:Time.now,
+                       bike_id: num,
+                       zip_code: rand(1000),
+                       start_station_id:@station2.id,
+                       end_station_id:@station.id,
+                       subscription_type:2)
+        end
+      end
       end
       it 'should show the number of rides started at that station' do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+        visit station_page(@station)
+        expect(page).to have_content('Trips started at this station: 10')
       end
       it 'should show the Number of rides ended at this station' do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+        visit station_page(@station)
+        expect(page).to have_content('Trips ended at this station: 7')
       end
       it 'should show the Most frequent destination station (for rides that began at this station)' do
       end
