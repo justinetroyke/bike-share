@@ -22,6 +22,9 @@ class Cart
     @contents.delete(accessory_id)
   end
 
+  def decrease_item_count(accessory_id)
+    @contents[accessory_id] -= 1
+  end
   def accessory_count(id)
     @contents[id]
   end
