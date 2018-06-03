@@ -27,5 +27,25 @@ RSpec.describe Station do
         expect(station1.slug).to eq(station1.name.parameterize)
       end
     end
+    describe 'most_frequent_destination' do 
+      it 'should return the most visited end station from this station' do
+      end
+    end
+    describe 'most_frequent_origination' do 
+      it 'should return station which most trips to this station originate from' do
+      end
+    end
+    describe 'busiest_date' do 
+      it 'should return busiest date of operation' do
+      end
+    end
+    describe 'most_frequent_zip_code' do
+      it 'should reuturn the most common zip code of users of this station' do
+      end
+    end
+    describe 'favorite_bike' do
+      it 'should reuturn id of the favorite bike of this station' do
+      end
+    end
   end
 end
