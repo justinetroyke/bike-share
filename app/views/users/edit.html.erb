@@ -1,0 +1,21 @@
+<%= form_for( @user , remote: true) do |f| %>
+  <%=f.label :username %>
+  <%=f.text_field :username %>
+
+  <%=f.label :first_name %>
+  <%=f.text_field :first_name %>
+
+  <%=f.label :last_name %>
+  <%=f.text_field :last_name %>
+
+  <%=f.label :address %>
+  <%=f.text_field :address %>
+
+  <%=f.label :password %>
+  <%=f.password_field :password%>
+  <%=f.label 'Confirm Your Password'%>
+  <%=f.password_field :password_confirmation%>
+
+  <%= f.submit %>
+
+<% end %>
