@@ -4,6 +4,9 @@ class Admin::TripsController < Admin::BaseController
     @trip = Trip.find(params[:id])
   end
 
+  def new
+  end
+
   def update
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
@@ -24,9 +27,9 @@ class Admin::TripsController < Admin::BaseController
   private
 
   def trip_params
-    params.require(:trip).permit(:bike_id, 
-                                 :subscription_type, 
-                                 :zip_code, 
+    params.require(:trip).permit(:bike_id,
+                                 :subscription_type,
+                                 :zip_code,
                                  :bike_id,
                                  :start_station_id,
                                  :end_station_id,
