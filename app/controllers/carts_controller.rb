@@ -9,7 +9,6 @@ class CartsController < ApplicationController
     cart.add_accessory(accessory_id)
     session[:cart] = cart
     flash[:notice] = "#{cart.accessory_count(accessory_id)} #{accessory.title} has been added to your cart!"
-
     redirect_to accessories_path
   end
 
