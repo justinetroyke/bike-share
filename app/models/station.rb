@@ -36,5 +36,7 @@ class Station < ApplicationRecord
   end
 
   def favorite_bike
+    (start_trips + end_trips).group_by{|i| i.bike_id}
+    .max_by{|bike,stations| stations.count}.first
   end
 end
