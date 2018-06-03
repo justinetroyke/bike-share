@@ -9,6 +9,28 @@
 %h3 Installation Date
 %span#station-installation-date= @station.installation_date.strftime("%B%e, %Y")
 
+-unless @start_trips.empty? && @end_trips.empty?
+  %h3 Trips started at this station:
+  %span#trips-started= @start_trips.count
+    
+  %h3 Trips ended at this station:
+  %span#trips-ended= @end_trips.count
+
+  %h3 Most frequent destination, from this station: 
+  %span#trips-ended= @most_frequent_destination.name
+
+  %h3 Most frequent origination point, for this station:
+  %span#trips-ended= @most_frequent_origination.name
+
+  %h3 Busiest date for this station:
+  %span#trips-ended= @busiest_date
+
+  %h3 Most frequent zipcode of users using this station:
+  %span#trips-ended= @most_frequent_zip_code
+
+  %h3 Most used bike at this station:
+  %span#trips-ended= @favorite_bike
+        
 -if current_admin?
   =button_to 'Edit', edit_admin_station_path(@station), method: 'get'
   =button_to 'Delete', admin_station_path(@station), method:'delete'

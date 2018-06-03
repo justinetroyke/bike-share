@@ -12,4 +12,33 @@ class Station < ApplicationRecord
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def most_frequent_destination
+    start_trips.group(:end_station).order('count_id desc').count('id').keys.first
+  end
+
+  def most_frequent_origination
+    end_trips.group(:start_station).order('count_id asc').count('id').keys.first
+  end
+
+  def busiest_date
+    unless start_trips.empty? && end_trips.empty?
+      (start_trips + end_trips).group_by{|i| i.created_at.to_date}
+      .max_by{|date,stations| stations.count}.first
+    end
+  end
+
+  def most_frequent_zip_code
+    unless start_trips.empty? && end_trips.empty?
+      (start_trips + end_trips).group_by{|i| i.zip_code}
+      .max_by{|zip,stations| stations.count}.first
+    end
+  end
+
+  def favorite_bike
+    unless start_trips.empty? && end_trips.empty?
+      (start_trips + end_trips).group_by{|i| i.bike_id}
+      .max_by{|bike,stations| stations.count}.first
+    end
+  end
 end
