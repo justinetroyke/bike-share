@@ -56,35 +56,35 @@ RSpec.feature "Station Show page", type: :feature do
 
       it 'should show the Most frequent destination station (for rides that began at this station)' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-
         visit station_path(@station.slug)
-        expect(page).to have_content("Most frequent destination, from this station: #{@station2.name}")
+
+        expect(page).to have_content("Most frequent destination, from this station:\n#{@station2.name}")
       end
 
       it 'should the Most frequent origination station (for rides that ended at this station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content("Most frequent origination point, for this station: #{@station2.name}")
+        expect(page).to have_content("Most frequent origination point, for this station:\n#{@station2.name}")
       end
 
       it 'should show the Date with the highest number of trips started at this station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content("Busiest date for #{@station.name}: #{Time.now}")
+        expect(page).to have_content("Busiest date for this station:\n#{(Time.now+1.hour).to_date}")
       end
       it 'should show the Most frequent zip code for users starting trips at this station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content("Most frequent zipcode of users using this station: #{@station.most_frequent_zip}")
+        expect(page).to have_content("Most frequent zipcode of users using this station:\n#{@station.most_frequent_zip_code}")
       end
       it 'should show the Bike ID most frequently starting a trip at this station.' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content("Most used bike at #{@station.name}: #{@station.most_frequent_bike}")
+        expect(page).to have_content("Most used bike at this station:\n#{@station.favorite_bike}")
       end
     end
   end
