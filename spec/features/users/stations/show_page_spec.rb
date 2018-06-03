@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Station Show page", type: :feature do
   describe 'A User' do 
     describe 'visits the station show page' do
-      before(:all) do
+      before(:each) do
         @user = User.create!(username:'someone',
                             first_name:'whoever',
                             last_name:'someone else',

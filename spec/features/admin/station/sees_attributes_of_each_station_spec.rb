@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Admin Visits Station Index', type: :feature do
   describe 'An admin user' do
     context 'visiting station index path' do
-      before(:all) do
+      before(:each) do
         @stations = []
         @stations << station1 = Station.create!(name:'first one',
           dock_count:5,
@@ -22,6 +22,10 @@ RSpec.feature 'Admin Visits Station Index', type: :feature do
                               address:'1234 address',
                               role:1)
 
+      end
+
+      after :all do
+        @stations = nil
       end
       it 'shows all attributes of station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
