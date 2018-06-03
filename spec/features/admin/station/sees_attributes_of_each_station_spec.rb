@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.feature 'Admin Visits Station Index', type: :feature do
   describe 'An admin user' do
     context 'visiting station index path' do
-      before(:all) do
-        @stations = []
-        @stations << station1 = Station.create!(name:'first one',
+      before(:each) do
+        @stationss = []
+        @stationss << station1 = Station.create!(name:'first one',
           dock_count:5,
           city:'denver',
           installation_date: DateTime.now)
 
-        @stations << station2 = Station.create!(name:'another name',
+        @stationss << station2 = Station.create!(name:'another name',
                   dock_count:5,
                   city:'denver',
                   installation_date: DateTime.now)
@@ -23,12 +23,16 @@ RSpec.feature 'Admin Visits Station Index', type: :feature do
                               role:1)
 
       end
+
+      after :all do
+        @stationss = nil
+      end
       it 'shows all attributes of station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit stations_path
 
-        @stations.each do |station|
+        @stationss.each do |station|
           expect(page).to have_content(station.name)
           expect(page).to have_content(station.dock_count)
           expect(page).to have_content(station.city)
@@ -41,7 +45,7 @@ RSpec.feature 'Admin Visits Station Index', type: :feature do
 
         visit stations_path
 
-        @stations.each do |station|
+        @stationss.each do |station|
           within("#station_#{station.id}") do
             expect(page).to have_button('Delete')
             expect(page).to have_button('Edit')

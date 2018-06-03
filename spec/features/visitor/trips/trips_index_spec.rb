@@ -4,7 +4,7 @@ RSpec.feature "Trips Index", type: :feature do
   describe 'A visitor' do
     describe 'visiting the trips index path' do
       describe 'for navigating' do
-        before(:all) do
+        before(:each) do
           @station = Station.create!(name:'name',
                                     dock_count:5,
                                     city:'denver',
@@ -40,7 +40,7 @@ RSpec.feature "Trips Index", type: :feature do
         end
       end
       context 'each trip' do 
-        before(:all) do
+        before(:each) do
 
           @station1 = Station.create!(name:'name',
                                     dock_count:5,
