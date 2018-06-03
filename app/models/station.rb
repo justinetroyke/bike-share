@@ -12,4 +12,19 @@ class Station < ApplicationRecord
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def most_frequent_destination
+  end
+
+  def most_frequent_origination
+  end
+
+  def busiest_date
+  end
+
+  def most_frequent_zip_code
+  end
+
+  def favorite_bike
+  end
 end

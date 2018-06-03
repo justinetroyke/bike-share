@@ -15,13 +15,13 @@ RSpec.describe Station do
 
   describe 'Insatance Methods' do
     before(:all) do
-      @station = Station.create!(name: 'Union Station', 
-                                dock_count: 12, 
-                                city: 'Denver', 
+      @station = Station.create!(name: 'Union Station',
+                                dock_count: 12,
+                                city: 'Denver',
                                 installation_date: DateTime.now)
-      @station2 = Station.create!(name: '19th street', 
-                                  dock_count: 12, 
-                                  city: 'Denver', 
+      @station2 = Station.create!(name: '19th street',
+                                  dock_count: 12,
+                                  city: 'Denver',
                                   installation_date: DateTime.now)
 
       10.times do |num|
@@ -48,17 +48,18 @@ RSpec.describe Station do
         expect(station1.slug).to eq(station1.name.parameterize)
       end
     end
-    describe 'most_frequent_destination' do 
+    describe 'most_frequent_destination' do
       it 'should return the most visited end station from this station' do
+        require'pry';binding.pry
         expect(@station1.most_frequent_destination).to eq(@station2)
       end
     end
-    describe 'most_frequent_origination' do 
+    describe 'most_frequent_origination' do
       it 'should return station which most trips to this station originate from' do
         expect(@station1.most_frequent_origination).to eq(@station2)
       end
     end
-    describe 'busiest_date' do 
+    describe 'busiest_date' do
       it 'should return busiest date of operation' do
         expect(@station1.busiest_date).to eq(Time.now)
       end
