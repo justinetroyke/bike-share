@@ -40,7 +40,6 @@ RSpec.describe 'Stations Dashboard' do
     end
 
     it 'should show the most recently installed station' do
-      save_and_open_page
       expect(page).to have_content("Most Recently Installed Station: #{@stations.first.name}")
     end
 

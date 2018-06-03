@@ -7,8 +7,7 @@ class Stations::DashboardController < ApplicationController
     @stations_with_most_bikes = Station.where(dock_count: @most_bikes)
     @least_bikes = @stations.minimum(:dock_count)
     @stations_with_least_bikes = Station.where(dock_count: @least_bikes)
-
-    newest_install_date = Station.minimum(:installation_date)
-    @newest_station = Station.where(installation_date: newest_install_date)
+    @newest_station = Station.where(installation_date: Station.minimum(:installation_date)).first
+    @oldest_station = Station.where(installation_date: Station.maximum(:installation_date)).first
   end
 end
