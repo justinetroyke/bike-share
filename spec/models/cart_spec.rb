@@ -2,22 +2,26 @@ require 'rails_helper'
 
 RSpec.describe Cart do
 
-  describe "#total_count" do
-    it "can calculate the total number of accessories it holds" do
-      cart = Cart.new('contents' => {"1" => 2, "2" => 3})
+  describe "instance methods" do
+    describe 'total_count' do
+      it "can calculate the total number of accessories it holds" do
+        cart = Cart.new('contents' => {"1" => 2, "2" => 3})
 
-      expect(cart.total_count).to eq(5)
+        expect(cart.total_count).to eq(5)
+      end
     end
 
-    it 'accessory_count' do
-      cart = Cart.new('contents' => {'1' => 1, '2' => 3})
+    describe 'accessory_count' do
+      it 'returns the amount of a certain accesory' do
+        cart = Cart.new('contents' => {'1' => 1, '2' => 3})
 
-      expect(cart.accessory_count('1')).to eq(1)
-      expect(cart.accessory_count('2')).to eq(3)
+        expect(cart.accessory_count('1')).to eq(1)
+        expect(cart.accessory_count('2')).to eq(3)
+      end
     end
 
-    describe 'adds accessory to cart' do
-      it 'add_accessory' do
+    describe 'add_accesory' do
+      it 'should add an accesory id to the cart' do
         cart = Cart.new
         accessory = Accessory.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
 
@@ -27,8 +31,16 @@ RSpec.describe Cart do
       end
     end
 
-    describe 'adds accessory subtotal' do
-      it 'subtotal' do
+    describe 'remove_accessory' do
+      it 'should remove a given accessory' do 
+        cart = Cart.new('contents' => {'1' => 1, '2' => 3})
+
+        cart.remove_accessory('1')
+        expect(cart.content).to_not include?('1')
+      end
+    end
+    describe 'subtotal' do
+      it 'should return the subtotal of a certain accessory' do
         cart = Cart.new
         accessory = Accessory.create!(title: 'Accessory 1', price: 12, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
 
@@ -38,8 +50,8 @@ RSpec.describe Cart do
       end
     end
 
-    describe 'adds accessory total' do
-      it 'total_amount' do
+    describe 'total_amount' do
+      it 'should return the total cost of the cart' do
         cart = Cart.new
         accessory = Accessory.create!(title: 'Accessory 1', price: 12, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
         accessory2 = Accessory.create!(title: 'Accessory 2', price: 10, description: 'This is accessory one', image_url: 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
