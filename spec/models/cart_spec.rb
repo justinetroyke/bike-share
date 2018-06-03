@@ -36,7 +36,7 @@ RSpec.describe Cart do
         cart = Cart.new('contents' => {'1' => 1, '2' => 3})
 
         cart.remove_accessory('1')
-        expect(cart.content).to_not include?('1')
+        expect(cart.contents).to_not include('1')
       end
     end
     describe 'subtotal' do
