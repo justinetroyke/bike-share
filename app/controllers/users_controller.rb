@@ -15,6 +15,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    if params[:id].to_i == current_user.id
+      @user = User.find(current_user.id)
+    else
+      @hide_nav = true
+      render file: "/public/403", status: 403
+    end
+  end
+
+  def update
+    @user = User.find(current_user.id.to_s)
+    @user.update(user_params)  if params[:user][:password] == current_user.password 
+    if @user.save!
+      flash[:notice] = "Your information has been updated"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Invalid credentials"
+      redirect_to edit_user_path
+    end
+  end
+
   private
 
   def user_params
