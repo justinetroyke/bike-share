@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id.to_s)
-    @user.update(user_params)  if params[:user][:password] == current_user.password 
+    @user.update(user_params)  if @user.authenticate(params[:user][:password])
     if @user.save!
       flash[:notice] = "Your information has been updated"
       redirect_to dashboard_path
