@@ -14,12 +14,20 @@ class Station < ApplicationRecord
   end
 
   def most_frequent_destination
+    start_trips.group(:end_station)
+               .order('count_id desc')
+               .count('id').keys.first
+
   end
 
   def most_frequent_origination
+    end_trips.group(:start_station).order('count_id asc').count('id').keys.first
   end
 
   def busiest_date
+    trips = start_trips + end_trips
+    trips.group_by{|i| i.created_at.to_date}
+    .max_by{|date,stations| stations.count}.first
   end
 
   def most_frequent_zip_code

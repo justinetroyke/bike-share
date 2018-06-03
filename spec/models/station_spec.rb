@@ -28,10 +28,20 @@ RSpec.describe Station do
         Trip.create!(duration: 5,
                     start_date:Time.now - 1.hour,
                     end_date:Time.now,
-                    bike_id: num,
-                    zip_code: rand(1000),
+                    bike_id: 25,
+                    zip_code: 20,
                     start_station_id:@station.id,
                     end_station_id:@station2.id,
+                    subscription_type:2)
+      end
+      8.times do |num|
+        Trip.create!(duration: 5,
+                    start_date:Time.now - 1.hour,
+                    end_date:Time.now,
+                    bike_id: 10,
+                    zip_code: 47,
+                    start_station_id:@station2.id,
+                    end_station_id:@station.id,
                     subscription_type:2)
       end
     end
@@ -50,26 +60,27 @@ RSpec.describe Station do
     end
     describe 'most_frequent_destination' do
       it 'should return the most visited end station from this station' do
-        require'pry';binding.pry
-        expect(@station1.most_frequent_destination).to eq(@station2)
+        expect(@station.most_frequent_destination).to eq(@station2)
       end
     end
     describe 'most_frequent_origination' do
       it 'should return station which most trips to this station originate from' do
-        expect(@station1.most_frequent_origination).to eq(@station2)
+        expect(@station.most_frequent_origination).to eq(@station2)
       end
     end
     describe 'busiest_date' do
       it 'should return busiest date of operation' do
-        expect(@station1.busiest_date).to eq(Time.now)
+        expect(@station.busiest_date).to eq((Time.now+1.hour).to_date)
       end
     end
     describe 'most_frequent_zip_code' do
       it 'should reuturn the most common zip code of users of this station' do
+        expect(@station.most_frequent_zip_code).to eq(20)
       end
     end
     describe 'favorite_bike' do
       it 'should reuturn id of the favorite bike of this station' do
+        expect(@station.most_frequent_zip_code).to eq(20)
       end
     end
   end
