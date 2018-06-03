@@ -13,18 +13,32 @@ RSpec.describe 'Trip Show Page (Admin)' do
   end
   describe 'An admin user visits the new trip page and fills in form' do
     it 'it clicks create trip and is directed to trip/s show page' do
+      sub_time = 0
+      duration = 1201
+      bike_id = 22
+      start_date = Time.parse('2018-05-05 13:10:00')
+      end_date = Time.parse('2018-05-05 14:02:00')
+      zip = 80202
       visit new_admin_trip_path(@station)
-# save_and_open_page
 
-      fill_in 'trip[duration]', with: 1201
-      fill_in 'trip[start_date]', with: Time.parse('2018-05-05 13:10:00')
-      fill_in 'trip[end_date]', with: Time.parse('2018-05-05 14:02:00')
+      fill_in 'trip[subscription_type]', with: sub_time
+      fill_in 'trip[duration]', with: duration
+      fill_in 'trip[bike_id]', with: bike_id
+      fill_in 'trip[start_date]', with: start_date
+      fill_in 'trip[end_date]', with: end_date
       fill_in 'trip[start_station_id]', with: @station.id
       fill_in 'trip[end_station_id]', with: @station.id
-      fill_in 'trip[zip_code]', with: 80202
+      fill_in 'trip[zip_code]', with: zip
       click_button 'Create Trip'
 
-      expect(current_path).to eq(admin_trip_path(Trip.last))
+      expect(page).to have_content(sub_time)
+      expect(page).to have_content(duration)
+      expect(page).to have_content('2018-05-05 19:10:00 UTC')
+      expect(page).to have_content('2018-05-05 20:02:00 UTC')
+      expect(page).to have_content(bike_id)
+      expect(page).to have_content(@station.id)
+      expect(page).to have_content(zip)
+      expect(current_path).to eq(trip_path(Trip.last))
     end
   end
 end
