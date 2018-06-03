@@ -12,7 +12,7 @@
       %th Quantity:
       %th Subtotal:
     -@accessories.each do |accessory|
-      %tr
+      %tr{id:"cart-accessory-#{accessory.id}"}
         %td
           %img{width: "80", height: "60",:src => asset_path(accessory.image_url)}/
         %td= accessory.title
