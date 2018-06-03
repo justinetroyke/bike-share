@@ -4,9 +4,14 @@
   <%= current_user.first_name%>
   <%= current_user.last_name%>
   <%= current_user.address%>
-
+<br>
+<br>
+<%= link_to 'Create New Trip', new_admin_trip_path %>
+<br>
+<br>
 <%= link_to 'View All Accessories', admin_accessories_path %>
-
+<br>
+<br>
 <button class="tablink" onclick="openStatus('All')" id="defaultOpen">All</button>: <%=@orders.count%>
 <button class="tablink" onclick="openStatus('Cancelled')">Cancelled</button>: <%=@cancelled.count%>
 <button class="tablink" onclick="openStatus('Ordered')">Ordered</button>: <%=@ordered.count%>
@@ -16,7 +21,7 @@
   <table id="All" class="tabcontent">
     <tr>
       <th>Id</th>
-      <th>User</th> 
+      <th>User</th>
       <th>Quantity</th>
       <th>Status</th>
     </tr>
@@ -41,7 +46,7 @@
   <table id="Cancelled" class="tabcontent">
     <tr>
       <th>Id</th>
-      <th>User</th> 
+      <th>User</th>
       <th>Quantity</th>
     </tr>
     <% @cancelled.each do |order| %>
@@ -65,7 +70,7 @@
   <table id="Ordered" class="tabcontent">
     <tr>
       <th>Id</th>
-      <th>User</th> 
+      <th>User</th>
       <th>Quantity</th>
     </tr>
     <% @ordered.each do |order| %>
@@ -91,7 +96,7 @@
   <table id="Paid" class="tabcontent">
     <tr>
       <th>Id</th>
-      <th>User</th> 
+      <th>User</th>
       <th>Quantity</th>
     </tr>
     <% @paid.each do |order| %>
@@ -117,7 +122,7 @@
   <table id="Completed" class="tabcontent">
     <tr>
       <th>Id</th>
-      <th>User</th> 
+      <th>User</th>
       <th>Quantity</th>
     </tr>
     <% @completed.each do |order| %>
