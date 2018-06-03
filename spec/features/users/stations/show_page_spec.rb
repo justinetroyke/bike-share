@@ -65,11 +65,23 @@ RSpec.feature "Station Show page", type: :feature do
         visit station_page(@station)
         expect(page).to have_content("Most frequent origination point, for this station: #{@station2.name}")
       end
-      it 'should the Date with the highest number of trips started at this station' do
+      it 'should show the Date with the highest number of trips started at this station' do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+        visit station_page(@station)
+        expect(page).to have_content("Busiest date for #{@station.name}: #{Date.now}")
       end
-      it 'should the Most frequent zip code for users starting trips at this station' do
+      it 'should show the Most frequent zip code for users starting trips at this station' do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+        visit station_page(@station)
+        expect(page).to have_content("Most frequent zipcode of users using this station: #{@station.most_frequent_zip}")
       end
       it 'should show the Bike ID most frequently starting a trip at this station.' do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+        visit station_page(@station)
+        expect(page).to have_content("Most used bike at #{station.name}: #{@station.most_frequent_bike}")
       end
     end
   end
