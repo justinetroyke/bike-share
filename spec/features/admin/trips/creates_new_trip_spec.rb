@@ -39,6 +39,7 @@ RSpec.describe 'Trip Show Page (Admin)' do
       expect(page).to have_content(@station.id)
       expect(page).to have_content(zip)
       expect(current_path).to eq(trip_path(Trip.last))
+      expect(page).to have_content("Trip Created")
     end
   end
 end
