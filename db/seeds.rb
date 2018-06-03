@@ -4,6 +4,8 @@ stations_data = CSV.read('db/csv/stations.csv', headers: true, header_converters
 trips_data = CSV.read('db/csv/trips.csv', headers: true, header_converters: :symbol)
 orders_data = CSV.read('db/csv/orders.csv', headers: true, header_converters: :symbol)
 mock_users_data = CSV.read('db/csv/users.csv', headers: true, header_converters: :symbol)
+accessories_data = CSV.read('db/csv/accessories.csv', headers: true, header_converters: :symbol)
+order_accessories_data = CSV.read('db/csv/order_accessories.csv', headers: true, header_converters: :symbol)
 
 
 stations_data.each do |row|
@@ -20,4 +22,12 @@ end
 
 orders_data.each do |row|
   Order.find_or_create_by!(user_id: row[:user_id], status: row[:status])
+end
+
+accessories_data.each do |row|
+  Accessory.find_or_create_by!(title: row[:title], price: row[:price], description: row[:description], image_url: row[:image_url], status: row[:status])
+end
+
+order_accessories_data.each do |row|
+  OrderAccessory.find_or_create_by!(order_id: row[:order_id], accessory_id: row[:accessory_id])
 end

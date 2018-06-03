@@ -2,8 +2,9 @@ class Accessory < ApplicationRecord
   validates_presence_of :title,
                         :price,
                         :description,
-                        :status,
-                        :image_url
+                        :status
+
+                        # :image_url
 
   validates_uniqueness_of :title
 
