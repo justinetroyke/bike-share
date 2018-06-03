@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
   describe 'An admin user' do
     context 'visiting edit admin path' do 
-      before(:all) do
+      before(:each) do
         @station1 = Station.create!(name:'first one',
           dock_count:5,
           city:'denver',

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Admin Visits Station Index', type: :feature do
   describe 'An admin user' do
     context 'visiting station index path' do
-      before(:all) do
+      before(:each) do
         @stationss = []
         @stationss << station1 = Station.create!(name:'first one',
           dock_count:5,
