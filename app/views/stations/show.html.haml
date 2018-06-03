@@ -9,6 +9,12 @@
 %h3 Installation Date
 %span#station-installation-date= @station.installation_date.strftime("%B%e, %Y")
 
+%h3 Trips started at this station:
+%span#trips-started=@start_trips.count
+  
+%h3 Trips ended at this station:
+%span#trips-ended=@end_trips.count
+
 -if current_admin?
   =button_to 'Edit', edit_admin_station_path(@station), method: 'get'
   =button_to 'Delete', admin_station_path(@station), method:'delete'

@@ -44,14 +44,14 @@ RSpec.feature "Station Show page", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content('Trips started at this station: 10')
+        expect(page).to have_content("Trips started at this station:\n10")
       end
 
       it 'should show the Number of rides ended at this station' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
         visit station_path(@station.slug)
-        expect(page).to have_content('Trips ended at this station: 7')
+        expect(page).to have_content("Trips ended at this station:\n7")
       end
 
       it 'should show the Most frequent destination station (for rides that began at this station)' do
