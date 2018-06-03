@@ -5,7 +5,7 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
     context 'visiting the cart path' do
       before (:each) do 
         @accessory1 = Accessory.create!(title: 'Cloak', price: 1, description: 'What for not being seen')
-        @accessory2 = Accessory.create!(title: 'Accessory 2', price: 2, description: 'This is accessory two')
+        @accessory2 = Accessory.create!(title: 'Dagger', price: 2, description: 'What for the stabby stabby')
         visit accessory_path(@accessory2)
         click_link 'Add to Cart'
         visit accessory_path(@accessory2)
@@ -25,7 +25,9 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
           click_on('Remove')
         end
         expect(current_path).to eq('/cart')
-        expect(page).to_not have_content(@accessory1.title)
+        within('table') do
+          expect(page).to_not have_content(@accessory1.title)
+        end
       end
       context 'flash message' do
         it 'should display a flash message upon deletion' do
@@ -40,7 +42,7 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
             click_on('Remove')
           end
 
-          within('.notice') do
+          within('.link') do
             expect(page).to have_link("#{@accessory1.title}")
           end
         end

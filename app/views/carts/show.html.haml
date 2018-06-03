@@ -11,6 +11,7 @@
       %th Desription:
       %th Quantity:
       %th Subtotal:
+      %th Actions:
     -@accessories.each do |accessory|
       %tr{id:"cart-accessory-#{accessory.id}"}
         %td
@@ -20,3 +21,5 @@
         %td= accessory.description
         %td= @cart.contents[accessory.id.to_s]
         %td= "$#{@cart.subtotal(accessory)}"
+        %td= button_to 'Remove', '/cart/remove_item', params:{accesory_id: accessory.id, :cart => @cart}
+
