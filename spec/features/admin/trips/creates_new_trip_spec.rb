@@ -12,14 +12,19 @@ RSpec.describe 'Trip Show Page (Admin)' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
   describe 'An admin user visits the new trip page and fills in form' do
-    it 'it clicks create trip and is directed to trip/s show page' do
+    it 'it clicks create trip through trips index and is directed to trip/s show page' do
       sub_time = 0
       duration = 1201
       bike_id = 22
       start_date = Time.parse('2018-05-05 13:10:00')
       end_date = Time.parse('2018-05-05 14:02:00')
       zip = 80202
-      visit new_admin_trip_path(@station)
+
+      visit trips_path
+
+      click_link 'Create New Trip'
+
+      expect(current_path).to eq(new_admin_trip_path)
 
       fill_in 'trip[subscription_type]', with: sub_time
       fill_in 'trip[duration]', with: duration
@@ -41,14 +46,13 @@ RSpec.describe 'Trip Show Page (Admin)' do
       expect(current_path).to eq(trip_path(Trip.last))
       expect(page).to have_content("Trip Created")
     end
+
+    it 'it clicks create trip through admin dashboard and is directed to trip/s show page' do
+      visit admin_dashboard_path
+
+      click_link 'Create New Trip'
+
+      expect(current_path).to eq(new_admin_trip_path)
+    end
   end
 end
-
-# As an admin user,
-# When I visit admin trip new,
-# I fill in a form with all trip attributes,
-# When I click "Create Trip",
-# I am directed to that trip's show page.
-# I also see a flash message that I have created that trip.
-# ** Zip Code is a user-provided field, and may not be present
-# on all records. Otherwise, as with Stations, all attributes of a Trip need to be present to ensure data integrity **
