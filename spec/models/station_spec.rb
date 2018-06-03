@@ -19,10 +19,37 @@ RSpec.describe Station do
     
     @stations << Station.create!(name: "Station Most", dock_count: 4, city: "City 40", installation_date: Date.parse('2015-01-01'))
     @stations << Station.create!(name: "Station Most Two", dock_count: 4, city: "City 40", installation_date: Date.parse('2016-01-01'))
-  end
 
-  after :all do
-    @stations = nil
+    @station = Station.create!(name: 'Union Station',
+                              dock_count: 12,
+                              city: 'Denver',
+                              installation_date: DateTime.now)
+
+    @station2 = Station.create!(name: '19th street',
+                                dock_count: 12,
+                                city: 'Denver',
+                                installation_date: DateTime.now)
+
+    10.times do |num|
+      Trip.create!(duration: 5,
+                  start_date:Time.now - 1.hour,
+                  end_date:Time.now,
+                  bike_id: 25,
+                  zip_code: 20,
+                  start_station_id:@station.id,
+                  end_station_id:@station2.id,
+                  subscription_type:2)
+    end
+    8.times do |num|
+      Trip.create!(duration: 5,
+                  start_date:Time.now - 1.hour,
+                  end_date:Time.now,
+                  bike_id: 10,
+                  zip_code: 47,
+                  start_station_id:@station2.id,
+                  end_station_id:@station.id,
+                  subscription_type:2)
+    end
   end
 
   describe 'Validations' do
@@ -38,37 +65,6 @@ RSpec.describe Station do
   end
 
   describe 'Instance Methods' do
-    before(:all) do
-      @station = Station.create!(name: 'Union Station',
-                                dock_count: 12,
-                                city: 'Denver',
-                                installation_date: DateTime.now)
-      @station2 = Station.create!(name: '19th street',
-                                  dock_count: 12,
-                                  city: 'Denver',
-                                  installation_date: DateTime.now)
-
-      10.times do |num|
-        Trip.create!(duration: 5,
-                    start_date:Time.now - 1.hour,
-                    end_date:Time.now,
-                    bike_id: 25,
-                    zip_code: 20,
-                    start_station_id:@station.id,
-                    end_station_id:@station2.id,
-                    subscription_type:2)
-      end
-      8.times do |num|
-        Trip.create!(duration: 5,
-                    start_date:Time.now - 1.hour,
-                    end_date:Time.now,
-                    bike_id: 10,
-                    zip_code: 47,
-                    start_station_id:@station2.id,
-                    end_station_id:@station.id,
-                    subscription_type:2)
-      end
-    end
     describe '#generate_slug' do
       it 'should create a slug out of the station name' do
         station1 = Station.new(name: 'Station Name',
@@ -112,19 +108,19 @@ RSpec.describe Station do
   describe 'Class Methods' do
     describe '#average_bikes_per_station' do
       it 'should return the average number of bikes based on all stations\' dock counts, rounded' do
-        expect(Station.average_bikes_per_station).to eq((@stations.sum { |station| station.dock_count }.to_f / @stations.length).round(2))
+        expect(Station.average_bikes_per_station).to eq((Station.all.sum(:dock_count).to_f / Station.all.count).round(2))
       end
     end
 
     describe '#most_bike' do
       it 'should return the number of the station(s) with the most bikes available' do
-        expect(Station.most_bikes).to eq(4)
+        expect(Station.most_bikes).to eq(12)
       end
     end
 
     describe '#station_with_most_bikes' do
       it 'should return the stations with the dock_count the same as the maximum dock count across all stations' do
-        expect(Station.stations_with_most_bikes).to eq([@stations[-2], @stations[-1]])
+        expect(Station.stations_with_most_bikes).to eq([@station, @station2])
       end
     end
 
