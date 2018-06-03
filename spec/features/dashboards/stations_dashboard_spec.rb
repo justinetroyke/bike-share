@@ -20,23 +20,34 @@ RSpec.describe 'Stations Dashboard' do
     @stations << Station.create!(name: "Station Most", dock_count: 4, city: "City 40", installation_date: Date.parse('2015-01-01'))
     @stations << Station.create!(name: "Station Most Two", dock_count: 4, city: "City 40", installation_date: Date.parse('2016-01-01'))
     
+    @all_stations = Station.all
     visit stations_dashboard_path
   end
   describe 'Any user type visits the stations dashboard page' do
     it 'they should see the total count of stations' do
-      expect(page).to have_content("Total Stations: #{@stations.length}")
+      expect(page).to have_content("Total Stations: #{Station.all.count}")
     end
 
     it 'should show the average bikes per station based on dock count' do
-      expect(page).to have_content("Average Bikes per Station: 2.5")
+      expect(page).to have_content("Average Bikes per Station: #{@all_stations.average_bikes_per_station}")
     end
 
     it 'should show the most bikes available at a station or stations and that station(s)\' name(s)' do
-      expect(page).to have_content("Most Bikes: 4 at station(s): Station Most Station Most Two")
+      expect(page).to have_content("Most Bikes: #{Station.most_bikes} at station(s):")
+      within('#most-bikes') do
+        Station.stations_with_most_bikes.each do |station|
+          expect(page).to have_content(station.name)
+        end
+      end
     end
 
     it 'should show the least bikes available at a station or stations and that station(s)\' name(s)' do
-      expect(page).to have_content("Least Bikes: 1 at station(s): Station Least Station Least Two")
+      expect(page).to have_content("Least Bikes: #{Station.least_bikes} at station(s):")
+      within('#least-bikes') do
+        Station.stations_with_least_bikes.each do |station|
+          expect(page).to have_content(station.name)
+        end
+      end
     end
 
     it 'should show the most recently installed station' do

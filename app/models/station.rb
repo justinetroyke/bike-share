@@ -12,4 +12,28 @@ class Station < ApplicationRecord
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def self.average_bikes_per_station
+    average(:dock_count).round(2)
+  end
+
+  def self.most_bikes_available
+    maximum(:dock_count)
+  end
+
+  def self.most_bikes
+    maximum(:dock_count)
+  end
+
+  def self.stations_with_most_bikes
+    where(dock_count: most_bikes)
+  end
+
+  def self.least_bikes
+    minimum(:dock_count)
+  end
+
+  def self.stations_with_least_bikes
+    where(dock_count: least_bikes)
+  end
 end
