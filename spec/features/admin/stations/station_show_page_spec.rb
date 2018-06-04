@@ -46,7 +46,7 @@ RSpec.describe 'Station Show Page (Admin)' do
       expect(page).to have_button('Delete')
       click_button 'Delete'
       expect(page).to have_current_path(stations_path)
-      within('content') do
+      within('table') do
         expect(page).to_not have_content(@station1.name)
         expect(page).to have_content(@station2.name)
       end

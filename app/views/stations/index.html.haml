@@ -1,12 +1,26 @@
 %h1 Stations
-%content
-  %ul
+
+-if current_admin?
+  =link_to 'Create New Station', new_admin_station_path
+%br
+%br
+
+%table{:border => 5, :width => "100%"}
+  %tbody
+    %tr
+      %th Name
+      %th Dock Count
+      %th City
+      %th Installation Date
+      -if current_admin?
+        %th Actions
     -@stations.each do |station|
-      %li{id:"station_#{station.id}"}
-        =link_to station.name, station_path(station)
-        =station.dock_count
-        =station.city
-        =station.installation_date.strftime('%d %B %Y')
+      %tr{id:"station_#{station.id}"}
+        %td=link_to station.name, station_path(station)
+        %td=station.dock_count
+        %td=station.city
+        %td=station.installation_date.strftime('%d %B %Y')
         -if current_admin?
-          =button_to 'Edit', edit_admin_station_path(station)
-          =button_to 'Delete', admin_station_path(station), method:'delete'
+          %td
+            =button_to 'Edit', edit_admin_station_path(station)
+            =button_to 'Delete', admin_station_path(station), method:'delete'
