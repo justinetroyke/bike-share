@@ -7,10 +7,15 @@
   <% end %>
   <span>Duration: <%= @trip.duration %></span>
   <br>
-  <span>Start Date: <%= @trip.start_date.strftime("%Y/%m %A, %I:%M %p") %></span>
-  <br>
-  <span>End Date: <%= @trip.end_date.strftime("%Y/%m %A, %I:%M %p") %></span>
-  <br>
+  <% unless @trip.start_date.nil? %>
+    <span>Start Date: <%= @trip.start_date.strftime("%Y/%m %A, %I:%M %p") %></span>
+    <br>
+  <% end %>
+
+  <% unless @trip.start_date.nil? %>
+    <span>End Date: <%= @trip.end_date.strftime("%Y/%m %A, %I:%M %p") %></span>
+    <br>
+  <% end %>
   <span>Start Station: <%= @start_station.name %>, ID: <%= @trip.start_station_id %></span>
   <br>
   <span>End Station: <%= @end_station.name %>, ID: <%= @trip.end_station_id %></span>
