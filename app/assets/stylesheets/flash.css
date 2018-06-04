@@ -1,0 +1,14 @@
+div.flash {
+  /* height: 30px; */
+}
+
+.flash div {
+  padding: 10px 20px;
+}
+
+.flash .notice {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(209,73,91,.6);
+  font-size: 18px;
+}
