@@ -17,7 +17,7 @@
     -@accessories.each do |accessory|
       %tr{id:"cart-accessory-#{accessory.id}"}
         %td
-          %img{width: "80", height: "60", src: accessory.image_url }/
+          =image_tag(accessory.image_url)
         %td= accessory.title
         %td= accessory.price
         %td= accessory.description
