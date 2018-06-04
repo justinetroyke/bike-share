@@ -1,5 +1,6 @@
-%h1= 'My Cart'
-%h2= "Total: $#{@cart.total_amount}"
+#cart-heading-container
+  %h1= 'My Cart'
+  %h2= "Total: #{number_to_currency(@cart.total_amount)}"
 
 
 -# %table{:border => 5, :width => "100%"}
@@ -38,7 +39,7 @@
       .quantity-container          
         =button_to '/cart/decrease_item_count', params:{accesory_id: accessory.id, :cart => @cart} do
           <i class="fas fa-minus fa-2x"></i>
-        %span= @cart.contents[accessory.id.to_s]
+        %span.quantity= @cart.contents[accessory.id.to_s]
         =button_to '/cart/increase_item_count', params:{accesory_id: accessory.id, :cart => @cart} do
           <i class="fas fa-plus fa-2x"></i>
-      =button_to 'Remove', '/cart/remove_item', params:{accesory_id: accessory.id, :cart => @cart}
+      =button_to 'Remove', '/cart/remove_item', { params:{accesory_id: accessory.id, :cart => @cart}, class: 'remove-cart-item', form_class: 'remove-item-form' }
