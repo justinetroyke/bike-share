@@ -3,7 +3,7 @@
 %ul
   -@accessories.each do |accessory|
     %li{id: "accessory-#{accessory.id}"}
-      =image_tag(accessory.image_url)
+      %img{width: '80px', height: '80px', src: accessory.image_url}
       =link_to accessory.title, accessory_path(accessory)
       %span= accessory.price
       %span= accessory.description
