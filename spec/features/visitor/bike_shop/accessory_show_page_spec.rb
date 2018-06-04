@@ -23,7 +23,7 @@ RSpec.describe 'Accessory Show Page' do
     it 'they should be able to click \'Add to Cart\'' do
       visit accessory_path(@accessory2)
 
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
 
       expect(page).to have_current_path(accessories_path)
       expect(page).to have_content("1 #{@accessory2.title} has been added to your cart!")

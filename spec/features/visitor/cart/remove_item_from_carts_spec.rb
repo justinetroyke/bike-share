@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.feature "RemoveItemFromCarts", type: :feature do
   describe 'A Visitor' do
     context 'visiting the cart path' do
-      before (:each) do 
+      before (:each) do
         @accessory1 = Accessory.create!(title: 'Cloak', price: 1, description: 'What for not being seen')
         @accessory2 = Accessory.create!(title: 'Dagger', price: 2, description: 'What for the stabby stabby')
         visit accessory_path(@accessory2)
-        click_link 'Add to Cart'
+        click_button 'Add to Cart'
         visit accessory_path(@accessory2)
-        click_link 'Add to Cart'
+        click_button 'Add to Cart'
         visit accessory_path(@accessory1)
-        click_link 'Add to Cart'
+        click_button 'Add to Cart'
 
         visit '/cart'
       end

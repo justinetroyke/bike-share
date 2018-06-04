@@ -30,7 +30,7 @@ RSpec.describe 'Bike Shop Page' do
         i = 0
         @accessories.length.times do
           within("#accessory-#{@accessories[i].id}") do
-            expect(page).to have_link('Add to Cart')
+            expect(page).to have_button('Add to Cart')
           end
           i += 1
         end
@@ -42,17 +42,17 @@ RSpec.describe 'Bike Shop Page' do
         visit '/bike-shop'
 
         within("#accessory-#{@accessories[0].id}") do
-          click_link 'Add to Cart'
+          click_button 'Add to Cart'
         end
         expect(page).to have_content("1 #{@accessories[0].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[11].id}") do
-          click_link 'Add to Cart'
+          click_button 'Add to Cart'
         end
         expect(page).to have_content("1 #{@accessories[11].title} has been added to your cart!")
 
         within("#accessory-#{@accessories[23].id}") do
-          click_link 'Add to Cart'
+          click_button 'Add to Cart'
         end
         expect(page).to have_content("1 #{@accessories[23].title} has been added to your cart!")
       end
@@ -61,7 +61,7 @@ RSpec.describe 'Bike Shop Page' do
         visit '/bike-shop'
 
         within("#accessory-#{@accessories[0].id}") do
-          click_link 'Add to Cart'
+          click_button 'Add to Cart'
         end
 
         within('#cart-count') do

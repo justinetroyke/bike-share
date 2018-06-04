@@ -7,4 +7,4 @@
 %p= "Price: #{number_to_currency(@accessory.price)}"
 
 %li
-= link_to 'Add to Cart', carts_path(accessory_id: @accessory.id), method: :post
+= button_to 'Add to Cart', carts_path(accessory_id: @accessory.id), method: :post
