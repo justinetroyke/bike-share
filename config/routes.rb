@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     resources :accessories, path: '/bike-shop', only: [:new, :create, :index, :edit, :update]
     resources :trips
     resources :orders
-    resources :stations
     get '/dashboard', to: 'dashboard#show'
   end
 end

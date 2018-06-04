@@ -10,6 +10,14 @@ class Cart
     end
   end
 
+  def clean_up
+    @contents.each do |id,quantity|
+      if quantity <= 0
+        remove_accessory(id)
+      end
+    end
+  end
+
   def total_count
     @contents.values.sum if @contents
   end
