@@ -16,7 +16,7 @@
         %th Actions
     -@stations.each do |station|
       %tr{id:"station_#{station.id}"}
-        %td=link_to station.name, station_path(station)
+        %td=link_to station.name, station_path(station.slug)
         %td=station.dock_count
         %td=station.city
         %td=station.installation_date.strftime('%d %B %Y')
