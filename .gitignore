@@ -30,3 +30,6 @@ coverage
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore Admin Creator
+/config/create_admin.rb
