@@ -1,5 +1,7 @@
 %h1 Accessories
-
+- if current_admin?
+  = link_to('Create A New Accessory', new_admin_accessory)
+  
 %ul
   -@accessories.each do |accessory|
     %li{id: "accessory-#{accessory.id}"}
