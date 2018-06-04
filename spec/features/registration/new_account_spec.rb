@@ -37,7 +37,7 @@ RSpec.feature "New account", type: :feature do
 
         expect(current_path).to eq(dashboard_path)
 
-        within('header') do
+        within('.flash') do
           expect(page).to have_content("Logged in as #{username}")
         end
         expect(page).to have_content(username)
