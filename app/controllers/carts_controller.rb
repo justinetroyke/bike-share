@@ -22,16 +22,19 @@ class CartsController < ApplicationController
 
   def increase
     @cart.add_accessory(params[:accesory_id])
+    @cart.clean_up
     redirect_to '/cart'
   end
 
   def decrease
     @cart.decrease_item_count(params[:accesory_id])
+    @cart.clean_up
     redirect_to '/cart'
 
   end
 
   def show
     @accessories = Accessory.where(id: @cart.contents.keys)
+    @cart.clean_up
   end
 end
