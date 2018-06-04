@@ -36,14 +36,14 @@ RSpec.describe 'Trip Show Page (Admin)' do
     end
 
     it 'they should also see a link to edit the trip' do
-      expect(page).to have_link('Edit')
-      click_link 'Edit'
+      expect(page).to have_button('Edit')
+      click_on 'Edit'
       expect(page).to have_current_path(edit_admin_trip_path(@trip))
     end
 
     it 'they should also see a link to delete the trip' do
-      expect(page).to have_link('Delete')
-      click_link 'Delete'
+      expect(page).to have_button('Delete')
+      click_on 'Delete'
       expect(page).to have_current_path(trips_path)
       expect(page).to_not have_content(@trip.duration)
       expect(page).to_not have_content(@trip.start_date)
