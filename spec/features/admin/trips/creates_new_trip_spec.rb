@@ -38,8 +38,8 @@ RSpec.describe 'Trip Show Page (Admin)' do
 
       expect(page).to have_content(sub_time)
       expect(page).to have_content(duration)
-      expect(page).to have_content('2018-05-05 19:10:00 UTC')
-      expect(page).to have_content('2018-05-05 20:02:00 UTC')
+      expect(page).to have_content('2018/05 Saturday, 07:10 PM')
+      expect(page).to have_content('2018/05 Saturday, 08:02 PM')
       expect(page).to have_content(bike_id)
       expect(page).to have_content(@station.id)
       expect(page).to have_content(zip)

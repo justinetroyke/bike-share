@@ -6,14 +6,23 @@
 %ul
   -@trips.each do |trip|
     %li{id: "trip-#{trip.id}"}
-      %span= trip.duration
-      %span= trip.start_date
-      %span= trip.end_date
-      %span= trip.start_station.name
-      %span= trip.end_station.name
-      %span= trip.bike_id
-      %span= trip.subscription_type
-      %span= trip.zip_code
+      =link_to("#{trip.id}", trip_path(trip))
+      %span Duration:
+      = trip.duration.to_s
+      %span Start_date:
+      = trip.start_date
+      %span End Date: 
+      = trip.end_date
+      %span Start Station: 
+      = trip.start_station.name
+      %span End Station: 
+      = trip.end_station.name
+      %span Bike #: 
+      = trip.bike_id.to_s
+      %span Subscription type: 
+      = trip.subscription_type.to_s
+      %span Zip Code: 
+      = trip.zip_code
       -if current_admin?
         =button_to 'Edit', edit_admin_trip_path(trip)
         =button_to 'Delete', admin_trip_path(trip), method:'delete'

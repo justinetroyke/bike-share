@@ -1,15 +1,15 @@
 <div class="trip-information-container">
   <% if current_admin? %>
   <div class="edit-delete-buttons-container">
-    <%= link_to 'Edit', edit_admin_trip_path(@trip) %>
-    <%= link_to 'Delete', trip_path(@trip), method: :delete %>
+    <%= button_to 'Edit', edit_admin_trip_path(@trip), method: :get %>
+    <%= button_to 'Delete', trip_path(@trip), method: :delete %>
   </div>
   <% end %>
   <span>Duration: <%= @trip.duration %></span>
   <br>
-  <span>Start Date: <%= @trip.start_date %></span>
+  <span>Start Date: <%= @trip.start_date.strftime("%Y/%m %A, %I:%M %p") %></span>
   <br>
-  <span>End Date: <%= @trip.end_date %></span>
+  <span>End Date: <%= @trip.end_date.strftime("%Y/%m %A, %I:%M %p") %></span>
   <br>
   <span>Start Station: <%= @start_station.name %>, ID: <%= @trip.start_station_id %></span>
   <br>
