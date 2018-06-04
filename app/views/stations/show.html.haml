@@ -32,5 +32,5 @@
   %span#trips-ended= @favorite_bike
         
 -if current_admin?
-  =button_to 'Edit', edit_admin_station_path(@station), method: 'get'
+  =button_to 'Edit', edit_admin_station_path(@station), method: :get
   =button_to 'Delete', admin_station_path(@station), method:'delete'
