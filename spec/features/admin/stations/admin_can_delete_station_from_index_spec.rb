@@ -18,7 +18,6 @@ RSpec.describe 'Station index Page (Admin)' do
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
           visit stations_path
-          save_and_open_page
 
           click_on('Delete')
 
