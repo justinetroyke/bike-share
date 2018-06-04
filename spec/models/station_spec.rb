@@ -20,10 +20,11 @@ RSpec.describe Station do
     @stations << Station.create!(name: "Station Most", dock_count: 4, city: "City 40", installation_date: Date.parse('2015-01-01'))
     @stations << Station.create!(name: "Station Most Two", dock_count: 4, city: "City 40", installation_date: Date.parse('2016-01-01'))
 
+    current_time = DateTime.now
     @station = Station.create!(name: 'Union Station',
                               dock_count: 12,
                               city: 'Denver',
-                              installation_date: DateTime.now)
+                              installation_date: current_time)
 
     @station2 = Station.create!(name: '19th street',
                                 dock_count: 12,

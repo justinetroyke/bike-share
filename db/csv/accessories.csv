@@ -1,4 +1,4 @@
-id,title,price,description,image_url,status
+id,title,price,description,,status
 1,Accessory 1,1.00,This is the acessory 1,,active
 2,Accessory 2,2.00,This is the acessory 2,,active
 3,Accessory 3,3.00,This is the acessory 3,,active
