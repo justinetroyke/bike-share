@@ -1,4 +1,4 @@
 -if current_user
   %h1= "#{current_user.full_name}'s Dashboard"
-
+  =link_to('Edit My Profile', edit_user_path(current_user.id))
 %h3.address= current_user.address
