@@ -1,12 +1,21 @@
-Ordered By: 
+<br>
+Ordered By:
 <%=@user.full_name %>
+<br>
+<%=@user.address %>
+<br>
 <%=@order.created_at.strftime("Ordered: %B %e, %Y at%l:%M%p") %>
-Status: 
+<br>
+<br>
+Status:
 <%=@order.status%>
+<br>
 Quantity:
 <%= @order.quantity %>
-Total: 
+<br>
+Total:
 <%=@order.total%>
+<br>
 <ul>
   <% @accessories.each do |accessory| %>
     <li id="order-accessory-<%=accessory.id%>">
@@ -16,5 +25,3 @@ Total:
      </li>
   <% end %>
 </ul>
-
-

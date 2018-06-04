@@ -63,5 +63,9 @@ RSpec.describe 'Order Show Page (Admins)' do
     it 'they should see the status for the order' do
       expect(page).to have_content("Status: #{@order1.status}")
     end
+
+    it 'they should see the address for the order' do
+      expect(page).to have_content(@user1.address)
+    end
   end
 end
