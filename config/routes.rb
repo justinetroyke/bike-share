@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/cart/remove_item', to:'carts#destroy'
   post '/cart/increase_item_count', to:'carts#increase'
   post '/cart/decrease_item_count', to:'carts#decrease'
+  post '/carts/checkout', to: 'carts#checkout'
   resources :orders
   get '/dashboard', to: 'dashboard#show'
 

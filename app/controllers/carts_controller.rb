@@ -37,4 +37,15 @@ class CartsController < ApplicationController
     @accessories = Accessory.where(id: @cart.contents.keys)
     @cart.clean_up
   end
+  def checkout
+    if current_user
+      @total = @cart.total_amount
+      session[:cart] = nil
+      flash[:notice] = "Successfully submitted your order totaling #{@total}"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "You must log in to checkout"
+      redirect_to login_path
+    end
+  end
 end
