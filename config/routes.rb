@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   scope module: 'stations' do
     get '/stations-dashboard', to: 'dashboard#index'
   end
+  scope module: 'trips' do
+    get '/trips-dashboard', to: 'dashboard#index'
+  end
   resources :trips
   namespace :admin do
     resources :stations
