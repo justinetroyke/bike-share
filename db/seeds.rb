@@ -17,7 +17,7 @@ if Rails.env == 'development' || Rails.env == 'production'
   trips_data.each do |row|
     if Station.find_by(id: row[:start_station_id]) && Station.find_by(id: row[:end_station_id])
       next if row[:start_date].nil? || row[:start_station_id].nil?
-      Trip.find_or_create_by!(duration: row[:duration], start_date: Date.strptime(row[:start_date], "%m/%d/%Y %H:%M"), end_date: row[:end_date], subscription_type: row[:subscription_type], zip_code: row[:zip_code], start_station_id: row[:start_station_id].to_i, end_station_id: row[:end_station_id], bike_id: row[:bike_id])
+      Trip.find_or_create_by!(duration: row[:duration], start_date: Date.strptime(row[:start_date], "%m/%d/%Y %H:%M"), end_date: Date.strptime(row[:end_date], "%m/%d/%Y %H:%M"), subscription_type: row[:subscription_type], zip_code: row[:zip_code], start_station_id: row[:start_station_id].to_i, end_station_id: row[:end_station_id], bike_id: row[:bike_id])
     end
   end
 
