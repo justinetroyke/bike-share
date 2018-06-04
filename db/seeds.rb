@@ -30,7 +30,7 @@ if Rails.env == 'development' || Rails.env == 'production'
   end
 
   accessories_data.each do |row|
-    Accessory.find_or_create_by!(title: row[:title], price: row[:price], description: row[:description], image_url: row[:image_url], status: row[:status])
+    Accessory.find_or_create_by!(title: row[:title], price: row[:price], description: row[:description], status: row[:status])
   end
 
   order_accessories_data.each do |row|
