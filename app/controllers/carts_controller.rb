@@ -9,8 +9,26 @@ class CartsController < ApplicationController
     cart.add_accessory(accessory_id)
     session[:cart] = cart
     flash[:notice] = "#{cart.accessory_count(accessory_id)} #{accessory.title} has been added to your cart!"
-
     redirect_to accessories_path
+  end
+
+  def destroy
+    @accessory = Accessory.find(params[:accesory_id])
+    @cart.remove_accessory(@accessory.id.to_s)
+    flash[:notice] = "Successfully removed #{@accessory.title} from your cart."
+    flash[:link] = ["#{@accessory.title}", accessory_path(@accessory)]
+    redirect_to '/cart'
+  end
+
+  def increase
+    @cart.add_accessory(params[:accesory_id])
+    redirect_to '/cart'
+  end
+
+  def decrease
+    @cart.decrease_item_count(params[:accesory_id])
+    redirect_to '/cart'
+
   end
 
   def show

@@ -1,0 +1,3 @@
+id,username,password,address,first_name,last_name
+1,mockuser1,password,123 Not A Street,Mock,One
+2,mockuser2,password,1234 Not A Street,Mock,Two

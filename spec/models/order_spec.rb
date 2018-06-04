@@ -52,7 +52,7 @@ RSpec.describe Order do
     end
   end
   describe 'class methods' do
-    before(:all) do 
+    before(:each) do 
       @image_url = 'https://images.pexels.com/photos/686230/pexels-photo-686230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
       @user1 = User.create!(role: 0, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
       @order1 = @user1.orders.create!(status:0)

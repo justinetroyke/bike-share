@@ -1,38 +1,35 @@
+require 'csv'
+
+if Rails.env == 'development' || Rails.env == 'production'
+  stations_data = CSV.read('db/csv/stations.csv', headers: true, header_converters: :symbol)
+  trips_data = CSV.read('db/csv/trips.csv', headers: true, header_converters: :symbol)
+  orders_data = CSV.read('db/csv/orders.csv', headers: true, header_converters: :symbol)
+  mock_users_data = CSV.read('db/csv/users.csv', headers: true, header_converters: :symbol)
+  accessories_data = CSV.read('db/csv/accessories.csv', headers: true, header_converters: :symbol)
+  order_accessories_data = CSV.read('db/csv/order_accessories.csv', headers: true, header_converters: :symbol)
 
 
-# @spec_user1 = User.create!(role: 1, username: 'user1', password: 'user1spassword', address: '111 Not An Address', first_name: 'User', last_name: 'One')
-# @spec_user2 = User.create!(role: 0, username: 'user2', password: 'user2spassword', address: '222 Not An Address', first_name: 'User', last_name: 'Two')
-# @spec_user3 = User.create!(role: 0, username: 'user3', password: 'user3spassword', address: '333 Not An Address', first_name: 'User', last_name: 'Three')
-# @spec_user4 = User.create!(role: 0, username: 'user4', password: 'user4spassword', address: '444 Not An Address', first_name: 'User', last_name: 'Four')
-# # Create Orders
-# # User 1 Orders
-# @spec_order1 = @spec_user1.orders.create!(status: 'ordered')
-# @spec_order2 = @spec_user1.orders.create!(status: 'completed')
-# @spec_order3 = @spec_user1.orders.create!(status: 'paid')
-# @spec_order4 = @spec_user1.orders.create!(status: 'cancelled')
-# # User 2 Orders
-# @spec_order5 = @spec_user2.orders.create!(status: 'completed')
-# @spec_order6 = @spec_user2.orders.create!(status: 'paid')
-# # User 3 Orders
-# @spec_order6 = @spec_user3.orders.create!(status: 'ordered')
-# @spec_order7 = @spec_user3.orders.create!(status: 'cancelled')
-# # User 4 will have no order
-# # Create Items (and OrderItems)
-# @spec_item1 = @spec_order1.items.create(title: 'Item 1', price: 1.23, image: 'default/image1', description: 'This is Item 1\'s description')
-# @spec_item2 = @spec_order1.items.create(title: 'Item 2', price: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
-# # @item3 = @spec_order2.items.create(title: 'Item 2', price: 2.23, image: 'default/image2', description: 'This is Item 2\'s description')
-# @spec_item3 = @spec_order2.items.create(title: 'Item 3', price: 3.33, image: 'default/image3', description: 'This is Item 3\'s description')
-# @spec_item4 = @spec_order3.items.create(title: 'Item 4', price: 4.44, image: 'default/image4', description: 'This is Item 4\'s description')
-# @spec_item5 = @spec_order4.items.create(title: 'Item 5', price: 5.55, image: 'default/image5', description: 'This is Item 5\'s description')
-# @spec_item6 = @spec_order5.items.create(title: 'Item 6', price: 6.66, image: 'default/image6', description: 'This is Item 6\'s description')
-# @spec_item7 = @spec_order6.items.create(title: 'Item 7', price: 7.77, image: 'default/image7', description: 'This is Item 7\'s description')
-# @spec_item8 = @spec_order7.items.create(title: 'Item 8', price: 8.88, image: 'default/image8', description: 'This is Item 8\'s description')
-# # Create Stations
-# @spec_station1 = Station.create!(name: 'Union Station', dock_count: 12, city: 'Denver', installation_date: DateTime.now)
-# @spec_station2 = Station.create!(name: 'Civic Center', dock_count: 24, city: 'Denver', installation_date: DateTime.now)
-# @spec_station3 = Station.create!(name: 'Denver University', dock_count: 36, city: 'Denver', installation_date: DateTime.now)
-# # Create Trips
-# # This trip has no end_station or end_date
-# @spec_trip1 = @spec_station1.start_trips.create!(duration: 23, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station3.id, bike_id: 1, subscription_type: 'annual', zip_code: 00000)
-# @spec_trip2 = @spec_station2.start_trips.create!(duration: 46, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station2.id, bike_id: 2, subscription_type: 'monthly', zip_code: 00000)
-# @spec_trip3 = @spec_station3.start_trips.create!(duration: 72, start_date: DateTime.now, end_date: DateTime.now, end_station_id: @spec_station1.id, bike_id: 3, subscription_type: 'annual', zip_code: 00000)
+  stations_data.each do |row|
+    Station.find_or_create_by!(name: row[:name], dock_count: row[:dock_count], city: row[:city], installation_date: row[:installation_date])
+  end
+
+  trips_data.each do |row|
+    Trip.find_or_create_by!(duration: row[:duration], start_date: row[:start_date], end_date: row[:end_date], subscription_type: row[:subscription_type], zip_code: row[:zip_code], start_station_id: row[:start_station_id], end_station_id: row[:end_station_id], bike_id: row[:bike_id])
+  end
+
+  mock_users_data.each do |row|
+    User.find_or_create_by!(username: row[:username], password_digest: row[:password], address: row[:address], first_name: row[:first_name], last_name: row[:last_name])
+  end
+
+  orders_data.each do |row|
+    Order.find_or_create_by!(user_id: row[:user_id], status: row[:status])
+  end
+
+  accessories_data.each do |row|
+    Accessory.find_or_create_by!(title: row[:title], price: row[:price], description: row[:description], image_url: row[:image_url], status: row[:status])
+  end
+
+  order_accessories_data.each do |row|
+    OrderAccessory.find_or_create_by!(order_id: row[:order_id], accessory_id: row[:accessory_id])
+  end
+end

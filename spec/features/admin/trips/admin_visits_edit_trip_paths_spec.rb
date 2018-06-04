@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
   describe 'An admin user' do
-    context 'visiting edit admin path' do 
-      before(:all) do
+    context 'visiting edit admin path' do
+      before(:each) do
         @station1 = Station.create!(name:'first one',
           dock_count:5,
           city:'denver',
@@ -35,7 +35,7 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit edit_admin_trip_path(@trip1)
-        
+
         expect(page).to have_field('trip[bike_id]')
         expect(page).to have_field('trip[subscription_type]')
         expect(page).to have_field('trip[zip_code]')
@@ -44,9 +44,9 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
         expect(page).to have_field('trip[end_station_id]')
         expect(page).to have_field('trip[start_date]')
         expect(page).to have_field('trip[end_date]')
-          
+
       end
-      it 'should redirect to trip show page after submitting, and show the updated info, as well as a flash message' do 
+      it 'should redirect to trip show page after submitting, and show the updated info, as well as a flash message' do
         admin = User.create!(username:'username',
           password:'password',
           first_name:'john',

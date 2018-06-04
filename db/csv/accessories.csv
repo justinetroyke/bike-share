@@ -1,0 +1,10 @@
+id,title,price,description,image_url,status
+1,Accessory 1,1.00,This is the acessory 1,,active
+2,Accessory 2,2.00,This is the acessory 2,,active
+3,Accessory 3,3.00,This is the acessory 3,,active
+4,Accessory 4,4.00,This is the acessory 4,,active
+5,Accessory 5,5.00,This is the acessory 5,,active
+6,Accessory 6,6.00,This is the acessory 6,,inactive
+7,Accessory 7,7.00,This is the acessory 7,,active
+8,Accessory 8,8.00,This is the acessory 8,,active
+9,Accessory 9,9.00,This is the acessory 9,,active

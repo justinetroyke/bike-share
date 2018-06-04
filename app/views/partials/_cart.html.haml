@@ -1,3 +1,4 @@
 #cart-container
-  %i{class: "fas fa-shopping-cart fa-2x"}
-  %span#cart-count= @cart.total_count
+  %a{href:"/cart"}
+    %i{class: "fas fa-shopping-cart fa-2x"}
+    %div#cart-count= @cart.total_count
