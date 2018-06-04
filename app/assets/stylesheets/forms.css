@@ -71,3 +71,17 @@ form input[type='submit']:hover {
   margin-bottom: 30px;
   background-color: rgb(209,73,91);
 }
+
+/* Button To Tags */
+
+.button_to {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+}
+
+.button_to input[type='submit'] {
+  background-color: transparent;
+  border-color: rgb(48,99,142);
+  color: rgb(48,99,142);
+}
