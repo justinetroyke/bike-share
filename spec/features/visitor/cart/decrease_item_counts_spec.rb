@@ -6,9 +6,9 @@ RSpec.feature "DecreaseItemCounts", type: :feature do
       before(:each) do
         @accessory2 = Accessory.create!(title: 'another item', price: 2, description: 'for doin things with bikes')
         visit accessory_path(@accessory2)
-        click_link 'Add to Cart'
+        click_button 'Add to Cart'
         visit accessory_path(@accessory2)
-        click_link 'Add to Cart'
+        click_button 'Add to Cart'
       end
       it 'should have a button next to each item to descrease the quantity of that item' do
         visit '/cart'

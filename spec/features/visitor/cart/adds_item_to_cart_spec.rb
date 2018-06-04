@@ -9,11 +9,11 @@ RSpec.describe 'Visitor Cart Page' do
   describe 'Clicks on their cart' do
     it 'they should see an image, title, description, and price for my accessory' do
       visit accessory_path(@accessory2)
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
       visit accessory_path(@accessory2)
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
       visit accessory_path(@accessory1)
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
 
       visit '/cart'
 
@@ -22,7 +22,7 @@ RSpec.describe 'Visitor Cart Page' do
       end
 
       visit accessory_path(@accessory2)
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
       visit '/cart'
 
       within ('table') do
