@@ -16,13 +16,12 @@ RSpec.describe 'Station index Page (Admin)' do
                          city:'denver',
                          installation_date:Time.now)
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-          
-          visit stations_path
-          within("#station_#{station.id}") do
-            click_on('Delete')
-          end
 
-          within('content') do
+          visit stations_path
+
+          click_on('Delete')
+
+          within('table') do
             expect(page).to_not have_content(station.name)
           end
           expect(page).to have_content("#{station.name} Deleted")
