@@ -1,7 +1,7 @@
-%content
+%content#login-page
   %h1 Log In To Your Account
 
-  =form_tag login_path do
+  =form_tag(login_path, autocomplete: 'off') do
     =label_tag :username
     =text_field_tag :username
 
