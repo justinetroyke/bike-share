@@ -5,6 +5,7 @@
     %li{id: "accessory-#{accessory.id}"}
       %img{src: accessory.image_url}
       =link_to accessory.title, accessory_path(accessory)
+      %span= link_to accessory.title, accessory_path(accessory)
       %span= accessory.price
       %span= accessory.description
       =link_to 'Add to Cart', carts_path(accessory_id: accessory.id), method: :post

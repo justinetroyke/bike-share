@@ -1,8 +1,9 @@
 require 'csv'
+require 'time'
 
 if Rails.env == 'development' || Rails.env == 'production'
-  stations_data = CSV.read('db/csv/stations.csv', headers: true, header_converters: :symbol)
-  trips_data = CSV.read('db/csv/trips.csv', headers: true, header_converters: :symbol)
+  stations_data = CSV.read('db/csv/station.csv', headers: true, header_converters: :symbol)
+  trips_data = CSV.read('db/csv/trip.csv', headers: true, header_converters: :symbol)
   orders_data = CSV.read('db/csv/orders.csv', headers: true, header_converters: :symbol)
   mock_users_data = CSV.read('db/csv/users.csv', headers: true, header_converters: :symbol)
   accessories_data = CSV.read('db/csv/accessories.csv', headers: true, header_converters: :symbol)
@@ -10,11 +11,14 @@ if Rails.env == 'development' || Rails.env == 'production'
 
 
   stations_data.each do |row|
-    Station.find_or_create_by!(name: row[:name], dock_count: row[:dock_count], city: row[:city], installation_date: row[:installation_date])
+    Station.find_or_create_by!(name: row[:name], dock_count: row[:dock_count], city: row[:city], installation_date: DateTime.parse(row[:installation_date].to_s))
   end
 
   trips_data.each do |row|
-    Trip.find_or_create_by!(duration: row[:duration], start_date: row[:start_date], end_date: row[:end_date], subscription_type: row[:subscription_type], zip_code: row[:zip_code], start_station_id: row[:start_station_id], end_station_id: row[:end_station_id], bike_id: row[:bike_id])
+    if Station.find_by(id: row[:start_station_id]) && Station.find_by(id: row[:end_station_id])
+      next if row[:start_date].nil? || row[:start_station_id].nil?
+      Trip.find_or_create_by!(duration: row[:duration], start_date: Date.strptime(row[:start_date], "%m/%d/%Y %H:%M"), end_date: row[:end_date], subscription_type: row[:subscription_type], zip_code: row[:zip_code], start_station_id: row[:start_station_id].to_i, end_station_id: row[:end_station_id], bike_id: row[:bike_id])
+    end
   end
 
   mock_users_data.each do |row|

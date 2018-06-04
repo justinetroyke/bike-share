@@ -80,6 +80,16 @@ RSpec.describe 'Bike Shop Page' do
           expect(page).to have_content('1')
         end
       end
+
+      it 'should go to show page when you click on accessory link' do
+        visit '/bike-shop'
+
+        expect(page).to have_link('Item 1')
+        expect(page).to have_link('Item 2')
+        expect(page).to have_link('Item 10')
+        expect(page).to have_link('Item 11')
+        expect(page).to have_link('Item 24')
+      end
     end
   end
 end
