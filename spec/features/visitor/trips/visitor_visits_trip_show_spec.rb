@@ -23,8 +23,8 @@ describe 'When you click on a specific trip' do
       visit trip_path(trip)
 
       expect(page).to have_content("Duration: #{trip.duration}")
-      expect(page).to have_content("Start Date: #{trip.start_date}")
-      expect(page).to have_content("End Date: #{trip.end_date}")
+      expect(page).to have_content("Start Date: #{trip.start_date.strftime("%Y/%m %A, %I:%M %p")}")
+      expect(page).to have_content("End Date: #{trip.end_date.strftime("%Y/%m %A, %I:%M %p")}")
       expect(page).to have_content("Start Station: #{station.name}, ID: #{trip.start_station_id}")
       expect(page).to have_content("End Station: #{station.name}, ID: #{trip.end_station_id}")
       expect(page).to have_content("Bike ID: #{trip.bike_id}")

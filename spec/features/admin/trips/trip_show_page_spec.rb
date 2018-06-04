@@ -26,8 +26,8 @@ RSpec.describe 'Trip Show Page (Admin)' do
   describe 'An admin user visits the show page for a specific trip' do
     it 'they should see all of the trips attributes' do
       expect(page).to have_content("Duration: #{@trip.duration}")
-      expect(page).to have_content("Start Date: #{@trip.start_date}")
-      expect(page).to have_content("End Date: #{@trip.end_date}")
+      expect(page).to have_content("Start Date: #{@trip.start_date.strftime("%Y/%m %A, %I:%M %p")}")
+      expect(page).to have_content("End Date: #{@trip.end_date.strftime("%Y/%m %A, %I:%M %p")}")
       expect(page).to have_content("Start Station: #{@station.name}, ID: #{@trip.start_station_id}")
       expect(page).to have_content("End Station: #{@station.name}, ID: #{@trip.end_station_id}")
       expect(page).to have_content("Bike ID: #{@trip.bike_id}")
@@ -36,14 +36,14 @@ RSpec.describe 'Trip Show Page (Admin)' do
     end
 
     it 'they should also see a link to edit the trip' do
-      expect(page).to have_link('Edit')
-      click_link 'Edit'
+      expect(page).to have_button('Edit')
+      click_on 'Edit'
       expect(page).to have_current_path(edit_admin_trip_path(@trip))
     end
 
     it 'they should also see a link to delete the trip' do
-      expect(page).to have_link('Delete')
-      click_link 'Delete'
+      expect(page).to have_button('Delete')
+      click_on 'Delete'
       expect(page).to have_current_path(trips_path)
       expect(page).to_not have_content(@trip.duration)
       expect(page).to_not have_content(@trip.start_date)
