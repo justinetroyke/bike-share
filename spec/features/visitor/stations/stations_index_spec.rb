@@ -12,7 +12,7 @@ RSpec.feature "Stations Index", type: :feature do
                                    dock_count: 4,
                                    city: 'denver',
                                    installation_date: Time.now)
-        
+
         visit stations_path
 
         expect(page).to have_content(station1.name)
@@ -22,6 +22,22 @@ RSpec.feature "Stations Index", type: :feature do
         expect(page).to have_content(station2.name)
         expect(page).to have_content(station2.dock_count)
         expect(page).to have_content(station2.city)
+      end
+
+      it 'should go to show page when you click on station link' do
+        station1 = Station.create!(name:'Downtown',
+                                   dock_count: 4,
+                                   city: 'denver',
+                                   installation_date: Time.now)
+        station2 = Station.create!(name:'Union Station',
+                                   dock_count: 4,
+                                   city: 'denver',
+                                   installation_date: Time.now)
+
+        visit stations_path
+
+        expect(page).to have_link(station1.name)
+        expect(page).to have_link(station2.name)
       end
     end
   end
