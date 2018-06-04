@@ -27,3 +27,4 @@
         %td= button_to 'Remove', '/cart/remove_item', params:{accesory_id: accessory.id, :cart => @cart}
         %td= button_to 'Increase', '/cart/increase_item_count', params:{accesory_id: accessory.id, :cart => @cart}
 
+= button_to('Checkout', '/carts/checkout')
