@@ -23,7 +23,7 @@ class Admin::TripsController < Admin::BaseController
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
     if @trip.save
-      flash[:notice]
+      flash[:notice] = "The trip #{@trip.id} has been updated!"
       redirect_to trip_path @trip
     else
       redirect_to edit_admin_trip_path @trip
