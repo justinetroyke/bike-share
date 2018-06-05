@@ -4,28 +4,32 @@
   <%= current_user.first_name%>
   <%= current_user.last_name%>
   <%= current_user.address%>
-<br>
-<br>
-<%= link_to 'Create New Trip', new_admin_trip_path %>
-<br>
-<%= link_to 'Create New Station', new_admin_station_path %>
-<br>
-<br>
-<%= link_to 'View All Accessories', admin_accessories_path %>
-<br>
-<br>
-<button class="tablink" onclick="openStatus('All')" id="defaultOpen">All</button>: <%=@orders.count%>
-<button class="tablink" onclick="openStatus('Cancelled')">Cancelled</button>: <%=@cancelled.count%>
-<button class="tablink" onclick="openStatus('Ordered')">Ordered</button>: <%=@ordered.count%>
-<button class="tablink" onclick="openStatus('Paid')">Paid</button>: <%=@paid.count%>
-<button class="tablink" onclick="openStatus('Completed')">Completed</button>: <%=@completed.count%>
+  <br>
+  <br>
+  <%= link_to 'Create New Trip', new_admin_trip_path %>
+  <br>
+  <%= link_to 'Create New Station', new_admin_station_path %>
+  <br>
+  <br>
+  <%= link_to 'View All Accessories', admin_accessories_path %>
+  <br>
+  <br>
+  <div id="selectors">
+    <%= link_to  "All: #{@total_count}", admin_dashboard_path, method: :get, params:{id: 'all'} %>
+    <%= link_to  "Cancelled: #{@cancelled_count}", admin_dashboard_path, method: :get, params:{category: 'cancelled'} %>
+    <%= link_to  "Ordered: #{@ordered_count}", admin_dashboard_path, method: :get, params:{category: 'ordered'} %>
+    <%= link_to  "Paid: #{@paid_count}", admin_dashboard_path, method: :get, params:{category: 'paid'} %>
+    <%= link_to  "Completed: #{@completed_count}", admin_dashboard_path, method: :get, params:{category: 'completed'} %>
+  </div>
 
-  <table id="All" class="tabcontent">
+
+  <table id="orders" >
     <tr>
       <th>Id</th>
       <th>User</th>
       <th>Quantity</th>
       <th>Status</th>
+      <th>Actions</th>
     </tr>
     <% @orders.each do |order| %>
       <tr id="order-<%=order.id%>">
@@ -41,108 +45,19 @@
         <td>
           <%= order.status %>
         </td>
-      </tr>
-    <% end %>
-  </table>
-
-  <table id="Cancelled" class="tabcontent">
-    <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Quantity</th>
-    </tr>
-    <% @cancelled.each do |order| %>
-      <tr id="cancelled-<%=order.id%>">
         <td>
-          <%= link_to  "#{order.id}", order_path(order) %>
-        </td>
-        <td>
-          <%= order.user.username %>
-        </td>
-        <td>
-          <%= order.quantity %>
-        </td>
-        <td>
-          <%= order.status %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-
-  <table id="Ordered" class="tabcontent">
-    <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Quantity</th>
-    </tr>
-    <% @ordered.each do |order| %>
-      <tr id="ordered-<%=order.id%>">
-        <td>
-          <%= link_to  "#{order.id}", order_path(order) %>
-        </td>
-        <td>
-          <%= order.user.username %>
-        </td>
-        <td>
-          <%= order.quantity %>
-        </td>
-        <td>
-          <%= order.status %>
+        <% if order.ordered? %>
           <%= button_to  "Cancel", "orders/#{order.id}", method: "patch", params:{status: 0}  %>
           <%= button_to  "Mark as Paid", "orders/#{order.id}", method: "patch", params:{status: 2}  %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-
-  <table id="Paid" class="tabcontent">
-    <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Quantity</th>
-    </tr>
-    <% @paid.each do |order| %>
-      <tr id="paid-<%=order.id%>">
-        <td>
-          <%= link_to  "#{order.id}", order_path(order) %>
-        </td>
-        <td>
-          <%= order.user.username %>
-        </td>
-        <td>
-          <%= order.quantity %>
-        </td>
-        <td>
-          <%= order.status %>
+        <% elsif order.paid? %>
           <%= button_to "Cancel", "orders/#{order.id}", method: 'patch', params:{status: 0}  %>
           <%= button_to "Mark as Completed", "orders/#{order.id}", method: 'patch', params:{status: 3}  %>
+        <% end %>
         </td>
       </tr>
     <% end %>
   </table>
 
-  <table id="Completed" class="tabcontent">
-    <tr>
-      <th>Id</th>
-      <th>User</th>
-      <th>Quantity</th>
-    </tr>
-    <% @completed.each do |order| %>
-      <tr id="completed-<%=order.id%>">
-        <td>
-          <%= link_to  "#{order.id}", order_path(order) %>
-        </td>
-        <td>
-          <%= order.user.username %>
-        </td>
-        <td>
-          <%= order.quantity %>
-        </td>
-        <td>
-          <%= order.status %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+
 
 </content>

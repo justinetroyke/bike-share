@@ -59,26 +59,29 @@ RSpec.feature 'admin dashboard' do
 
         visit admin_dashboard_path
 
-        expect(page).to have_button('Cancelled')
-        expect(page).to have_button('Ordered')
-        expect(page).to have_button('Paid')
-        expect(page).to have_button('Completed')
+        expect(page).to have_link('Cancelled')
+        expect(page).to have_link('Ordered')
+        expect(page).to have_link('Paid')
+        expect(page).to have_link('Completed')
       end
       it 'should have buttons to cancel orders which are paid or ordered' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit admin_dashboard_path
-        click_on('Paid')
+        save_and_open_page
+        within("#selectors") do
+          click_on('Paid')
+        end
 
-        within("#paid-#{@order3.id}") do
+        within("#order-#{@order3.id}") do
           expect(page).to have_button('Cancel')
           click_on('Cancel')
         end
         expect(page).to have_content("Order ##{@order3.id} status changed to cancelled")
-
-        click_on('Ordered')
-
-        within("#ordered-#{@order2.id}") do
+        within("#selectors") do
+          click_on('Ordered')
+        end
+        within("#order-#{@order2.id}") do
           expect(page).to have_button('Cancel')
         end
 
@@ -87,9 +90,11 @@ RSpec.feature 'admin dashboard' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit admin_dashboard_path
-        click_on('Ordered')
+        within("#selectors") do
+          click_on('Ordered')
+        end
 
-        within("#ordered-#{@order2.id}") do
+        within("#order-#{@order2.id}") do
           expect(page).to have_button('Mark as Paid')
         end
       end
@@ -97,9 +102,11 @@ RSpec.feature 'admin dashboard' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
         visit admin_dashboard_path
-        click_on('Paid')
+        within("#selectors") do
+          click_on('Paid')
+        end
 
-        within("#paid-#{@order3.id}") do
+        within("#order-#{@order3.id}") do
           expect(page).to have_button('Mark as Completed')
         end
       end
