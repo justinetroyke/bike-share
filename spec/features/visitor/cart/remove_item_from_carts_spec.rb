@@ -35,7 +35,7 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
             click_on('Remove')
           end
 
-          expect(page).to have_content("Successfully removed #{@accessory1.title} from your cart.")
+          expect(page).to have_content("Successfully removed '#{@accessory1.title}' from your cart.")
         end
         it 'should contain a link back to the deleted accesorys page' do
           within("#cart-accessory-#{@accessory1.id}") do
