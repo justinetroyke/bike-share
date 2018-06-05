@@ -91,5 +91,16 @@ RSpec.describe 'Bike Shop Page' do
         expect(page).to have_link('Item 24')
       end
     end
+
+    context 'retired accessory' do
+      it 'they should see Accessory Retired and not add to cart' do
+        helmet_accessory = Accessory.create!(title: 'Helmet', price: 10, description: 'Will protect your melon', image_url: @image_url, status: 1)
+
+        visit accessories_path
+
+        expect(page).to have_content('Accessory Retired')
+        expect(page).to have_link(helmet_accessory.title)
+      end
+    end
   end
 end

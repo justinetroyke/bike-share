@@ -31,5 +31,19 @@ RSpec.describe 'Accessory Show Page' do
         expect(page).to have_content('1')
       end
     end
+
+    context 'retired accessory' do
+      it 'they should see Accessory Retired and not add to cart' do
+        accessory3 = Accessory.create!(title: 'Helmet', price: 10, description: 'Will protect your melon', image_url: @image_url, status: 1)
+
+        visit accessories_path
+
+        click_on accessory3.title
+        expect(current_path).to eq(accessory_path(accessory3))
+
+        expect(page).to have_content('Accessory Retired')
+        expect(page).to_not have_button('Add to Cart')
+      end
+    end
   end
 end
