@@ -30,16 +30,20 @@ class CartsController < ApplicationController
     @cart.decrease_item_count(params[:accesory_id])
     @cart.clean_up
     redirect_to '/cart'
-
   end
 
   def show
     @accessories = Accessory.where(id: @cart.contents.keys)
     @cart.clean_up
   end
+
   def checkout
     if current_user
       @total = @cart.total_amount
+      order = current_user.orders.create(status:1)
+      @cart.accessories.each do |accessory|
+        order.order_accessories.create(accessory_id:accessory.id)
+      end
       session[:cart] = nil
       flash[:notice] = "Successfully submitted your order totaling #{@total}"
       redirect_to dashboard_path
