@@ -15,11 +15,11 @@
   <br>
   <br>
   <div id="selectors">
-    <%= link_to  "All: #{@total_count}", admin_dashboard_path, method: :get, params:{id: 'all'} %>
-    <%= link_to  "Cancelled: #{@cancelled_count}", admin_dashboard_path, method: :get, params:{category: 'cancelled'} %>
-    <%= link_to  "Ordered: #{@ordered_count}", admin_dashboard_path, method: :get, params:{category: 'ordered'} %>
-    <%= link_to  "Paid: #{@paid_count}", admin_dashboard_path, method: :get, params:{category: 'paid'} %>
-    <%= link_to  "Completed: #{@completed_count}", admin_dashboard_path, method: :get, params:{category: 'completed'} %>
+    <%= link_to  "All: #{@total_count}", admin_dashboard_path, method: :get%>
+    <%= link_to  "Cancelled: #{@cancelled_count}", admin_dashboard_path( category: 'cancelled'), method: :get %>
+    <%= link_to  "Ordered: #{@ordered_count}", admin_dashboard_path(category: 'ordered'), method: :get %>
+    <%= link_to  "Paid: #{@paid_count}", admin_dashboard_path(category: 'paid'), method: :get %>
+    <%= link_to  "Completed: #{@completed_count}", admin_dashboard_path(category: 'completed'), method: :get %>
   </div>
 
 

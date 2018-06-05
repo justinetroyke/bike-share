@@ -1,22 +1,27 @@
 class Admin::DashboardController < Admin::BaseController
   def show
     category = params[:category]
-    @total_count = Order.all.count
-    @ordered_count = Order.ordered.count
-    @paid_count = Order.paid.count
-    @cancelled_count = Order.cancelled.count
-    @completed_count = Order.completed.count
+    all = Order.all
+    ordered = Order.ordered
+    paid = Order.paid
+    completed = Order.completed
+    cancelled =  Order.cancelled
 
+    @total_count = all.count
+    @ordered_count = ordered.count
+    @paid_count = paid.count
+    @cancelled_count = cancelled.count
+    @completed_count = completed.count
     if category.nil?
-      @orders = Order.all
+      @orders = all
     elsif category == 'ordered'
-      @orders = Order.ordered
+      @orders = ordered
     elsif category == 'paid'
-      @orders = Order.paid
+      @orders = paid
     elsif category == 'cancelled'
-      @orders = Order.paid
+      @orders = cancelled
     elsif category == 'completed'
-      @orders = Order.paid
+      @orders = completed
     end
   end
 end
