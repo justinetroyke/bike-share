@@ -30,7 +30,18 @@ RSpec.describe Cart do
         expect(cart.total_count).to eq(1)
       end
     end
+    describe 'accessories' do
+      it 'should return all accesory objects in the cart' do
+        cart = Cart.new
+        accessory1 = Accessory.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one')
+        cart.add_accessory(accessory1.id.to_s)
+        accessory2 = Accessory.create!(title: 'Accessory 2', price: 1, description: 'This is accessory one')
+        cart.add_accessory(accessory2.id.to_s)
 
+        expect(cart.accessories.first.class).to eq(Accessory)
+        expect(cart.accessories.count).to eq(2)
+      end
+    end
     describe 'remove_accessory' do
       it 'should remove a given accessory' do 
         cart = Cart.new('contents' => {'1' => 1, '2' => 3})
