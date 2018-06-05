@@ -18,3 +18,4 @@
         =button_to '/cart/increase_item_count', { id: 'increase-button', params:{accesory_id: accessory.id, :cart => @cart} } do
           <i class="fas fa-plus fa-2x"></i>
       =button_to 'Remove', '/cart/remove_item', { params:{accesory_id: accessory.id, :cart => @cart}, class: 'remove-cart-item', form_class: 'remove-item-form' }
+= button_to('Checkout', '/carts/checkout')

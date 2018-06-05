@@ -1,6 +1,6 @@
 %h1 Accessories
 - if current_admin?
-  = link_to('Create A New Accessory', new_admin_accessory)
+  = link_to('Create A New Accessory', new_admin_accessory_path)
   
 %ul
   -@accessories.each do |accessory|

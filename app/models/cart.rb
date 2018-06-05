@@ -10,6 +10,14 @@ class Cart
     end
   end
 
+  def accessories
+    items = []
+    @contents.each do |id, quantity|
+      items << Accessory.find(id)
+    end
+    items
+  end
+
   def clean_up
     @contents.each do |id,quantity|
       if quantity <= 0
