@@ -22,8 +22,8 @@ RSpec.feature "DecreaseItemCounts", type: :feature do
         visit '/cart'
 
         within("#cart-accessory-#{@accessory2.id}") do
-          expect(page).to have_button('Increase')
-          click_on('Increase')
+          expect(page).to have_css('#increase-button')
+          click_on('#increase-button i')
         end
 
         expect(page).to have_content('2')
