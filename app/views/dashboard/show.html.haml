@@ -5,3 +5,12 @@
 %p My Orders:
 -@orders.each do |order|
   =link_to("#{order.id}", order_path(order))
+  %br
+  Total
+  =number_to_currency(order.total)
+  %br
+  -order.accessories.each do |accessory|
+    =link_to("#{accessory.title}", accessory_path(accessory))
+    =number_to_currency(accessory.price)
+    %br
+  %br
