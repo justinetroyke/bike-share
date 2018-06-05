@@ -25,7 +25,7 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
           click_on('Remove')
         end
         expect(current_path).to eq('/cart')
-        within('table') do
+        within('#cart-contents-container') do
           expect(page).to_not have_content(@accessory1.title)
         end
       end

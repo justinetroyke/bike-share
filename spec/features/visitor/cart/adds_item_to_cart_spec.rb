@@ -17,7 +17,7 @@ RSpec.describe 'Visitor Cart Page' do
 
       visit '/cart'
 
-      within ('table') do
+      within ('#cart-contents-container') do
         expect(page).to have_content(2)
       end
 
@@ -25,10 +25,10 @@ RSpec.describe 'Visitor Cart Page' do
       click_button 'Add to Cart'
       visit '/cart'
 
-      within ('table') do
+      within ('#cart-contents-container') do
         expect(page).to have_content(3)
       end
-      within ('table') do
+      within ('#cart-contents-container') do
         expect(page).to have_content("$6")
       end
       expect(page).to have_content("Total: $7")

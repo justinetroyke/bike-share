@@ -37,9 +37,9 @@
         %span.subtotal= "Subtotal: #{number_to_currency(@cart.subtotal(accessory))}"
         %span.description= accessory.description
       .quantity-container          
-        =button_to '/cart/decrease_item_count', params:{accesory_id: accessory.id, :cart => @cart} do
-          <i id='decrease-button' class="fas fa-minus fa-2x"></i>
+        =button_to '/cart/decrease_item_count', { id: 'decrease-button', params:{accesory_id: accessory.id, :cart => @cart} } do
+          <i class="fas fa-minus fa-2x"></i>
         %span.quantity= @cart.contents[accessory.id.to_s]
-        =button_to '/cart/increase_item_count', params:{accesory_id: accessory.id, :cart => @cart} do
-          <i id='increase-button' class="fas fa-plus fa-2x"></i>
+        =button_to '/cart/increase_item_count', { id: 'increase-button', params:{accesory_id: accessory.id, :cart => @cart} } do
+          <i class="fas fa-plus fa-2x"></i>
       =button_to 'Remove', '/cart/remove_item', { params:{accesory_id: accessory.id, :cart => @cart}, class: 'remove-cart-item', form_class: 'remove-item-form' }
