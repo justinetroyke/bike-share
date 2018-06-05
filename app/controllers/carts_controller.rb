@@ -30,7 +30,6 @@ class CartsController < ApplicationController
     @cart.decrease_item_count(params[:accesory_id])
     @cart.clean_up
     redirect_to '/cart'
-
   end
 
   def show

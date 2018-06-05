@@ -35,7 +35,7 @@ RSpec.describe Cart do
         cart = Cart.new
         accessory1 = Accessory.create!(title: 'Accessory 1', price: 1, description: 'This is accessory one')
         cart.add_accessory(accessory1.id.to_s)
-        accessory1 = Accessory.create!(title: 'Accessory 2', price: 1, description: 'This is accessory one')
+        accessory2 = Accessory.create!(title: 'Accessory 2', price: 1, description: 'This is accessory one')
         cart.add_accessory(accessory2.id.to_s)
 
         expect(cart.accessories.first.class).to eq(Accessory)
