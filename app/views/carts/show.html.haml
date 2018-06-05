@@ -1,30 +1,21 @@
-%h1= 'My Cart'
-%h2= "Total: $#{@cart.total_amount}"
+#cart-heading-container
+  %h1= 'My Cart'
+  %h2= "Total: #{number_to_currency(@cart.total_amount)}"
 
-
-%table{:border => 5, :width => "100%"}
-  %tbody
-    %tr
-      %th Accesory:
-      %th Accesory Name:
-      %th Price:
-      %th Desription:
-      %th Quantity:
-      %th Subtotal:
-      %th Decrease:
-      %th Remove:
-      %th Increase:
-    -@accessories.each do |accessory|
-      %tr{id:"cart-accessory-#{accessory.id}"}
-        %td
-          %img{width: "80", height: "60", src: accessory.image_url }/
-        %td= accessory.title
-        %td= accessory.price
-        %td= accessory.description
-        %td= @cart.contents[accessory.id.to_s]
-        %td= "$#{@cart.subtotal(accessory)}"          
-        %td= button_to 'Decrease', '/cart/decrease_item_count', params:{accesory_id: accessory.id, :cart => @cart}
-        %td= button_to 'Remove', '/cart/remove_item', params:{accesory_id: accessory.id, :cart => @cart}
-        %td= button_to 'Increase', '/cart/increase_item_count', params:{accesory_id: accessory.id, :cart => @cart}
-
+#cart-contents-container
+  -@accessories.each do |accessory|
+    %div{id:"cart-accessory-#{accessory.id}", class: 'cart-item'}
+      %img{class: 'cart-thumbnail', src: accessory.image_url }/
+      .cart-item-information-container
+        %span.title= accessory.title
+        %span.price= "Price: #{number_to_currency(accessory.price)}"
+        %span.subtotal= "Subtotal: #{number_to_currency(@cart.subtotal(accessory))}"
+        %span.description= accessory.description
+      .quantity-container          
+        =button_to '/cart/decrease_item_count', { id: 'decrease-button', params:{accesory_id: accessory.id, :cart => @cart} } do
+          <i class="fas fa-minus fa-2x"></i>
+        %span.quantity= @cart.contents[accessory.id.to_s]
+        =button_to '/cart/increase_item_count', { id: 'increase-button', params:{accesory_id: accessory.id, :cart => @cart} } do
+          <i class="fas fa-plus fa-2x"></i>
+      =button_to 'Remove', '/cart/remove_item', { params:{accesory_id: accessory.id, :cart => @cart}, class: 'remove-cart-item', form_class: 'remove-item-form' }
 = button_to('Checkout', '/carts/checkout')
