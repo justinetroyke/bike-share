@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:notice] = 'Registration Failed. Please check the information you entered and try again'
-      render :new
+      redirect_to login_path
     end
   end
 
