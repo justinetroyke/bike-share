@@ -7,4 +7,7 @@
 %p= "Price: #{number_to_currency(@accessory.price)}"
 
 %li
-= button_to 'Add to Cart', carts_path(accessory_id: @accessory.id), method: :post
+  -if @accessory.status == 'active'
+    = button_to 'Add to Cart', carts_path(accessory_id: @accessory.id), method: :post
+  -else
+    Accessory Retired
