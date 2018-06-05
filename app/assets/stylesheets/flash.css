@@ -4,11 +4,33 @@ div.flash {
 
 .flash div {
   padding: 10px 20px;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
 }
 
 .flash .notice {
-  height: 100%;
-  width: 100%;
   background-color: rgba(209,73,91,.6);
-  font-size: 18px;
+}
+
+.flash .info {
+  background-color: rgba(48,99,142,.8);
+  color: #FEFEFE;
+}
+
+.flash .link a {
+  color: rgba(48,99,142);
+  border: 2px solid rgba(48,99,142);
+  padding: 8px;
+  text-decoration: none;
+  margin-top: 12px;
+  display: inline-block;
+  border-radius: .2em;
+  transition: .2s ease-in-out;
+}
+
+.flash .link a:hover {
+  background-color: rgba(48,99,142);
+  color: #FEFEFE;
+  transition: .2s ease-in-out;
 }
