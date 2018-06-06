@@ -138,9 +138,10 @@ RSpec.describe 'Trips Dashboard' do
         start_station_id: @station.id,
         end_station_id: @station.id)
 
+      @bike = Trip.least_used_bike
       visit trips_dashboard_path
 
-      expect(page).to have_content("Least Used Bike: #{trip.bike_id} with 1 ride(s)")
+      expect(page).to have_content("Least Used Bike: #{@bike[:bike]} with #{@bike[:total]} ride(s)")
     end
 
     it 'they should see the user subscription type breakdown, with total and percentage' do

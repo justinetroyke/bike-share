@@ -24,6 +24,9 @@
 .metric-container#most-used-bike
   %span= "Most Used Bike: #{@most_used_bike[:bike]} with #{@most_used_bike[:total]} ride(s)"
 %br
+.metric-container#least-used-bike
+  %span= "Least Used Bike: #{@least_used_bike[:bike]} with #{@least_used_bike[:total]} ride(s)"
+%br
 .metric-container#subscription-breakdown-container
   %span= "Subscriber: #{@subscriber['subscriber']['count']} at #{@subscriber['subscriber']['percentage'].round}%"
   %span= "Customer: #{@subscriber['customer']['count']} at #{@subscriber['customer']['percentage'].round}%"

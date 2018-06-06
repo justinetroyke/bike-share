@@ -6,6 +6,7 @@ class Trips::DashboardController < ApplicationController
     @most_stated = Trip.station_most_started
     @most_ended = Trip.station_most_ended
     @most_used_bike = Trip.most_used_bike
+    @least_used_bike = Trip.least_used_bike
     @subscriber = Trip.subscription_breakdown
   end
 end
