@@ -1,5 +1,5 @@
 class Trips::DashboardController < ApplicationController
   def index
-    @hello = "No Content Yet"
+    @trips = Trip.all
   end
 end

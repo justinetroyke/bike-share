@@ -10,6 +10,6 @@ class Trip < ApplicationRecord
   belongs_to :end_station, class_name: 'Station'
 
   def self.average_duration
-    trips = Trip.all.average('')
+    average(:duration).to_f
   end
 end

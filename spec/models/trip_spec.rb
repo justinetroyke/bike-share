@@ -33,7 +33,7 @@ RSpec.describe Trip do
   end
   describe 'average_trip_duration' do
     it 'should return the average duration of all trips' do
-      expect(@trips.average_duration).to eq(19.5)
+      expect(Trip.average_duration).to eq(19.5)
     end
   end
 end
