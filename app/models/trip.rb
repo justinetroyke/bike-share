@@ -52,4 +52,9 @@ class Trip < ApplicationRecord
     .group('year')
     .order('year')
   end
+
+  def self.most_used_bike
+    bike_and_total = group(:bike_id).count.max_by { |bike, total| total }
+    { bike: bike_and_total[0], total: bike_and_total[1] }
+  end
 end
