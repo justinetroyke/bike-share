@@ -6,6 +6,10 @@ RSpec.describe 'Trips Dashboard' do
                               dock_count:5,
                               city:'denver',
                               installation_date:Time.now)
+    @station2 = Station.create!(name:'name',
+                                dock_count:5,
+                                city:'denver',
+                                installation_date:Time.now)
       40.times do |num|
         Trip.create(duration: num,
                     start_date: Time.now,
@@ -16,8 +20,19 @@ RSpec.describe 'Trips Dashboard' do
                     end_station_id: @station.id,
                     end_date: Time.now,
                     )
-      visit trips_dashboard_path
     end
+      20.times do |num|
+       Trip.create(duration: 2340,
+                   start_date: Time.now,
+                   bike_id: num+rand(10),
+                   subscription_type: 0,
+                   zip_code: 23456,
+                   start_station_id: @station2.id,
+                   end_station_id: @station2.id,
+                   end_date: Time.now,
+                 )
+    end
+    visit trips_dashboard_path
   end
   describe 'Any user type visits the trips dashboard page' do
     it 'they should see the average duration of a ride' do
@@ -37,11 +52,23 @@ RSpec.describe 'Trips Dashboard' do
       expect(page).to have_link(trip.id)
       expect(page).to have_content("Duration: #{trip.duration}")
     end
+    it 'they should see the station with most rides started at' do
+      trip = Trip.shortest
+
+      expect(page).to have_content("Shortest Trip:")
+      expect(page).to have_link(trip.id)
+      expect(page).to have_content("Duration: #{trip.duration}")
+    end
+    it 'they should see the station with most rides started at' do
+      station = Trip.station_most_started
+
+      expect(page).to have_content("Station Most Trips Started At:")
+      expect(page).to have_link(station.name)
+    end
   end
 end
 
 # As a registered user,
-# I see the Shortest ride,
 # I see the Station with the most rides as a starting place,
 # I see the Station with the most rides as an ending place,
 # I see Month by Month breakdown of number of rides

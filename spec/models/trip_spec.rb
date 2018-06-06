@@ -58,4 +58,23 @@ RSpec.describe Trip do
       expect(Trip.shortest).to eq(trip)
     end
   end
+  describe 'station_most_started' do
+    it 'should return the station with most trips started' do
+      @station2 = Station.create!(name:'name',
+                      dock_count:5,
+                      city:'denver',
+                      installation_date:Time.now)
+      Trip.create(duration: 2313,
+                  start_date: Time.now,
+                  bike_id: 12,
+                  subscription_type: 0,
+                  zip_code: 23456,
+                  start_station_id: @station2.id,
+                  end_station_id: @station2.id,
+                  end_date: Time.now,
+                  )
+
+      expect(Trip.station_most_started).to eq(@station)
+    end
+  end
 end
