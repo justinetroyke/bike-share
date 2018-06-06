@@ -3,17 +3,17 @@
 .metric-container#average-duration
   %span= "Average Trip Duration: #{@trips.average_duration}"
 %br
-.metric-container#average-duration
+.metric-container#longest-trip
   %span= "Longest Trip:"
   %span= link_to("#{@longest.id}", trip_path(@longest))
   %span= "Duration: #{@longest.duration}"
 %br
-.metric-container#average-duration
+.metric-container#shotest-trip
   %span= "Shortest Trip:"
   %span= link_to("#{@shortest.id}", trip_path(@shortest))
   %span= "Duration: #{@shortest.duration}"
 %br
-.metric-container#average-duration
+.metric-container#station-starts
   %span= "Station Most Trips Started At:"
   %span= link_to("#{@most_stated.name}", trip_path(@most_stated))
 %br
@@ -21,6 +21,9 @@
   %span= "Station Most Trips Ended At:"
   %span= link_to("#{@trips}", trip_path(@most_ended))
 %br
-.metric-container#average-duration
+.metric-container#most-used-bike
   %span= "Most Used Bike: #{@most_used_bike[:bike]} with #{@most_used_bike[:total]} ride(s)"
 %br
+.metric-container#subscription-breakdown-container
+  %span= "Subscriber: #{@subscriber['subscriber']['count']} at #{@subscriber['subscriber']['percentage'].round}%"
+  %span= "Customer: #{@subscriber['customer']['count']} at #{@subscriber['customer']['percentage'].round}%"

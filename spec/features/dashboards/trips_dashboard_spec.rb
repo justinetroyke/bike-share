@@ -147,8 +147,8 @@ RSpec.describe 'Trips Dashboard' do
       visit trips_dashboard_path
 
       within('#subscription-breakdown-container') do
-        expect(page).to have_content('Subscriber: 20 at 50%')
-        expect(page).to have_content('Customer: 20 at 50%')
+        expect(page).to have_content('Subscriber: 40 at 67%')
+        expect(page).to have_content('Customer: 20 at 33%')
       end
     end
 
