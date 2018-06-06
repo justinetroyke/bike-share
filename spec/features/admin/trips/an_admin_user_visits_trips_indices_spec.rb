@@ -18,7 +18,7 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
         @trip1 = Trip.create!(duration: 5,
             start_date: DateTime.now,
             bike_id: 10,
-            subscription_type: 0,
+            subscription_type: 'subscriber',
             zip_code: 94053,
             start_station_id: @station1.id,
             end_station_id: @station2.id,
@@ -59,7 +59,9 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
 
           within('li:nth-child(1)') do
             expect(page).to have_button('Edit')
+            click_on('Edit')
           end
+          expect(current_path).to eq(edit_admin_trip_path(@trip1))
         end
       end
 

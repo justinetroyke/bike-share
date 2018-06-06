@@ -39,7 +39,7 @@ RSpec.describe Station do
                   zip_code: 20,
                   start_station_id:@station.id,
                   end_station_id:@station2.id,
-                  subscription_type:2)
+                  subscription_type:'subscriber')
     end
     8.times do |num|
       Trip.create!(duration: 5,
@@ -49,7 +49,7 @@ RSpec.describe Station do
                   zip_code: 47,
                   start_station_id:@station2.id,
                   end_station_id:@station.id,
-                  subscription_type:2)
+                  subscription_type:'customer')
     end
   end
 

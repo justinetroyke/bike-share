@@ -10,7 +10,7 @@ RSpec.describe Trip do
         Trip.create(duration: num,
                     start_date: Time.now,
                     bike_id: num+rand(10),
-                    subscription_type: 0,
+                    subscription_type: 'subscriber',
                     zip_code: 23456,
                     start_station_id: @station.id,
                     end_station_id: @station.id,
@@ -25,6 +25,7 @@ RSpec.describe Trip do
     it { should validate_presence_of(:end_station_id) }
     it { should validate_presence_of(:bike_id) }
     it { should validate_presence_of(:subscription_type) }
+    it { should validate_inclusion_of(:subscription_type).in_array(%w[subscriber customer])}
   end
 
   describe 'Relationships' do
@@ -41,7 +42,7 @@ RSpec.describe Trip do
       trip = Trip.create(duration: 2313,
                   start_date: Time.now,
                   bike_id: 12,
-                  subscription_type: 0,
+                  subscription_type: 'subscriber',
                   zip_code: 23456,
                   start_station_id: @station.id,
                   end_station_id: @station.id,

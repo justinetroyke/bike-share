@@ -5,7 +5,9 @@ class Trip < ApplicationRecord
                         :end_station_id,
                         :bike_id,
                         :subscription_type
-
+                        
+  validates_inclusion_of :subscription_type, in: ['subscriber', 'customer']
+                        
   belongs_to :start_station, class_name: 'Station'
   belongs_to :end_station, class_name: 'Station'
 

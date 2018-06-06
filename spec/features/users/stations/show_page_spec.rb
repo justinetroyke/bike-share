@@ -27,7 +27,7 @@ RSpec.feature "Station Show page", type: :feature do
                        zip_code: rand(1000),
                        start_station_id:@station.id,
                        end_station_id:@station2.id,
-                       subscription_type:2)
+                       subscription_type:'customer')
         end
         7.times do |num|
           Trip.create!(duration: 5,
@@ -37,7 +37,7 @@ RSpec.feature "Station Show page", type: :feature do
                        zip_code: rand(1000),
                        start_station_id:@station2.id,
                        end_station_id:@station.id,
-                       subscription_type:2)
+                       subscription_type:'customer')
         end
       end
       it 'should show the number of rides started at that station' do

@@ -1,4 +1,5 @@
 class Admin::TripsController < Admin::BaseController
+  before_action :set_all_stations, only: [:new, :edit]
 
   def edit
     @trip = Trip.find(params[:id])
@@ -9,7 +10,7 @@ class Admin::TripsController < Admin::BaseController
   end
 
   def create
-    @trip = Trip.create(trip_params)
+    @trip = Trip.new(trip_params)
     if @trip.save
       flash[:notice] = "Trip Created"
       redirect_to trip_path(@trip)
@@ -26,6 +27,7 @@ class Admin::TripsController < Admin::BaseController
       flash[:notice] = "The trip #{@trip.id} has been updated!"
       redirect_to trip_path @trip
     else
+      flash[:error] = "Invalid Attributes"
       redirect_to edit_admin_trip_path @trip
     end
   end
@@ -51,5 +53,9 @@ class Admin::TripsController < Admin::BaseController
       :start_date,
       :end_date
     )
+  end
+
+  def set_all_stations
+    @all_stations = Station.all
   end
 end
