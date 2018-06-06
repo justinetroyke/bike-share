@@ -26,7 +26,7 @@ RSpec.describe 'Trip Show Page (Admin)' do
 
       expect(current_path).to eq(new_admin_trip_path)
 
-      fill_in 'trip[subscription_type]', with: sub_time
+      select('Subscriber', from: 'Subscription Type')
       fill_in 'trip[duration]', with: duration
       fill_in 'trip[bike_id]', with: bike_id
       fill_in 'trip[start_date]', with: start_date

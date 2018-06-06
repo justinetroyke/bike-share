@@ -1,7 +1,9 @@
 = form_for [:admin, @trip] do |f|
-  = f.label :subscription_type
+  = f.label :subscription_type, 'Subscription Type'
   -# = f.number_field :subscription_type
-  = f.select(:subscription_type, options_for_select(['']))
+  = f.select(:subscription_type) do
+    -[['Subscriber','subscriber'],['Customer','customer']].each do |c|
+      =content_tag(:option, c.first, value: c.last)
 
   = f.label :duration
   = f.number_field :duration
