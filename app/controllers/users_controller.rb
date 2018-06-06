@@ -4,14 +4,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(user_params)
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{current_user.username}"
       redirect_to dashboard_path
     else
       flash[:notice] = 'Registration Failed. Please check the information you entered and try again'
-      redirect_to login_path
+      redirect_to new_user_path
     end
   end
 
