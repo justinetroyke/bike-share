@@ -59,7 +59,9 @@ RSpec.feature "An Admin User Visits Trips Index", type: :feature do
 
           within('li:nth-child(1)') do
             expect(page).to have_button('Edit')
+            click_on('Edit')
           end
+          expect(current_path).to eq(edit_admin_trip_path(@trip1))
         end
       end
 
