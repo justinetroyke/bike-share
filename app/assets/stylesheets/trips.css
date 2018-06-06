@@ -1,0 +1,23 @@
+/* Index */
+
+#trips-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 40px;
+  justify-content: space-evenly;
+}
+
+#trips-container li {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: rgba(0,121,140,.6);
+  width: 400px;
+  height: 300px;
+}
+
+#trips-container li span {
+  width: 100%;
+  white-space: wrap;
+}

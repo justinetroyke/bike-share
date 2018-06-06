@@ -3,26 +3,18 @@
 -if current_admin?
   =link_to 'Create New Trip', new_admin_trip_path
 
-%ul
+%ul#trips-container
   -@trips.each do |trip|
     %li{id: "trip-#{trip.id}"}
       =link_to("#{trip.id}", trip_path(trip))
-      %span Duration:
-      = trip.duration.to_s
-      %span Start_date:
-      = trip.start_date
-      %span End Date: 
-      = trip.end_date
-      %span Start Station: 
-      = trip.start_station.name
-      %span End Station: 
-      = trip.end_station.name
-      %span Bike #: 
-      = trip.bike_id.to_s
-      %span Subscription type: 
-      = trip.subscription_type.to_s
-      %span Zip Code: 
-      = trip.zip_code
+      %span= "Duration: #{trip.duration.to_s}"
+      %span= "Start_date: #{trip.start_date}"
+      %span= "End Date: #{trip.end_date}"
+      %span= "Start Station: #{trip.start_station.name}"
+      %span= "End Station: #{trip.end_station.name}"
+      %span= "Bike #: #{trip.bike_id.to_s}"
+      %span= "Subscription Type: #{trip.subscription_type.to_s}"
+      %span= "Zip Code: #{trip.zip_code}"
       -if current_admin?
         =button_to 'Edit', edit_admin_trip_path(trip), method:'get'
         =button_to 'Delete', admin_trip_path(trip), method:'delete'
