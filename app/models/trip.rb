@@ -29,4 +29,13 @@ class Trip < ApplicationRecord
 
     Station.find(most_started.first.start_station_id)
   end
+
+  def self.station_most_ended
+    most_ended = select('start_station_id, count(start_station_id) as trips')
+                        .group('start_station_id')
+                        .order('trips DESC')
+                        .limit(1)
+
+    Station.find(most_ended.last.start_station_id)
+  end
 end

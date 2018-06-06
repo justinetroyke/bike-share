@@ -65,11 +65,15 @@ RSpec.describe 'Trips Dashboard' do
       expect(page).to have_content("Station Most Trips Started At:")
       expect(page).to have_link(station.name)
     end
+    it 'they should see the station with most rides ending at' do
+      station = Trip.station_most_ended
+
+      expect(page).to have_content("Station Most Trips Ended At:")
+      expect(page).to have_link(station2.name)
+    end
   end
 end
 
-# As a registered user,
-# I see the Station with the most rides as a starting place,
 # I see the Station with the most rides as an ending place,
 # I see Month by Month breakdown of number of rides
 # with subtotals for each year,
