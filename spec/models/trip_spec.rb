@@ -145,5 +145,35 @@ RSpec.describe Trip do
                                                     'customer' => { 'count' => 20, 'percentage' => 50 } })
       end
     end
+
+    describe 'least_used_bike' do
+      it 'should return the least ridden bike id and its total rides' do
+        trip = Trip.create!(duration: 12,
+          start_date: DateTime.parse('02/10/1999'),
+          end_date: DateTime.parse('02/10/1999'),
+          bike_id: 102,
+          subscription_type: 'customer',
+          zip_code: 80202,
+          start_station_id: @station.id,
+          end_station_id: @station.id)
+
+          expect(Trip.least_used_bike).to eq({ bike: 102, total: 1 })
+      end
+    end
+
+    describe 'most_used_bike' do
+      it 'should return the most ridden bike id and its total rides' do
+        trip = Trip.create!(duration: 12,
+          start_date: DateTime.parse('02/10/1999'),
+          end_date: DateTime.parse('02/10/1999'),
+          bike_id: 1,
+          subscription_type: 'customer',
+          zip_code: 80202,
+          start_station_id: @station.id,
+          end_station_id: @station.id)
+
+          expect(Trip.most_used_bike).to eq({ bike: 1, total: 3 })
+      end
+    end
   end
 end
