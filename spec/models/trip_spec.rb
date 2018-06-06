@@ -8,6 +8,7 @@ RSpec.describe Trip do
     it { should validate_presence_of(:end_station_id) }
     it { should validate_presence_of(:bike_id) }
     it { should validate_presence_of(:subscription_type) }
+    it { should validate_inclusion_of(:subscription_type).in_array(%w[subscriber customer])}
   end
 
   describe 'Relationships' do

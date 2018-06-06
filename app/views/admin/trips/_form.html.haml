@@ -1,6 +1,7 @@
 = form_for [:admin, @trip] do |f|
   = f.label :subscription_type
-  = f.number_field :subscription_type
+  -# = f.number_field :subscription_type
+  = f.select(:subscription_type, options_for_select(['']))
 
   = f.label :duration
   = f.number_field :duration
