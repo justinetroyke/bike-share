@@ -51,7 +51,11 @@ RSpec.describe 'Trips Dashboard' do
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("Longest Rides: Trip: #{trip.id} Duration: #{trip.duration}")
+      within('#longest-ride') do
+        expect(page).to have_content("Longest Ride:")
+        expect(page).to have_content("Trip: #{trip.id}")
+        expect(page).to have_content(" Duration: #{trip.duration}")
+      end
     end
 
     it 'they should see the shortest ride' do
@@ -66,7 +70,11 @@ RSpec.describe 'Trips Dashboard' do
 
         visit trips_dashboard_path
 
-        expect(page).to have_content("Shortest Ride: Trip: #{trip.id} Duration: #{trip.duration}")
+        within('#shortest-ride') do
+          expect(page).to have_content("Shortest Ride:")
+          expect(page).to have_content("Trip: #{trip.id}")
+          expect(page).to have_content("Duration: #{trip.duration}")
+        end
     end
 
     it 'they should the station with the most rides as the starting place' do
