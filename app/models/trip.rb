@@ -62,4 +62,13 @@ class Trip < ApplicationRecord
     bike_and_total = group(:bike_id).count.min_by { |bike, total| total }
     { bike: bike_and_total[0], total: bike_and_total[1] }
   end
+
+  def self.subscription_breakdown
+    subs = group(:subscription_type).count
+    total = subs.values.sum
+    {
+      "customer" => {"count" => subs['customer'], "percentage" => subs['customer'] / total.to_f * 100},
+      "subscriber" => {"count" => subs['subscriber'], "percentage" => subs['subscriber'] / total.to_f * 100}
+    }
+  end
 end
