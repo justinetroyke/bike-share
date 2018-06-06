@@ -1,4 +1,5 @@
 class Admin::TripsController < Admin::BaseController
+  before_action :set_all_stations, only: [:new, :edit]
 
   def edit
     @trip = Trip.find(params[:id])
@@ -52,5 +53,9 @@ class Admin::TripsController < Admin::BaseController
       :start_date,
       :end_date
     )
+  end
+
+  def set_all_stations
+    @all_stations = Station.all
   end
 end

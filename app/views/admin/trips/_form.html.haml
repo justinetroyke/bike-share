@@ -1,6 +1,8 @@
 = form_for [:admin, @trip] do |f|
-  = f.label :subscription_type
-  = f.number_field :subscription_type
+  = f.label :subscription_type, 'Subscription Type'
+  = f.select(:subscription_type) do
+    -[['Subscriber','subscriber'],['Customer','customer']].each do |type|
+      =content_tag(:option, type.first, value: type.last)
 
   = f.label :duration
   = f.number_field :duration
@@ -11,11 +13,16 @@
   = f.label :bike_id
   = f.number_field :bike_id
 
-  = f.label :start_station_id
-  = f.number_field :start_station_id
+  = f.label :start_station_id, 'Start Station'
+  = f.select(:start_station_id) do
+    -@all_stations.each do |station|
+      =content_tag(:option, station.name, value: station.id)
 
-  = f.label :end_station_id
-  = f.number_field :end_station_id
+  = f.label :end_station_id, 'End Station'
+  -# = f.number_field :end_station_id
+  = f.select(:end_station_id) do
+    -@all_stations.each do |station|
+      =content_tag(:option, station.name, value: station.id)
 
   = f.label :start_date
   = f.datetime_local_field :start_date

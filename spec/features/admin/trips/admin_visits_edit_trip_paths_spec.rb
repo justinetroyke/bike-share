@@ -17,7 +17,7 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
         @trip1 = Trip.create!(duration: 5,
             start_date: DateTime.now,
             bike_id: 10,
-            subscription_type: 0,
+            subscription_type: 'subscriber',
             zip_code: 23456,
             start_station_id: @station1.id,
             end_station_id: @station2.id,
@@ -60,13 +60,14 @@ RSpec.feature "Admin Visits Edit Trip Path", type: :feature do
         old_zip = @trip1.zip_code
         new_zip = 54321
         fill_in 'trip[zip_code]', with: new_zip
-        fill_in 'trip[start_station_id]', with: @station2.id
+        # fill_in 'trip[start_station_id]', with: @station2.id
+        select @station2.name, from: 'Start Station'
         click_on 'Update Trip'
 
         expect(current_path).to eq(trip_path(@trip1))
-        expect(page).to_not have_content(@station1.name)
+        expect(page).to_not have_content("Start Station: #{@station1.name}")
         expect(page).to_not have_content(old_zip)
-        expect(page).to have_content(@station2.name)
+        expect(page).to have_content("Start Station: #{@station2.name}")
         expect(page).to have_content(new_zip)
       end
     end
