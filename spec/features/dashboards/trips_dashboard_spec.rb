@@ -182,13 +182,14 @@ RSpec.describe 'Trips Dashboard' do
         zip_code: 80202,
         start_station_id: @station.id,
         end_station_id: @station.id)
+      @trip = Trip.date_with_least_trips
 
       visit trips_dashboard_path
 
       within('#lowest-number-of-trips') do
         expect(page).to have_content("Lowest Number of Trips:")
-        expect(page).to have_content("Date: #{trip.start_date}")
-        expect(page).to have_content("Number of Trips: 1")
+        expect(page).to have_content("on #{@trip[:date]}")
+        expect(page).to have_content("#{@trip[:trips_count]}")
       end
     end
   end

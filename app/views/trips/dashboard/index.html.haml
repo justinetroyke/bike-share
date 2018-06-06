@@ -30,6 +30,9 @@
 .metric-container#highest-number-of-trips
   %span= "Highest Number of Trips: #{@highest_trip[:trips_count]} on #{@highest_trip[:date]}"
 %br
+.metric-container#lowest-number-of-trips
+  %span= "Lowest Number of Trips: #{@lowest_trip[:trips_count]} on #{@lowest_trip[:date]}"
+%br
 .metric-container#subscription-breakdown-container
   %span= "Subscriber: #{@subscriber['subscriber']['count']} at #{@subscriber['subscriber']['percentage'].round}%"
   %span= "Customer: #{@subscriber['customer']['count']} at #{@subscriber['customer']['percentage'].round}%"
