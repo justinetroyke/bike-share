@@ -1,0 +1,40 @@
+/* Accessories Index */
+
+#accessories-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 40px;
+  justify-content: space-evenly;
+}
+
+#accessories-container li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 12px;
+  margin: 10px;
+  background-color: rgba(0,121,140,.6);
+  width: 400px;
+  height: 300px;
+}
+
+#accessories-container li span {
+  width: 100%;
+  white-space: wrap;
+}
+
+/* Accessory Show */
+
+#accessory-show img {
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+  display: block;
+}
+
+#accessory-info-container {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
