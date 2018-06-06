@@ -24,6 +24,6 @@
       %span Zip Code: 
       = trip.zip_code
       -if current_admin?
-        =button_to 'Edit', edit_admin_trips_path(trip), method:'get'
+        =button_to 'Edit', edit_admin_trip_path(trip), method:'get'
         =button_to 'Delete', admin_trip_path(trip), method:'delete'
 = will_paginate @trips
