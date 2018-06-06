@@ -7,3 +7,8 @@
   %span= "Longest Trip:"
   %span= link_to("#{@longest.id}", trip_path(@longest))
   %span= "Duration: #{@longest.duration}"
+%br
+.metric-container#average-duration
+  %span= "Shortest Trip:"
+  %span= link_to("#{@shortest.id}", trip_path(@shortest))
+  %span= "Duration: #{@shortest.duration}"

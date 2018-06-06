@@ -33,7 +33,7 @@ RSpec.describe 'Trips Dashboard' do
     it 'they should see the shortest ride' do
       trip = Trip.shortest
 
-      expect(page).to have_content("shortest Trip:")
+      expect(page).to have_content("Shortest Trip:")
       expect(page).to have_link(trip.id)
       expect(page).to have_content("Duration: #{trip.duration}")
     end
