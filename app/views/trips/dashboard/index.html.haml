@@ -36,3 +36,9 @@
 .metric-container#subscription-breakdown-container
   %span= "Subscriber: #{@subscriber['subscriber']['count']} at #{@subscriber['subscriber']['percentage'].round}%"
   %span= "Customer: #{@subscriber['customer']['count']} at #{@subscriber['customer']['percentage'].round}%"
+.metric-container#monthly-annual-breakdown
+  - @annual.each do |year, month_count|
+    %span= year
+    -month_count.each do |month, count|
+      %span= month
+      %span= count

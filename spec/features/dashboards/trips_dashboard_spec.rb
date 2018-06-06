@@ -106,10 +106,9 @@ RSpec.describe 'Trips Dashboard' do
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("#{DateTime.now.month}: 40")
-      expect(page).to have_content("#{DateTime.now.year}: 40")
-      expect(page).to have_content("#{trip.start_date.month}: 1")
-      expect(page).to have_content("#{trip.start_date.year}: 1")
+
+      expect(page).to have_content("June 60")
+      expect(page).to have_content("January 0")
     end
 
     it 'they should see the most ridden bike with total number of rides for that bike' do

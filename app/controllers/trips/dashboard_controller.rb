@@ -10,5 +10,6 @@ class Trips::DashboardController < ApplicationController
     @subscriber = Trip.subscription_breakdown
     @highest_trip = Trip.date_with_most_trips
     @lowest_trip = Trip.date_with_least_trips
+    @annual = Trip.yearly_trips
   end
 end

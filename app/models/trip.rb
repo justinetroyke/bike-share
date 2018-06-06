@@ -5,9 +5,9 @@ class Trip < ApplicationRecord
                         :end_station_id,
                         :bike_id,
                         :subscription_type
-                        
+
   validates_inclusion_of :subscription_type, in: ['subscriber', 'customer']
-                        
+
   belongs_to :start_station, class_name: 'Station'
   belongs_to :end_station, class_name: 'Station'
 
@@ -42,15 +42,17 @@ class Trip < ApplicationRecord
   end
 
   def self.monthly_trips
-    select("DATE_TRUNC('month', start_date) as month, count(*) as count")
-    .group('month')
-    .order('month')
+    group("DATE_TRUNC('month', start_date)").count
+
   end
 
   def self.yearly_trips
-    select("DATE_TRUNC('year', start_date) as year, count(*) as count")
-    .group('year')
-    .order('year')
+    monthly_trips.each_with_object({}) do |(month, count), obj|
+      unless obj[month.year]
+        obj[month.year] = {"January" => 0, "February" => 0, "March" => 0, "April" => 0, "May" => 0, "June" => 0, "July" => 0, "August" => 0, "September" => 0, "October" => 0, "November" => 0, "December" => 0}
+      end
+      obj[month.year][month.strftime('%B')] = count
+    end
   end
 
   def self.most_used_bike
