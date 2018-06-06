@@ -19,3 +19,4 @@
           <i class="fas fa-plus fa-2x"></i>
       =button_to 'Remove', '/cart/remove_item', { params:{accesory_id: accessory.id, :cart => @cart}, class: 'remove-cart-item', form_class: 'remove-item-form' }
 = button_to("Checkout: #{number_to_currency(@cart.total_amount)}", '/carts/checkout')
+ 

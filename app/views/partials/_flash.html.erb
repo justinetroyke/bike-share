@@ -1,9 +1,3 @@
 <% flash.each do |type, message| %>
-  <%unless type == 'link'%>
-    <%= content_tag :div, message, class: type%>
-  <%else%>
-    <div class="link">
-      <%= link_to "#{message[0]}", message[1] %>
-    </div>
-  <%end%>
+  <%= content_tag :div, sanitize(message), class: type %>
 <% end %>
