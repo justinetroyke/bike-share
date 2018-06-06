@@ -42,9 +42,7 @@ RSpec.feature "RemoveItemFromCarts", type: :feature do
             click_on('Remove')
           end
 
-          within('.link') do
-            expect(page).to have_link("#{@accessory1.title}")
-          end
+          expect(page).to have_link("#{@accessory1.title}")
         end
       end
     end
