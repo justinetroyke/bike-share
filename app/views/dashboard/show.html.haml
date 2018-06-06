@@ -1,16 +1,16 @@
 -if current_user
   %h1= "#{current_user.full_name}'s Dashboard"
   =link_to('Edit My Profile', edit_user_path(current_user.id))
-%h3.address= current_user.address
-%p My Orders:
--@orders.each do |order|
-  =link_to("#{order.id}", order_path(order))
-  %br
-  Total
-  =number_to_currency(order.total)
-  %br
-  -order.accessories.each do |accessory|
-    =link_to("#{accessory.title}", accessory_path(accessory))
-    =number_to_currency(accessory.price)
+  %h3.address= current_user.address
+  %p My Orders:
+  -@orders.each do |order|
+    =link_to("#{order.id}", order_path(order))
     %br
-  %br
+    Total
+    =number_to_currency(order.total)
+    %br
+    -order.accessories.each do |accessory|
+      =link_to("#{accessory.title}", accessory_path(accessory))
+      =number_to_currency(accessory.price)
+      %br
+    %br
