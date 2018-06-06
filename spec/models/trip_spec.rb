@@ -6,16 +6,16 @@ RSpec.describe Trip do
                               dock_count:5,
                               city:'denver',
                               installation_date:Time.now)
-      @trips = 40.times do |num|
-        Trip.create(duration: num,
-                    start_date: Time.now,
-                    bike_id: num+rand(10),
-                    subscription_type: 'subscriber',
-                    zip_code: 23456,
-                    start_station_id: @station.id,
-                    end_station_id: @station.id,
-                    end_date: Time.now,
-                    )
+    @trips = []
+    40.times do |num|
+      @trips << Trip.create(duration: num,
+                  start_date: Time.now,
+                  bike_id: num+rand(10),
+                  subscription_type: 'subscriber',
+                  zip_code: 23456,
+                  start_station_id: @station.id,
+                  end_station_id: @station.id,
+                  end_date: Time.now)
     end
   end
   describe 'Validations' do
@@ -32,70 +32,100 @@ RSpec.describe Trip do
     it { is_expected.to belong_to(:start_station) }
     it { is_expected.to belong_to(:end_station) }
   end
-  describe 'average_trip_duration' do
-    it 'should return the average duration of all trips' do
-      expect(Trip.average_duration).to eq(19.5)
-    end
-  end
-  describe 'longest_trip' do
-    it 'should return the longest trip' do
-      trip = Trip.create(duration: 2313,
-                  start_date: Time.now,
-                  bike_id: 12,
-                  subscription_type: 'subscriber',
-                  zip_code: 23456,
-                  start_station_id: @station.id,
-                  end_station_id: @station.id,
-                  end_date: Time.now,
-                  )
 
-      expect(Trip.longest).to eq(trip)
+  describe 'Class Methods' do
+    describe 'average_trip_duration' do
+      it 'should return the average duration of all trips' do
+        expect(Trip.average_duration).to eq(19.5)
+      end
     end
-  end
-  describe 'shortest_trip' do
-    it 'should return the shortest trip' do
-      trip = Trip.shortest
+    describe 'longest_trip' do
+      it 'should return the longest trip' do
+        trip = Trip.create(duration: 2313,
+                    start_date: Time.now,
+                    bike_id: 12,
+                    subscription_type: 'subscriber',
+                    zip_code: 23456,
+                    start_station_id: @station.id,
+                    end_station_id: @station.id,
+                    end_date: Time.now,
+                    )
 
-      expect(Trip.shortest).to eq(trip)
+        expect(Trip.longest).to eq(trip)
+      end
     end
-  end
-  describe 'station_most_started' do
-    it 'should return the station with most trips started' do
-      @station2 = Station.create!(name:'name',
-                      dock_count:5,
-                      city:'denver',
-                      installation_date:Time.now)
-      Trip.create(duration: 2313,
-                  start_date: Time.now,
-                  bike_id: 12,
-                  subscription_type: 0,
-                  zip_code: 23456,
-                  start_station_id: @station2.id,
-                  end_station_id: @station2.id,
-                  end_date: Time.now,
-                  )
+    describe 'shortest_trip' do
+      it 'should return the shortest trip' do
+        trip = Trip.shortest
 
-      expect(Trip.station_most_started).to eq(@station)
+        expect(Trip.shortest).to eq(trip)
+      end
     end
-  end
-  describe 'station_most_ended' do
-    it 'should return the station with most trips started' do
-      @station2 = Station.create!(name:'name',
-                      dock_count:5,
-                      city:'denver',
-                      installation_date:Time.now)
-      Trip.create(duration: 2313,
-                  start_date: Time.now,
-                  bike_id: 12,
-                  subscription_type: 0,
-                  zip_code: 23456,
-                  start_station_id: @station2.id,
-                  end_station_id: @station2.id,
-                  end_date: Time.now,
-                  )
+    describe 'station_most_started' do
+      it 'should return the station with most trips started' do
+        @station2 = Station.create!(name:'name',
+                        dock_count:5,
+                        city:'denver',
+                        installation_date:Time.now)
+        Trip.create(duration: 2313,
+                    start_date: Time.now,
+                    bike_id: 12,
+                    subscription_type: 0,
+                    zip_code: 23456,
+                    start_station_id: @station2.id,
+                    end_station_id: @station2.id,
+                    end_date: Time.now,
+                    )
 
-      expect(Trip.station_most_ended).to eq(@station)
+        expect(Trip.station_most_started).to eq(@station)
+      end
+    end
+    describe 'station_most_ended' do
+      it 'should return the station with most trips started' do
+        @station2 = Station.create!(name:'name',
+                        dock_count:5,
+                        city:'denver',
+                        installation_date:Time.now)
+        Trip.create(duration: 2313,
+                    start_date: Time.now,
+                    bike_id: 12,
+                    subscription_type: 0,
+                    zip_code: 23456,
+                    start_station_id: @station2.id,
+                    end_station_id: @station2.id,
+                    end_date: Time.now,
+                    )
+
+        expect(Trip.station_most_ended).to eq(@station)
+      end
+    end
+
+    describe 'date_with_least_trips' do
+      it 'should return the date with the least trips' do
+        trip = Trip.create!(duration: 12,
+          start_date: DateTime.parse('02/10/1999'),
+          end_date: DateTime.parse('02/10/1999'),
+          bike_id: 42,
+          subscription_type: 'customer',
+          zip_code: 80202,
+          start_station_id: @station.id,
+          end_station_id: @station.id)
+        expect(Trip.date_with_least_trips).to eq(trip.end_date)
+      end
+    end
+
+    describe 'date_with_most_trips' do
+      it 'should return the date with the most trips' do
+        trip = Trip.create!(duration: 12,
+          start_date: DateTime.parse('02/10/1999'),
+          end_date: DateTime.parse('02/10/1999'),
+          bike_id: 42,
+          subscription_type: 'customer',
+          zip_code: 80202,
+          start_station_id: @station.id,
+          end_station_id: @station.id)
+        expect(Trip.date_with_most_trips).to eq(@trips[0].end_date)
+      end
     end
   end
-  
 end
