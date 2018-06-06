@@ -8,7 +8,7 @@ RSpec.describe Trip do
                               installation_date:Time.now)
     @trips = []
     20.times do |num|
-      @trips << Trip.create!(duration: num,
+      @trips << Trip.create!(duration: num+2,
                   start_date: Time.now,
                   bike_id: num+1,
                   subscription_type: 'subscriber',
@@ -19,7 +19,7 @@ RSpec.describe Trip do
     end
 
     20.times do |num|
-      @trips << Trip.create!(duration: num,
+      @trips << Trip.create!(duration: num+2,
                   start_date: Time.now,
                   bike_id: num+1,
                   subscription_type: 'customer',
@@ -47,7 +47,7 @@ RSpec.describe Trip do
   describe 'Class Methods' do
     describe 'average_trip_duration' do
       it 'should return the average duration of all trips' do
-        expect(Trip.average_duration).to eq(9.5)
+        expect(Trip.average_duration).to eq(11.5)
       end
     end
     describe 'longest_trip' do
@@ -67,7 +67,14 @@ RSpec.describe Trip do
     end
     describe 'shortest_trip' do
       it 'should return the shortest trip' do
-        trip = Trip.shortest
+        trip = Trip.create(duration: 1,
+          start_date: Time.now,
+          bike_id: 12,
+          subscription_type: 'subscriber',
+          zip_code: 23456,
+          start_station_id: @station.id,
+          end_station_id: @station.id,
+          end_date: Time.now)
 
         expect(Trip.shortest).to eq(trip)
       end
@@ -85,14 +92,13 @@ RSpec.describe Trip do
                     zip_code: 23456,
                     start_station_id: @station2.id,
                     end_station_id: @station2.id,
-                    end_date: Time.now,
-                    )
+                    end_date: Time.now)
 
         expect(Trip.station_most_started).to eq(@station)
       end
     end
     describe 'station_most_ended' do
-      it 'should return the station with most trips started' do
+      it 'should return the station with most trips ended' do
         @station2 = Station.create!(name:'name',
                         dock_count:5,
                         city:'denver',
@@ -104,15 +110,14 @@ RSpec.describe Trip do
                     zip_code: 23456,
                     start_station_id: @station2.id,
                     end_station_id: @station2.id,
-                    end_date: Time.now,
-                    )
+                    end_date: Time.now)
 
         expect(Trip.station_most_ended).to eq(@station)
       end
     end
 
     describe 'date_with_least_trips' do
-      it 'should return the date with the least trips' do
+      it 'should return the date with the least trips and the count of trips' do
         trip = Trip.create!(duration: 12,
           start_date: DateTime.parse('02/10/1999'),
           end_date: DateTime.parse('02/10/1999'),
@@ -121,12 +126,12 @@ RSpec.describe Trip do
           zip_code: 80202,
           start_station_id: @station.id,
           end_station_id: @station.id)
-        expect(Trip.date_with_least_trips).to eq(trip.end_date)
+        expect(Trip.date_with_least_trips).to eq([trip.end_date, 1])
       end
     end
 
     describe 'date_with_most_trips' do
-      it 'should return the date with the most trips' do
+      it 'should return the date with the most trips and the count of trips' do
         trip = Trip.create!(duration: 12,
           start_date: DateTime.parse('02/10/1999'),
           end_date: DateTime.parse('02/10/1999'),
@@ -135,7 +140,7 @@ RSpec.describe Trip do
           zip_code: 80202,
           start_station_id: @station.id,
           end_station_id: @station.id)
-        expect(Trip.date_with_most_trips).to eq(@trips[0].end_date)
+        expect(Trip.date_with_most_trips).to eq([@trips[0].end_date, 40])
       end
     end
 
