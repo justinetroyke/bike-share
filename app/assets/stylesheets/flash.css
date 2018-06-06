@@ -9,14 +9,14 @@ div.flash {
   font-size: 18px;
 }
 
-.flash .notice {
-  background-color: rgba(209,73,91,.6);
+/* .flash .notice {
+  background-color: rgb(209,73,91,.6);
 }
 
 .flash .info {
-  background-color: rgba(48,99,142,.8);
+  background-color: rgb(48,99,142,.8);
   color: #FEFEFE;
-}
+} */
 
 .flash .link a {
   color: rgb(48,99,142);
