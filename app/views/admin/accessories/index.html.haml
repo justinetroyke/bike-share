@@ -7,7 +7,6 @@
       %img{src: accessory.image_url, class: "thumbnail"}
       %span.accessory-title= accessory.title
       %span.accessory-description= accessory.description
-      %span.accessory-description= accessory.description
       %span.accessory-status= accessory.status.capitalize
       =link_to 'Edit', edit_admin_accessory_path(accessory)
       -if accessory.status == 'active'
