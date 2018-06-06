@@ -126,7 +126,7 @@ RSpec.describe Trip do
           zip_code: 80202,
           start_station_id: @station.id,
           end_station_id: @station.id)
-        expect(Trip.date_with_least_trips).to eq([trip.end_date, 1])
+        expect(Trip.date_with_least_trips).to eq({ date: trip.end_date.strftime('%m/%d/%Y'), trips_count: 1 })
       end
     end
 

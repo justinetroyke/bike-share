@@ -79,4 +79,12 @@ class Trip < ApplicationRecord
       trips_count: date_and_count[1]
     }
   end
+
+  def self.date_with_least_trips
+    date_and_count = group("date_trunc('day',start_date)").count.min_by { |date, trips_count| trips_count }
+    {
+      date: date_and_count[0].strftime('%m/%d/%Y'),
+      trips_count: date_and_count[1]
+    }
+  end
 end
