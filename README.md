@@ -29,5 +29,5 @@ as well as a simple shop interface for a bike shop.
 
 __Authors__
 Jude Lawson https://github.com/jude-lawson
-Justin Troyke https://github.com/justinetroyke
+Justine Troyke https://github.com/justinetroyke
 Zach Thomas https://github.com/zdcthomas
