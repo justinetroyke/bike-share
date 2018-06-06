@@ -51,4 +51,11 @@ RSpec.describe Trip do
       expect(Trip.longest).to eq(trip)
     end
   end
+  describe 'shortest_trip' do
+    it 'should return the shortest trip' do
+      trip = Trip.shortest
+
+      expect(Trip.shortest).to eq(trip)
+    end
+  end
 end

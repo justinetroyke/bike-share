@@ -23,12 +23,17 @@ RSpec.describe 'Trips Dashboard' do
     it 'they should see the average duration of a ride' do
       expect(page).to have_content("Average Trip Duration: #{Trip.all.average('duration')}")
     end
-  end
-  describe 'Any user type visits the trips dashboard page' do
     it 'they should see the longest ride' do
       trip = Trip.longest
-      
+
       expect(page).to have_content("Longest Trip:")
+      expect(page).to have_link(trip.id)
+      expect(page).to have_content("Duration: #{trip.duration}")
+    end
+    it 'they should see the shortest ride' do
+      trip = Trip.shortest
+
+      expect(page).to have_content("shortest Trip:")
       expect(page).to have_link(trip.id)
       expect(page).to have_content("Duration: #{trip.duration}")
     end
@@ -36,7 +41,6 @@ RSpec.describe 'Trips Dashboard' do
 end
 
 # As a registered user,
-# I see the Longest ride,
 # I see the Shortest ride,
 # I see the Station with the most rides as a starting place,
 # I see the Station with the most rides as an ending place,

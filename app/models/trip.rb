@@ -16,4 +16,8 @@ class Trip < ApplicationRecord
   def self.longest
     find_by(duration: maximum(:duration))
   end
+
+  def self.shortest
+    find_by(duration: minimum(:duration))
+  end
 end
