@@ -19,10 +19,8 @@
 %br
 .metric-container#average-duration
   %span= "Station Most Trips Ended At:"
-  %span= link_to("#{@most_ended.name}", trip_path(@most_ended))
-%br
+  %span= link_to("#{@trips}", trip_path(@most_ended))
 %br
 .metric-container#average-duration
-  %span= "Trip Stats:"
-  %span= "Annual Trip Counts:"
-  %span= "Monthly Trip Counts:"
+  %span= "Most Used Bike: #{@most_used_bike[:bike]} with #{@most_used_bike[:total]} ride(s)"
+%br

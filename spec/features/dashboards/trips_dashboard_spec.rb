@@ -78,7 +78,7 @@ RSpec.describe 'Trips Dashboard' do
     it 'they should see the average duration of all rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Average Trip Duration: 11.5")
+      expect(page).to have_content("Average Trip Duration: 793.0")
     end
 
     it 'they should see the longest ride' do
@@ -121,10 +121,11 @@ RSpec.describe 'Trips Dashboard' do
         zip_code: 80202,
         start_station_id: @station.id,
         end_station_id: @station.id)
+      @bike = Trip.most_used_bike
 
       visit trips_dashboard_path
 
-      expect(page).to have_content("Most Used Bike: #{@trips[0].bike_id} with 3 ride(s)")
+      expect(page).to have_content("Most Used Bike: #{@bike[:bike]} with #{@bike[:total]} ride(s)")
     end
 
     it 'they should see the least ridden bike with total number of rides for that bike' do
