@@ -1,6 +1,6 @@
-/* Index */
+/* Accessories Index */
 
-#trips-container {
+#accessories-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
   justify-content: space-evenly;
 }
 
-#trips-container li {
+#accessories-container li {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -19,12 +19,22 @@
   height: 300px;
 }
 
-#trips-container li span {
+#accessories-container li span {
   width: 100%;
   white-space: wrap;
 }
 
-#admin-trips-actions {
-  display: flex;
-  
+/* Accessory Show */
+
+#accessory-show img {
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+  display: block;
+}
+
+#accessory-info-container {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
 }

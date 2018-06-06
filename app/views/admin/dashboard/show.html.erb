@@ -1,17 +1,25 @@
 <h1><%= current_user.first_name %>'s Dashboard</h1>
 <content>
-  <%= current_user.username%>
-  <%= current_user.first_name%>
-  <%= current_user.last_name%>
-  <%= current_user.address%>
-  <br>
-  <br>
-  <%= link_to 'Create New Trip', new_admin_trip_path %>
-  <br>
-  <%= link_to 'Create New Station', new_admin_station_path %>
-  <br>
-  <br>
-  <%= link_to 'View All Accessories', admin_accessories_path %>
+  <div id="user-information-container">
+    <div>
+      <h3>Username:</h3>
+      <span><%= current_user.username%></span>
+    </div>
+    <div>
+      <h3>Name:</h3>
+      <span><%= current_user.first_name%> <%= current_user.last_name%></span>
+    </div>
+    <div>
+      <h3>Address:</h3>
+      <span><%= current_user.address%></span>
+    </div>
+  </div>
+  
+  <div id="admin-actions-container">
+    <%= link_to 'Create New Trip', new_admin_trip_path %>
+    <%= link_to 'Create New Station', new_admin_station_path %>
+    <%= link_to 'View All Accessories', admin_accessories_path %>
+  </div>
   <br>
   <br>
   <div id="selectors">

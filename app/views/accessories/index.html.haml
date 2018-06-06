@@ -2,7 +2,7 @@
 - if current_admin?
   = link_to('Create A New Accessory', new_admin_accessory_path)
 
-%ul
+%ul#accessories-container
   -@accessories.each do |accessory|
     %li{id: "accessory-#{accessory.id}"}
       %img{width: '80px', height: '80px', src: accessory.image_url}
