@@ -12,4 +12,8 @@ class Trip < ApplicationRecord
   def self.average_duration
     average(:duration).to_f
   end
+
+  def self.longest
+    find_by(duration: maximum(:duration))
+  end
 end

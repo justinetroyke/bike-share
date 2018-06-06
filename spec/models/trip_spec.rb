@@ -36,4 +36,19 @@ RSpec.describe Trip do
       expect(Trip.average_duration).to eq(19.5)
     end
   end
+  describe 'longest_trip' do
+    it 'should return the longest trip' do
+      trip = Trip.create(duration: 2313,
+                  start_date: Time.now,
+                  bike_id: 12,
+                  subscription_type: 0,
+                  zip_code: 23456,
+                  start_station_id: @station.id,
+                  end_station_id: @station.id,
+                  end_date: Time.now,
+                  )
+
+      expect(Trip.longest).to eq(trip)
+    end
+  end
 end

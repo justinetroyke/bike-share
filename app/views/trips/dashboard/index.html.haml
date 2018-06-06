@@ -2,3 +2,8 @@
 
 .metric-container#average-duration
   %span= "Average Trip Duration: #{@trips.average_duration}"
+%br
+.metric-container#average-duration
+  %span= "Longest Trip:"
+  %span= link_to("#{@longest.id}", trip_path(@longest))
+  %span= "Duration: #{@longest.duration}"
