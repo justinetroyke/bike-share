@@ -4,8 +4,12 @@ class Trip < ApplicationRecord
                         :start_station_id,
                         :end_station_id,
                         :bike_id,
-                        :subscription_type 
-                        
+                        :subscription_type
+
   belongs_to :start_station, class_name: 'Station'
   belongs_to :end_station, class_name: 'Station'
+
+  def self.average_duration
+    trips = Trip.all.average('')
+  end
 end
