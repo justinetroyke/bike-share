@@ -9,6 +9,13 @@ RSpec.describe 'Trip Show Page (Admin)' do
       city: 'Denver',
       installation_date: Time.parse('2010-05-05 00:00:00')
     )
+
+    @station2 = Station.create!(
+      name: 'Civic Center',
+      dock_count: 12,
+      city: 'Denver',
+      installation_date: Time.parse('2010-05-05 00:00:00')
+    )
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
   describe 'An admin user visits the new trip page and fills in form' do
@@ -26,13 +33,13 @@ RSpec.describe 'Trip Show Page (Admin)' do
 
       expect(current_path).to eq(new_admin_trip_path)
 
-      select('Subscriber', from: 'Subscription Type')
+      select 'Subscriber', from: 'Subscription Type'
       fill_in 'trip[duration]', with: duration
       fill_in 'trip[bike_id]', with: bike_id
       fill_in 'trip[start_date]', with: start_date
       fill_in 'trip[end_date]', with: end_date
-      fill_in 'trip[start_station_id]', with: @station.id
-      fill_in 'trip[end_station_id]', with: @station.id
+      select @station2.name, from: 'Start Station'
+      select @station.name, from: 'End Station'
       fill_in 'trip[zip_code]', with: zip
       click_button 'Create Trip'
 
