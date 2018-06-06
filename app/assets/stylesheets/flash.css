@@ -19,8 +19,8 @@ div.flash {
 }
 
 .flash .link a {
-  color: rgba(48,99,142);
-  border: 2px solid rgba(48,99,142);
+  color: rgb(48,99,142);
+  border: 2px solid rgb(48,99,142);
   padding: 8px;
   text-decoration: none;
   margin-top: 12px;
@@ -30,7 +30,7 @@ div.flash {
 }
 
 .flash .link a:hover {
-  background-color: rgba(48,99,142);
+  background-color: rgb(48,99,142);
   color: #FEFEFE;
   transition: .2s ease-in-out;
 }
