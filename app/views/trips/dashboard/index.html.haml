@@ -16,3 +16,7 @@
 .metric-container#average-duration
   %span= "Station Most Trips Started At:"
   %span= link_to("#{@most_stated.name}", trip_path(@most_stated))
+%br
+.metric-container#average-duration
+  %span= "Station Most Trips Ended At:"
+  %span= link_to("#{@most_ended.name}", trip_path(@most_ended))

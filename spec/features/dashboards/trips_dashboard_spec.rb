@@ -69,7 +69,7 @@ RSpec.describe 'Trips Dashboard' do
       station = Trip.station_most_ended
 
       expect(page).to have_content("Station Most Trips Ended At:")
-      expect(page).to have_link(station2.name)
+      expect(page).to have_link(station.name)
     end
   end
 end
