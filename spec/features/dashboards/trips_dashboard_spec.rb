@@ -164,11 +164,12 @@ RSpec.describe 'Trips Dashboard' do
         end_station_id: @station.id)
 
       visit trips_dashboard_path
+      @trip = Trip.date_with_most_trips
 
       within('#highest-number-of-trips') do
         expect(page).to have_content("Highest Number of Trips:")
-        expect(page).to have_content("Date: #{@trips[0].start_date}")
-        expect(page).to have_content("Number of Trips: #{@trips.length}")
+        expect(page).to have_content("on #{@trip[:date]}")
+        expect(page).to have_content("Number of Trips: #{@trip[:trips_count]}")
       end
     end
 
