@@ -65,9 +65,9 @@ RSpec.describe 'All Accessories on Dashboard (Admin)' do
       click_button 'Update Accessory'
 
       expect(page).to have_current_path(accessory_path(@accessories[0]))
-      expect(page).to have_content("Title: #{edited_title}")
-      expect(page).to have_content("Description: #{edited_description}")
-      expect(page).to have_content("Price: $#{edited_price}")
+      expect(page).to have_content("Title:\n#{edited_title}")
+      expect(page).to have_content("Description:\n#{edited_description}")
+      expect(page).to have_content("Price:\n$#{edited_price}")
 
       expect(page).to_not have_content("Title: #{@accessories[0].title}")
       expect(page).to_not have_content("Description: #{@accessories[0].description}")
