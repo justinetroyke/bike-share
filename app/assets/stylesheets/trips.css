@@ -11,6 +11,8 @@
 #trips-container li {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  padding: 12px;
   margin: 10px;
   background-color: rgba(0,121,140,.6);
   width: 400px;
