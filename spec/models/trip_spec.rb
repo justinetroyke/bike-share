@@ -7,11 +7,22 @@ RSpec.describe Trip do
                               city:'denver',
                               installation_date:Time.now)
     @trips = []
-    40.times do |num|
+    20.times do |num|
       @trips << Trip.create(duration: num,
                   start_date: Time.now,
                   bike_id: num+rand(10),
                   subscription_type: 'subscriber',
+                  zip_code: 23456,
+                  start_station_id: @station.id,
+                  end_station_id: @station.id,
+                  end_date: Time.now)
+    end
+
+    20.times do |num|
+      @trips << Trip.create(duration: num,
+                  start_date: Time.now,
+                  bike_id: num+rand(10),
+                  subscription_type: 'customer',
                   zip_code: 23456,
                   start_station_id: @station.id,
                   end_station_id: @station.id,
@@ -125,6 +136,13 @@ RSpec.describe Trip do
           start_station_id: @station.id,
           end_station_id: @station.id)
         expect(Trip.date_with_most_trips).to eq(@trips[0].end_date)
+      end
+    end
+
+    describe 'subscription_breakdown' do
+      it 'should return a hash with the subscription_type as key and the count and percentage inside of that' do
+        expect(Trip.subscription_breakdown).to eq({ 'subscriber' => { 'count' => 20, 'percentage' => 50 }, 
+                                                    'customer' => { 'count' => 20, 'percentage' => 50 } })
       end
     end
   end
