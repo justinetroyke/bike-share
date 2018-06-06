@@ -8,9 +8,9 @@ RSpec.describe Trip do
                               installation_date:Time.now)
     @trips = []
     20.times do |num|
-      @trips << Trip.create(duration: num,
+      @trips << Trip.create!(duration: num,
                   start_date: Time.now,
-                  bike_id: num+rand(10),
+                  bike_id: num+1,
                   subscription_type: 'subscriber',
                   zip_code: 23456,
                   start_station_id: @station.id,
@@ -19,9 +19,9 @@ RSpec.describe Trip do
     end
 
     20.times do |num|
-      @trips << Trip.create(duration: num,
+      @trips << Trip.create!(duration: num,
                   start_date: Time.now,
-                  bike_id: num+rand(10),
+                  bike_id: num+1,
                   subscription_type: 'customer',
                   zip_code: 23456,
                   start_station_id: @station.id,
@@ -47,7 +47,7 @@ RSpec.describe Trip do
   describe 'Class Methods' do
     describe 'average_trip_duration' do
       it 'should return the average duration of all trips' do
-        expect(Trip.average_duration).to eq(19.5)
+        expect(Trip.average_duration).to eq(9.5)
       end
     end
     describe 'longest_trip' do
