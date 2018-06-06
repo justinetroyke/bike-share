@@ -38,4 +38,16 @@ class Trip < ApplicationRecord
 
     Station.find(most_ended.last.start_station_id)
   end
+
+  def self.monthly_trips
+    select("DATE_TRUNC('month', start_date) as month, count(*) as count")
+    .group('month')
+    .order('month')
+  end
+
+  def self.yearly_trips
+    select("DATE_TRUNC('year', start_date) as year, count(*) as count")
+    .group('year')
+    .order('year')
+  end
 end

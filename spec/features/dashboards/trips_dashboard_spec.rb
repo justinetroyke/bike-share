@@ -71,10 +71,15 @@ RSpec.describe 'Trips Dashboard' do
       expect(page).to have_content("Station Most Trips Ended At:")
       expect(page).to have_link(station.name)
     end
+    it 'they should a month by month breakdown of rides' do
+
+      expect(page).to have_content("Trip Stats:")
+      expect(page).to have_content("Annual Trip Counts:")
+      expect(page).to have_content("Monthly Trip Counts:")
+    end
   end
 end
 
-# I see the Station with the most rides as an ending place,
 # I see Month by Month breakdown of number of rides
 # with subtotals for each year,
 # I see the Most ridden bike with total number

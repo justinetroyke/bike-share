@@ -96,4 +96,5 @@ RSpec.describe Trip do
       expect(Trip.station_most_ended).to eq(@station)
     end
   end
+  
 end
