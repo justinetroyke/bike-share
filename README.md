@@ -16,7 +16,7 @@ rake db:{drop,create,migrate,seed}
 rails s
 ```
 __Heroku Link__
-http://guarded-ravine-88112.herokuapp.com/
+https://protected-scrubland-86468.herokuapp.com/stations
 
 __Testing__
 To run the full rspec testing suite, run
